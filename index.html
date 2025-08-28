@@ -3,93 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест: Чи потрібна вашому мозку енергетична підтримка?</title>
+    <title>Тест: Розкрийте свій потенціал продуктивності</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm, premium off-white */
         }
-        .animated-gradient-bg {
-            background: linear-gradient(-45deg, #F0F4F8, #D9E2EC, #F0F4F8, #EBF1F7);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
         }
         .content-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            border-radius: 1.5rem; /* More rounded */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(17, 51, 83, 0.15);
+            background: #FFFFFF;
+            border-radius: 1.5rem;
+            border: 1px solid #F3F4F6;
+            box-shadow: 0 25px 50px -12px rgba(56, 56, 56, 0.1);
             transform: translateY(20px);
             opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease-out;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s ease-out;
         }
         .content-card.active {
             transform: translateY(0);
             opacity: 1;
         }
         .btn-primary {
-            background-color: #2563EB;
+            background-color: #D97706; /* Amber 600 - warm orange */
             color: #FFFFFF;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
         }
         .btn-primary:hover {
-            background-color: #1D4ED8;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            background-color: #B45309; /* Amber 700 */
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
         }
         .btn-secondary {
              background-color: transparent;
-             color: #2563EB;
-             border: 1px solid #2563EB;
-             transition: all 0.3s ease;
+             color: #B45309;
+             border: 1px solid #D97706;
+             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .btn-secondary:hover {
-            background-color: rgba(37, 99, 235, 0.1);
-            transform: translateY(-3px);
+            background-color: rgba(217, 119, 6, 0.05);
+            transform: translateY(-4px);
         }
         .progress-bar-inner {
             transition: width 0.5s ease-in-out;
-            background-color: #2563EB;
+            background-color: #D97706;
         }
         .lang-switcher button {
             transition: all 0.3s ease;
-            color: #475569;
+            color: #6B7280; /* Gray 500 */
         }
         .lang-switcher button.active {
-            color: #2563EB;
+            color: #D97706;
             font-weight: 600;
         }
         .pulsate {
-            animation: pulsate 2s infinite;
+            animation: pulsate 2.5s infinite;
         }
         @keyframes pulsate {
-            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(217, 119, 6, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
         }
-        .icon-animate {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .mountain-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
         }
     </style>
 </head>
-<body class="animated-gradient-bg text-slate-800 min-h-screen flex items-center justify-center p-4">
+<body class="text-slate-700 min-h-screen flex items-center justify-center p-4 overflow-hidden">
 
-    <div class="lang-switcher absolute top-4 right-4 bg-white/70 backdrop-blur-sm space-x-2 p-2 rounded-lg shadow-sm">
+    <div class="lang-switcher absolute top-4 right-4 bg-white/70 backdrop-blur-sm space-x-2 p-2 rounded-lg shadow-sm z-10">
         <button id="lang-uk" class="px-2 py-1 rounded active">UK</button>
         <button id="lang-en" class="px-2 py-1 rounded">EN</button>
     </div>
@@ -97,13 +91,13 @@
     <div id="app" class="w-full max-w-4xl mx-auto">
 
         <!-- Start Screen -->
-        <div id="start-screen" class="text-center space-y-8 content-card p-8 md:p-12">
-            <div class="flex justify-center icon-animate">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-circuit"><path d="M12 5a3 3 0 1 0-5.993.142"/><path d="M18 5a3 3 0 1 0-5.993.142"/><path d="M12 12a3 3 0 1 0-5.993.142"/><path d="M18 12a3 3 0 1 0-5.993.142"/><path d="M12 19a3 3 0 1 0-5.993.142"/><path d="M18 19a3 3 0 1 0-5.993.142"/><path d="M21 12h-3"/><path d="M6 12H3"/><path d="M21 5h-3"/><path d="M6 5H3"/><path d="M21 19h-3"/><path d="M6 19H3"/><path d="m14 7 2 3-2 3"/><path d="m10 7-2 3 2 3"/></svg>
+        <div id="start-screen" class="relative text-center space-y-8 content-card p-8 md:p-12">
+            <h1 class="text-4xl md:text-6xl font-semibold text-slate-900" data-translate="start_title"></h1>
+            <p class="text-slate-600 text-lg max-w-xl mx-auto" data-translate="start_subtitle"></p>
+            <button id="start-btn" class="btn-primary font-bold py-4 px-10 rounded-lg text-lg" data-translate="start_button"></button>
+            <div class="mountain-bg">
+                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="#1E293B" fill-opacity="1" d="M0,224L80,208C160,192,320,160,480,170.7C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
             </div>
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900" data-translate="start_title"></h1>
-            <p class="text-slate-600 text-lg" data-translate="start_subtitle"></p>
-            <button id="start-btn" class="btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="start_button"></button>
         </div>
 
         <!-- Quiz Screen -->
@@ -113,14 +107,14 @@
                     <span id="question-counter"></span>
                     <span data-translate="quiz_questions_total"></span>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-2.5">
-                    <div id="progress-bar" class="h-2.5 rounded-full progress-bar-inner" style="width: 0%"></div>
+                <div class="w-full bg-slate-200 rounded-full h-2">
+                    <div id="progress-bar" class="h-2 rounded-full progress-bar-inner" style="width: 0%"></div>
                 </div>
             </div>
             <div id="quiz-content" class="space-y-6">
-                <h2 id="question-title" class="text-2xl md:text-3xl font-bold text-slate-900"></h2>
+                <h2 id="question-title" class="text-3xl md:text-4xl font-semibold text-slate-900"></h2>
                 <p id="question-text" class="text-slate-700 text-lg"></p>
-                <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg">
                     <p id="question-explanation" class="text-slate-600 text-sm italic"></p>
                 </div>
                 <div id="answer-buttons" class="flex flex-col sm:flex-row gap-4 pt-4">
@@ -133,20 +127,20 @@
         <!-- Result Screen -->
         <div id="result-screen" class="hidden text-center space-y-8 content-card p-8 md:p-12 max-w-2xl mx-auto">
             <div id="result-high" class="hidden space-y-6">
-                <div class="flex justify-center icon-animate"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-battery-low"><rect width="16" height="10" x="4" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/></svg></div>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900" data-translate="result_high_title"></h2>
+                <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#10B981"/><circle cx="12" cy="12" r="5" fill="#10B981"/></svg></div>
+                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_high_title"></h2>
                 <p class="text-slate-600 text-lg" data-translate="result_high_text"></p>
                 <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_high_button"></button>
             </div>
             <div id="result-medium" class="hidden space-y-6">
-                 <div class="flex justify-center icon-animate"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-battery-medium"><rect width="16" height="10" x="4" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/><line x1="10" x2="10" y1="11" y2="13"/></svg></div>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900" data-translate="result_medium_title"></h2>
+                 <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.99 12c0-5.52-4.47-10-9.99-10S2 6.48 2 12s4.47 10 9.99 10L22 22l-2-10h2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#F59E0B"/></svg></div>
+                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_medium_title"></h2>
                 <p class="text-slate-600 text-lg" data-translate="result_medium_text"></p>
                 <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_medium_button"></button>
             </div>
             <div id="result-low" class="hidden space-y-6">
-                <div class="flex justify-center icon-animate"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-battery-full"><rect width="16" height="10" x="4" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/><line x1="10" x2="10" y1="11" y2="13"/><line x1="14" x2="14" y1="11" y2="13"/></svg></div>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900" data-translate="result_low_title"></h2>
+                <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#EF4444"/></svg></div>
+                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_low_title"></h2>
                 <p class="text-slate-600 text-lg" data-translate="result_low_text"></p>
                 <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_low_button"></button>
             </div>
@@ -156,24 +150,24 @@
         <div id="product-screen" class="hidden content-card p-8 md:p-12">
             <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
                 <div class="mb-8 md:mb-0">
-                    <img src="https://raw.githubusercontent.com/AndriiAICreator/blue/main/foto_blue" alt="Seven Mountains Methylene Blue Bottle" class="rounded-lg shadow-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://raw.githubusercontent.com/AndriiAICreator/blue/main/foto_blue" alt="Seven Mountains Methylene Blue Bottle" class="rounded-lg shadow-xl mx-auto transform hover:scale-105 transition-transform duration-500 ease-in-out">
                 </div>
                 <div class="space-y-6">
-                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900" data-translate="product_title"></h1>
+                    <h1 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="product_title"></h1>
                     <p class="text-slate-600" data-translate="product_intro"></p>
                     
                     <div>
-                        <h3 class="font-semibold text-slate-800 mb-3" data-translate="product_key_features"></h3>
-                        <ul class="space-y-2 text-slate-600">
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_formaldehyde_free"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_alcohol_free"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_made_in_usa"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_lab_tested"></span></li>
+                        <h3 class="font-semibold text-slate-800 mb-3 text-lg" data-translate="product_key_features"></h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_formaldehyde_free"></span></li>
+                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_alcohol_free"></span></li>
+                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_made_in_usa"></span></li>
+                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_lab_tested"></span></li>
                         </ul>
                     </div>
 
-                    <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg mt-4">
-                        <p class="text-yellow-800 text-sm" data-translate="product_disclaimer"></p>
+                    <div class="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg mt-4">
+                        <p class="text-amber-800 text-sm" data-translate="product_disclaimer"></p>
                     </div>
 
                     <div class="pt-4 flex flex-col sm:flex-row gap-4">
@@ -188,12 +182,7 @@
 
     <script>
         // DOM Elements
-        const screens = {
-            start: document.getElementById('start-screen'),
-            quiz: document.getElementById('quiz-screen'),
-            result: document.getElementById('result-screen'),
-            product: document.getElementById('product-screen')
-        };
+        const screens = { start: document.getElementById('start-screen'), quiz: document.getElementById('quiz-screen'), result: document.getElementById('result-screen'), product: document.getElementById('product-screen') };
         const startBtn = document.getElementById('start-btn');
         const questionCounter = document.getElementById('question-counter');
         const progressBar = document.getElementById('progress-bar');
@@ -205,42 +194,37 @@
         const backToStartBtn = document.getElementById('back-to-start-btn');
         const langUkBtn = document.getElementById('lang-uk');
         const langEnBtn = document.getElementById('lang-en');
-
-        const results = {
-            high: document.getElementById('result-high'),
-            medium: document.getElementById('result-medium'),
-            low: document.getElementById('result-low')
-        };
+        const results = { high: document.getElementById('result-high'), medium: document.getElementById('result-medium'), low: document.getElementById('result-low') };
         
         // Translations
         const translations = {
             uk: {
-                start_title: "Ваш мозок працює на повну?",
-                start_subtitle: "Пройдіть 1-хвилинний тест і дізнайтеся, чи пов'язані ваша втома та прокрастинація зі зниженням клітинної енергії.",
-                start_button: "Розпочати тест",
+                start_title: "Розкрийте свій потенціал продуктивності",
+                start_subtitle: "Пройдіть наш експертний тест, щоб визначити ваш унікальний архітип продуктивності та отримати персоналізовану систему для його розвитку.",
+                start_button: "Пройти тест",
                 quiz_questions_total: "10 Питань",
                 quiz_question_counter: "Питання",
                 quiz_yes: "Так",
                 quiz_no: "Ні",
-                result_high_title: "Потреба у глибокій підтримці",
-                result_high_text: "Схоже, ваш мозок регулярно надсилає сигнали про енергетичне виснаження на клітинному рівні. 'Туман в голові' та втома — це ознака того, що вашим 'енергетичним станціям' потрібна допомога.",
-                result_high_button: "Дізнатися більше про рішення",
-                result_medium_title: "Перші сигнали для оптимізації",
-                result_medium_text: "Ви помічаєте важливі дзвіночки, які вказують на нестабільність вашого енергетичного рівня. Зараз саме час діяти на випередження, щоб ці симптоми не посилились.",
-                result_medium_button: "Як підтримати свою енергію?",
-                result_low_title: "Все під контролем!",
-                result_low_text: "Вітаємо! Ваш рівень енергії та концентрації на висоті. Ваш спосіб життя дозволяє клітинам виробляти достатньо енергії для всіх щоденних завдань.",
-                result_low_button: "Читати блог про продуктивність",
-                product_title: "Seven Mountains Methylene Blue 1%",
-                product_intro: "Метиленовий синій — це сполука, відома своєю здатністю підтримувати ефективність роботи мітохондрій. Коли ваші клітини виробляють енергію оптимально, ви відчуваєте це через ясність розуму, гостру пам'ять та стабільну концентрацію.",
+                result_high_title: "Архітип: Стратег",
+                result_high_text: "Ваша енергія стабільна, а розум — гострий. Ви вмієте планувати та досягати мети. Ваша задача — підтримувати цей високий рівень та захищати мозок від стресу.",
+                result_high_button: "Дізнатися про вашу систему",
+                result_medium_title: "Архітип: Спринтер",
+                result_medium_text: "Ви маєте потужні сплески енергії, але іноді відчуваєте спади. Ваша сила — у швидких ривках, але вам потрібна підтримка для стабільної продуктивності протягом дня.",
+                result_medium_button: "Оптимізувати вашу енергію",
+                result_low_title: "Архітип: Візіонер під навантаженням",
+                result_low_text: "У вас є великі ідеї, але брак енергії заважає їх реалізації. Вашому мозку потрібна фундаментальна підтримка, щоб відновити ресурс та втілити ваш потенціал.",
+                result_low_button: "Відновити ваш ресурс",
+                product_title: "Система «Сім Вершин»",
+                product_intro: "Наша система з Метиленовим Синім 1% розроблена для підтримки ефективності мітохондрій. Коли ваші клітини виробляють енергію оптимально, ви відчуваєте це через ясність розуму та стабільну концентрацію.",
                 product_key_features: "Ключові переваги",
                 feature_formaldehyde_free: "Без формальдегіду",
                 feature_alcohol_free: "Без спирту",
                 feature_made_in_usa: "Вироблено в США",
                 feature_lab_tested: "Перевірено в лабораторії",
                 product_disclaimer: "Застереження: Використовуйте свідомо. Завжди читайте етикетку та дотримуйтесь рекомендацій. Цей продукт не призначений для діагностики, лікування чи запобігання будь-яким захворюванням.",
-                product_buy_button: "Купити зараз",
-                product_back_button: "Повернутися на головну",
+                product_buy_button: "Отримати систему",
+                product_back_button: "Пройти тест знову",
                 questions: [
                     { title: "Післяобідній спад", text: "Чи відчуваєте ви різкий спад енергії та працездатності в другій половині дня, особливо після 15:00?", explanation: "Чому це важливо? Це класичний симптом виснаження мітохондрій, які не можуть підтримувати стабільний рівень енергії протягом дня." },
                     { title: "Залежність від стимуляторів", text: "Чи покладаєтесь ви на каву, щоб 'пережити' день, але відчуваєте, що це лише тимчасовий 'пластир'?", explanation: "Чому це важливо? Стимулятори маскують проблему, не вирішуючи її причину — нестачу власної, клітинної енергії." },
@@ -255,32 +239,32 @@
                 ]
             },
             en: {
-                start_title: "Is Your Brain Operating at Full Power?",
-                start_subtitle: "Take this 1-minute quiz to find out if your fatigue and procrastination are linked to a decline in cellular energy.",
-                start_button: "Start The Test",
+                start_title: "Unlock Your Productivity Potential",
+                start_subtitle: "Take our expert quiz to determine your unique productivity archetype and get a personalized system to develop it.",
+                start_button: "Take The Test",
                 quiz_questions_total: "10 Questions",
                 quiz_question_counter: "Question",
                 quiz_yes: "Yes",
                 quiz_no: "No",
-                result_high_title: "Need for Deep Support",
-                result_high_text: "It seems your brain regularly signals cellular energy depletion. 'Brain fog' and fatigue are signs that your cellular 'power plants' need help.",
-                result_high_button: "Learn More About The Solution",
-                result_medium_title: "First Signals for Optimization",
-                result_medium_text: "You're noticing important signs that point to instability in your energy levels. Now is the time to act proactively to prevent these symptoms from worsening.",
-                result_medium_button: "How to Support Your Energy?",
-                result_low_title: "Everything is Under Control!",
-                result_low_text: "Congratulations! Your energy and concentration levels are high. Your lifestyle allows your cells to produce enough energy for all daily tasks.",
-                result_low_button: "Read Our Productivity Blog",
-                product_title: "Seven Mountains Methylene Blue 1%",
-                product_intro: "Methylene Blue is a compound known for its ability to support the efficiency of mitochondria, the 'power plants' of our cells. When your cells produce energy optimally, you feel it through mental clarity, sharp memory, and stable focus.",
+                result_high_title: "Archetype: The Strategist",
+                result_high_text: "Your energy is stable, and your mind is sharp. You know how to plan and achieve goals. Your task is to maintain this high level and protect your brain from stress.",
+                result_high_button: "Discover Your System",
+                result_medium_title: "Archetype: The Sprinter",
+                result_medium_text: "You have powerful bursts of energy but sometimes experience slumps. Your strength is in quick sprints, but you need support for stable performance throughout the day.",
+                result_medium_button: "Optimize Your Energy",
+                result_low_title: "Archetype: The Visionary Under Strain",
+                result_low_text: "You have big ideas, but a lack of energy prevents their realization. Your brain needs fundamental support to restore resources and fulfill your potential.",
+                result_low_button: "Restore Your Resource",
+                product_title: "The 'Seven Mountains' System",
+                product_intro: "Our system with Methylene Blue 1% is designed to support mitochondrial efficiency. When your cells produce energy optimally, you feel it through mental clarity and stable focus.",
                 product_key_features: "Key Features",
                 feature_formaldehyde_free: "Formaldehyde Free",
                 feature_alcohol_free: "Alcohol Free",
                 feature_made_in_usa: "Made in USA",
                 feature_lab_tested: "Lab Tested",
                 product_disclaimer: "Disclaimer: Use thoughtfully. Always read the label and follow the recommendations. This product is not intended to diagnose, treat, cure, or prevent any disease.",
-                product_buy_button: "Buy Now",
-                product_back_button: "Back to Home",
+                product_buy_button: "Get The System",
+                product_back_button: "Retake The Test",
                 questions: [
                     { title: "Afternoon Slump", text: "Do you experience a sharp drop in energy and productivity in the afternoon, especially after 3 PM?", explanation: "Why it matters: This is a classic symptom of mitochondrial fatigue, as they can't maintain a stable energy level throughout the day." },
                     { title: "Stimulant Dependence", text: "Do you rely on coffee to get through the day, feeling it's just a temporary 'band-aid'?", explanation: "Why it matters: Stimulants mask the problem without solving its root cause—a lack of your own cellular energy." },
@@ -304,34 +288,25 @@
         // Functions
         function showScreen(screenName) {
             const activeScreen = document.querySelector('.content-card.active');
-            if (activeScreen) {
-                activeScreen.classList.remove('active');
-            }
-            
+            if (activeScreen) { activeScreen.classList.remove('active'); }
             setTimeout(() => {
                 Object.values(screens).forEach(screen => screen.classList.add('hidden'));
                 screens[screenName].classList.remove('hidden');
-                setTimeout(() => screens[screenName].classList.add('active'), 50); // Add active class for animation
-            }, 300); // Wait for fade out
+                setTimeout(() => screens[screenName].classList.add('active'), 50);
+            }, 300);
         }
 
         function setLanguage(lang) {
             currentLanguage = lang;
             document.documentElement.lang = lang;
-            
             langUkBtn.classList.toggle('active', lang === 'uk');
             langEnBtn.classList.toggle('active', lang === 'en');
-
             const langData = translations[lang];
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.dataset.translate;
-                if (langData[key]) {
-                    el.textContent = langData[key];
-                }
+                if (langData[key]) { el.textContent = langData[key]; }
             });
-            if (!screens.quiz.classList.contains('hidden')) {
-                displayQuestion();
-            }
+            if (!screens.quiz.classList.contains('hidden')) { displayQuestion(); }
         }
 
         function startQuiz() {
@@ -351,9 +326,7 @@
         }
 
         function handleAnswer(event) {
-            if (event.target.dataset.answer === 'yes') {
-                score++;
-            }
+            if (event.target.dataset.answer === 'yes') { score++; }
             currentQuestionIndex++;
             if (currentQuestionIndex < translations[currentLanguage].questions.length) {
                 displayQuestion();
@@ -366,21 +339,16 @@
             showScreen('result');
             Object.values(results).forEach(result => result.classList.add('hidden'));
             if (score >= 8) {
-                results.high.classList.remove('hidden');
+                results.low.classList.remove('hidden'); // Note: High score means few problems -> "Strategist"
             } else if (score >= 4) {
-                results.medium.classList.remove('hidden');
+                results.medium.classList.remove('hidden'); // Medium score -> "Sprinter"
             } else {
-                results.low.classList.remove('hidden');
+                results.high.classList.remove('hidden'); // Low score means many problems -> "Visionary"
             }
         }
         
-        function showProduct() {
-            showScreen('product');
-        }
-
-        function showStartScreen() {
-            showScreen('start');
-        }
+        function showProduct() { showScreen('product'); }
+        function showStartScreen() { showScreen('start'); }
 
         // Event Listeners
         startBtn.addEventListener('click', startQuiz);
