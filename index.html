@@ -81,7 +81,7 @@
         }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+<body class="text-slate-700 min-h-screen flex items-center justify-center p-4">
 
     <div class="lang-switcher absolute top-4 right-4 bg-white/70 backdrop-blur-sm space-x-2 p-2 rounded-lg shadow-sm z-10">
         <button id="lang-uk" class="px-2 py-1 rounded active">UK</button>
@@ -338,12 +338,13 @@
         function showResults() {
             showScreen('result');
             Object.values(results).forEach(result => result.classList.add('hidden'));
+            // The logic is inverted: more "yes" answers (higher score) means more problems.
             if (score >= 8) {
-                results.low.classList.remove('hidden'); // Note: High score means few problems -> "Strategist"
+                results.low.classList.remove('hidden'); // Many problems -> "Visionary"
             } else if (score >= 4) {
-                results.medium.classList.remove('hidden'); // Medium score -> "Sprinter"
+                results.medium.classList.remove('hidden'); // Some problems -> "Sprinter"
             } else {
-                results.high.classList.remove('hidden'); // Low score means many problems -> "Visionary"
+                results.high.classList.remove('hidden'); // Few problems -> "Strategist"
             }
         }
         
