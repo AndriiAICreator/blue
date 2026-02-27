@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<!-- За замовчуванням встановлено темну тему та англійську мову -->
 <html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>ANDRII.AI | AI Creator & Video Editor</title>
+    <title>ANDRII.AI | Premium Video Editor & AI Creator</title>
     <meta name="description" content="Portfolio of Andrii, a Senior AI Creator and Video Editor specializing in commercial video production, AI avatars, dynamic editing, and full AI generation.">
     <meta name="keywords" content="AI Creator, Video Editor, AI Avatars, Commercial Video Production, Dynamic Editing, VFX, HeyGen, AI Generation, Motion Graphics">
     <meta name="author" content="ANDRII.AI">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="ANDRII.AI | Premium Video Production & AI Generation">
-    <meta property="og:description" content="Explore my portfolio of commercial video production, AI avatars, and dynamic editing.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1200&auto=format&fit=crop">
-    <meta property="og:type" content="website">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,25 +38,58 @@
         }
     </script>
 
-    <!-- Custom CSS for Language Toggle & Base Styling -->
+    <!-- Custom CSS -->
     <style>
-        /* Базова логіка багатомовності */
+        /* Логіка багатомовності */
         html[lang="en"] .lang-ua { display: none !important; }
         html[lang="ua"] .lang-en { display: none !important; }
         
-        /* Ховаємо скролбар для більш преміального вигляду, залишаючи можливість скролити */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Скролбар */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: rgba(156, 163, 175, 0.3); border-radius: 20px; }
+        .dark ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); }
+
+        /* Стилі для чистого прев'ю YouTube відео (srcdoc) */
+        .yt-poster-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
+        .yt-poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.5s ease;
         }
-        ::-webkit-scrollbar-thumb {
-            background-color: rgba(156, 163, 175, 0.3);
-            border-radius: 20px;
+        .yt-poster-wrap:hover .yt-poster-img {
+            opacity: 0.5;
+            transform: scale(1.05);
         }
-        .dark ::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.2);
+        .yt-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .yt-poster-wrap:hover .yt-play-btn {
+            background-color: white;
+            color: black;
+            transform: translate(-50%, -50%) scale(1.1);
         }
     </style>
 </head>
@@ -77,7 +103,7 @@
                 ANDRII<span class="text-blue-600 dark:text-blue-400">.AI</span>
             </a>
 
-            <!-- Controls (Theme, Lang, Contact) -->
+            <!-- Controls -->
             <div class="flex items-center gap-4 sm:gap-6">
                 <!-- Theme Toggle -->
                 <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
@@ -86,13 +112,10 @@
                 </button>
 
                 <!-- Language Toggle -->
-                <button id="langToggle" class="text-sm font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1" aria-label="Toggle Language">
-                    <span class="lang-en text-zinc-400">EN</span>
-                    <span class="lang-en">| UA</span>
-                    
-                    <span class="lang-ua">EN |</span>
-                    <span class="lang-ua text-zinc-500"> UA</span>
-                </button>
+                <div class="flex items-center bg-zinc-200 dark:bg-zinc-800 rounded-full p-1 cursor-pointer" id="langToggleBox">
+                    <span id="langBtnEn" class="px-3 py-1 text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white">EN</span>
+                    <span id="langBtnUa" class="px-3 py-1 text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white">UA</span>
+                </div>
 
                 <!-- Contact Button -->
                 <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2 text-sm font-medium border border-zinc-300 dark:border-white/20 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
@@ -104,59 +127,164 @@
     </header>
 
     <!-- Section 2: Hero Section -->
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+    <section class="relative h-screen w-full flex items-end pb-16 sm:pb-24 overflow-hidden bg-zinc-900">
         
         <!-- Background YouTube Video (Showreel) -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-            <!-- min-w-[177.77vh] ensures 16:9 aspect ratio cover -->
-            <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-80"
+            <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70"
                     src="https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&mute=1&loop=1&playlist=LqUWmvRhwq4&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&iv_load_policy=3"
                     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
             </iframe>
         </div>
         
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black/60 dark:bg-black/70 z-0"></div>
+        <!-- Gradient Overlay (Dark at bottom, transparent at top) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 via-zinc-50/60 dark:from-zinc-950 dark:via-zinc-950/60 to-transparent z-0"></div>
 
-        <!-- Hero Content -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
-            <h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6">
-                <span class="lang-en">AI Creator & Video Editor</span>
-                <span class="lang-ua">AI Creator & Video Editor</span>
-            </h1>
+        <!-- Hero Content (Aligned Bottom Left/Right) -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-end gap-6">
             
-            <p class="text-lg sm:text-xl text-zinc-300 mb-10 max-w-2xl font-light">
-                <span class="lang-en">Crafting premium visual experiences through cutting-edge AI generation and dynamic editing.</span>
-                <span class="lang-ua">Створення преміального візуалу за допомогою передової AI-генерації та динамічного монтажу.</span>
+            <!-- Main Text -->
+            <div class="max-w-2xl">
+                <h1 class="text-5xl sm:text-7xl font-bold tracking-tight mb-4">
+                    <span class="lang-en text-zinc-900 dark:text-white">AI Creator &<br>Video Editor</span>
+                    <span class="lang-ua text-zinc-900 dark:text-white">AI Creator &<br>Video Editor</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-zinc-700 dark:text-zinc-300 mb-8 font-light">
+                    <span class="lang-en">Crafting premium visual experiences through cutting-edge AI generation, automation, and dynamic video editing.</span>
+                    <span class="lang-ua">Створення преміального візуалу за допомогою передової AI-генерації, автоматизації та динамічного відеомонтажу.</span>
+                </p>
+                <div class="flex gap-4">
+                    <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-3 text-sm sm:text-base font-medium rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black hover:opacity-90 transition-opacity">
+                        <span class="lang-en">View Portfolio</span>
+                        <span class="lang-ua">Дивитись портфоліо</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mute Button (Small, elegant, bottom right) -->
+            <button id="muteToggleBtn" class="w-12 h-12 rounded-full bg-white/30 dark:bg-black/30 backdrop-blur-md border border-zinc-300 dark:border-white/20 hover:bg-white/50 dark:hover:bg-white/10 flex items-center justify-center transition-all shadow-lg text-zinc-900 dark:text-white cursor-pointer group" title="Toggle Sound">
+                <i id="muteIcon" class="fas fa-volume-mute text-lg group-hover:scale-110 transition-transform"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: About & Skills -->
+    <section class="py-20 bg-zinc-100 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-white/5 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-sm font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase mb-3">
+                    <span class="lang-en">About Me</span>
+                    <span class="lang-ua">Про мене</span>
+                </h2>
+                <h3 class="text-3xl sm:text-4xl font-bold mb-6">
+                    <span class="lang-en">Elevating brands through the synergy of art and algorithms.</span>
+                    <span class="lang-ua">Піднімаю бренди через синергію мистецтва та алгоритмів.</span>
+                </h3>
+                <p class="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
+                    <span class="lang-en">With years of experience in high-end video production, I've transitioned into the forefront of AI creation. I don't just edit videos; I engineer comprehensive visual narratives. By combining traditional editing software with state-of-the-art AI models, I deliver content that captures attention and drives engagement.</span>
+                    <span class="lang-ua">Маючи багаторічний досвід у створенні висококласного відео, я перейшов на передову AI-креативу. Я не просто монтую відео; я конструюю комплексні візуальні історії. Поєднуючи традиційне програмне забезпечення з новітніми AI-моделями, я створюю контент, який захоплює увагу та підвищує залученість.</span>
+                </p>
+            </div>
+            
+            <!-- Software Stack -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-video text-2xl text-purple-600"></i>
+                    <span class="font-medium text-sm">Premiere Pro</span>
+                </div>
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-layer-group text-2xl text-purple-500"></i>
+                    <span class="font-medium text-sm">After Effects</span>
+                </div>
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-robot text-2xl text-blue-500"></i>
+                    <span class="font-medium text-sm">HeyGen / 11Labs</span>
+                </div>
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-brain text-2xl text-green-500"></i>
+                    <span class="font-medium text-sm">Kling / VEO 3</span>
+                </div>
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-image text-2xl text-orange-500"></i>
+                    <span class="font-medium text-sm">Midjourney / Luma</span>
+                </div>
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10">
+                    <i class="fas fa-code text-2xl text-yellow-500"></i>
+                    <span class="font-medium text-sm">JS Automation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Services / Expertise -->
+    <section class="py-20 max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                <span class="lang-en">My Expertise</span>
+                <span class="lang-ua">Моя експертиза</span>
+            </h2>
+            <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+                <span class="lang-en">Comprehensive solutions for modern digital marketing and brand presence.</span>
+                <span class="lang-ua">Комплексні рішення для сучасного цифрового маркетингу та присутності бренду.</span>
             </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <!-- Custom Mute/Unmute Toggle Button -->
-                <button id="muteToggleBtn" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer">
-                    <i id="muteIcon" class="fas fa-volume-mute mr-2"></i>
-                    <span id="muteTextEn" class="lang-en">Unmute Showreel</span>
-                    <span id="muteTextUa" class="lang-ua">Увімкнути звук</span>
-                </button>
+        </div>
 
-                <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
-                    <span class="lang-en">View Works</span>
-                    <span class="lang-ua">Переглянути роботи</span>
-                </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 text-2xl">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="lang-en">Dynamic Editing & VFX</span>
+                    <span class="lang-ua">Динамічний монтаж та VFX</span>
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    <span class="lang-en">High-retention editing for social media. Beat-synced montages, complex mask transitions, and motion graphics that keep viewers engaged from the first second.</span>
+                    <span class="lang-ua">Монтаж для соцмереж з високим утриманням уваги. Монтаж під біт, складні переходи через маски та моушн-графіка, що захоплює глядача з першої секунди.</span>
+                </p>
+            </div>
+            <!-- Service 2 -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6 text-2xl">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="lang-en">AI Avatars & Voiceovers</span>
+                    <span class="lang-ua">AI Аватари та Озвучка</span>
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    <span class="lang-en">Creation of photorealistic digital spokespersons. Seamlessly integrated into real-world B-roll footage with perfectly cloned, natural-sounding voiceovers.</span>
+                    <span class="lang-ua">Створення фотореалістичних цифрових ведучих. Безшовна інтеграція у реальні кадри (B-roll) з ідеально клонованою, природною озвучкою.</span>
+                </p>
+            </div>
+            <!-- Service 3 -->
+            <div class="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                <div class="w-14 h-14 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-6 text-2xl">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="lang-en">Full AI Video Generation</span>
+                    <span class="lang-ua">Повна AI-генерація відео</span>
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                    <span class="lang-en">Building commercials from scratch. From static images to dynamic 3D revivals, maintaining character consistency and realistic physics entirely through AI.</span>
+                    <span class="lang-ua">Створення рекламних роликів з нуля. Від статичних зображень до 3D-оживлення, зі збереженням зовнішності персонажів та фізики за допомогою AI.</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Section 3: Selected Works (Portfolio) -->
-    <section id="portfolio" class="py-24 max-w-7xl mx-auto px-4">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
+    <section id="portfolio" class="py-20 max-w-7xl mx-auto px-4 border-t border-zinc-200 dark:border-white/5">
+        <div class="text-center mb-12">
             <h2 class="text-3xl sm:text-4xl font-bold mb-8">
                 <span class="lang-en">Selected Works</span>
                 <span class="lang-ua">Вибрані роботи</span>
             </h2>
             
             <!-- Filters -->
-            <div class="flex flex-wrap justify-center gap-3">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
                 <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 bg-zinc-900 text-white dark:bg-white dark:text-black transition-colors" data-filter="all">
                     <span class="lang-en">All</span>
                     <span class="lang-ua">Всі</span>
@@ -166,23 +294,32 @@
                     <span class="lang-ua">Монтаж та VFX</span>
                 </button>
                 <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors" data-filter="avatars">
-                    <span class="lang-en">AI Avatars & Automation</span>
-                    <span class="lang-ua">AI Аватари та Автоматизація</span>
+                    <span class="lang-en">AI Avatars & Auto</span>
+                    <span class="lang-ua">AI Аватари та Авто</span>
                 </button>
                 <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors" data-filter="generation">
-                    <span class="lang-en">Full AI Generation</span>
-                    <span class="lang-ua">Повна AI Генерація</span>
+                    <span class="lang-en">AI Generation</span>
+                    <span class="lang-ua">AI Генерація</span>
                 </button>
             </div>
         </div>
 
-        <!-- Portfolio Grid -->
+        <!-- Portfolio Grid (Using srcdoc trick for clean iframes) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="portfolio-grid">
             
-            <!-- Картка 1 (Category: editing) -->
+            <!-- Generate Cards Logic: 
+                 srcdoc створює чисту прев'юшку з кнопкою Play. Сам плеєр завантажується тільки після кліку.
+                 Замість hqdefault можна використовувати maxresdefault, але для Shorts часто краще 0.jpg або hqdefault.jpg
+            -->
+
+            <!-- Картка 1 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Dynamic Real Estate Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/YPo45sz-9ck" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/YPo45sz-9ck?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/YPo45sz-9ck/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -190,25 +327,28 @@
                         <span class="lang-ua">Динамічне промо нерухомості</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Architectural teaser for Instagram Reels. Transformed static residential complex renders into a high-retention promotional video. Engineered a beat-synced montage starting with a 3x3 monochrome grid that shifts to full color, followed by custom pendulum-swing transitions to create a premium dynamic feel.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Архітектурний тизер для Instagram Reels. Перетворення статичних рендерів ЖК на відео з високим утриманням уваги. Розроблено монтаж під біт: стильне інтро з чорно-білою сіткою 3x3, що забарвлюється на дропі, та кастомні маятникові переходи для преміальної динаміки.</span>
+                        <span class="lang-en">Architectural teaser. Beat-synced montage starting with a 3x3 grid shifting to full color, with custom pendulum-swing transitions.</span>
+                        <span class="lang-ua">Архітектурний тизер. Монтаж під біт: стильне інтро з сіткою 3x3 та кастомні маятникові переходи для преміальної динаміки.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">Premiere Pro, After Effects</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Premiere Pro, After Effects</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#BeatSync</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionGraphics</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">DynamicEditing</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">BeatSync</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 2 (Category: editing) -->
+            <!-- Картка 2 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Meow Bakery AI Concept" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/K9BmoRnk0iY" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/K9BmoRnk0iY?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/K9BmoRnk0iY/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -216,77 +356,86 @@
                         <span class="lang-ua">Концепт пекарні "Meow"</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated commercial concept based solely on a brand logo. Generated a cohesive, realistic cafe interior and signature pastries from a single logo. Executed a highly precise beat-synced montage, opening with a dynamic 4-way split-screen that smoothly transitions into rhythm-driven promotional visuals.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Створення повноцінного відеоконцепту закладу лише на основі логотипу. Згенеровано реалістичний інтер'єр кав'ярні та фірмову випічку зі збереженням стилістики бренду. Виконано філігранний монтаж: ефектний вступ із розділеним на 4 частини екраном та чітка розстановка кадрів під музичний біт.</span>
+                        <span class="lang-en">Generated cohesive cafe interior from a single logo. Executed a beat-synced montage opening with a dynamic 4-way split-screen.</span>
+                        <span class="lang-ua">Згенеровано реалістичний інтер'єр кав'ярні лише з логотипу. Філігранний монтаж із розділеним на 4 частини екраном.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, Luma, VEO 3, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, Luma, VEO 3, Premiere Pro</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIGeneration</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#BeatSync</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SplitScreen</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIGeneration</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">SplitScreen</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 3 (Category: editing) -->
+            <!-- Картка 3 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Expert Reels for Marketing Agency" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/fRyDk_Ez7rA" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/fRyDk_Ez7rA?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/fRyDk_Ez7rA/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">Expert Reels for Marketing Agency</span>
-                        <span class="lang-ua">Експертний Reels для маркетингової агенції</span>
+                        <span class="lang-en">Expert Reels for Agency</span>
+                        <span class="lang-ua">Reels для маркетингу</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> High-retention Instagram Reel for an expert speaker. Executed dynamic editing to maximize viewer retention. Integrated highly relevant stock B-roll and crafted custom manual text animations (fly-ins, wobbles) to emphasize key points. Polished with professional color grading.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Instagram Reel з ведучим для максимального утримання уваги. Динамічний монтаж експертного відео. Точний підбір релевантних B-roll кадрів зі стоків та створення ручної анімації субтитрів (вильоти, коливання) для акцентування уваги на головних думках. Професійна кольорокорекція.</span>
+                        <span class="lang-en">High-retention Reel. Integrated stock B-roll and crafted custom manual text animations to emphasize key points. Professional grading.</span>
+                        <span class="lang-ua">Reel для утримання уваги. Точний підбір B-roll кадрів та створення ручної анімації субтитрів для акцентування. Професійна корекція.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">Premiere Pro, After Effects</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Premiere Pro, After Effects</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionGraphics</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SMM</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MotionGraphics</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">SMM</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 4 (Category: editing) -->
+            <!-- Картка 4 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Dynamic Split-Mask Montage" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/IV5_Deej-ns" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/IV5_Deej-ns?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/IV5_Deej-ns/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
                         <span class="lang-en">Dynamic Split-Mask Montage</span>
-                        <span class="lang-ua">Динамічний монтаж із масками</span>
+                        <span class="lang-ua">Монтаж із масками</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated footage editing & VFX. Crafted a high-energy sequence using custom AI-generated footage (automotive and forest environments). Executed complex mask transitions in Premiere Pro—specifically precise split-screen merging effects—to create a seamless, rhythm-driven visual experience.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Монтаж та VFX згенерованих AI-футажів. Збірка динамічного відео з власноруч згенерованих кадрів (автомобіль у лісі). Використано складні переходи через маски у Premiere Pro (ефект розрізання екрану та злиття частин) для створення безшовного та енергійного візуального ритму.</span>
+                        <span class="lang-en">Crafted a high-energy sequence. Executed complex mask transitions specifically precise split-screen merging effects.</span>
+                        <span class="lang-ua">Збірка динамічного відео. Використано складні переходи через маски у Premiere Pro (ефект розрізання екрану та злиття).</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, VEO 3, Premiere Pro</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MaskTransitions</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VFX</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MaskTransitions</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VFX</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 5 (Category: avatars) -->
+            <!-- Картка 5 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="AI Spokesperson & B-Roll Integration" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/rYIkJe4vjo0" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/rYIkJe4vjo0?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/rYIkJe4vjo0/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -294,25 +443,28 @@
                         <span class="lang-ua">Віртуальний ведучий та B-Roll</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Full-cycle production for an Upwork client. Created a photorealistic AI avatar with a highly natural, custom-generated voiceover. Seamlessly integrated the spokesperson with relevant stock B-roll cuts and background audio to meet strict client guidelines.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Повний цикл виробництва для клієнта з Upwork. Створення фотореалістичного AI-аватара з максимально природною кастомною озвучкою. Безшовна інтеграція ведучої з релевантними стоковими перебивками (B-roll) та фоновою музикою згідно з жорстким ТЗ.</span>
+                        <span class="lang-en">Created a photorealistic AI avatar with natural voiceover. Seamlessly integrated with stock B-roll cuts and background audio.</span>
+                        <span class="lang-ua">Створення фотореалістичного AI-аватара. Безшовна інтеграція ведучої з релевантними стоковими перебивками.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIAvatars</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Voiceover</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Upwork</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIAvatars</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Voiceover</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 6 (Category: avatars) -->
+            <!-- Картка 6 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="AI Podcast Simulation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/H_6JICZRXWI" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/H_6JICZRXWI?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/H_6JICZRXWI/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -320,173 +472,190 @@
                         <span class="lang-ua">Імітація AI-подкасту</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated podcast-style promotional video. Engineered a realistic studio podcast environment featuring two interacting AI avatars (a host and an expert). Executed precise multi-camera style editing to simulate a natural, engaging conversational flow that builds brand authority.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> AI-згенероване промо-відео у форматі студійного подкасту. Створення реалістичної атмосфери подкасту з двома взаємодіючими AI-аватарами (ведучий задає питання, експерт відповідає). Виконано точний монтаж у стилі багатокамерної зйомки для імітації природного, живого діалогу.</span>
+                        <span class="lang-en">Engineered a realistic studio podcast with two interacting AI avatars. Executed multi-camera style editing for natural flow.</span>
+                        <span class="lang-ua">Реалістична атмосфера подкасту з двома AI-аватарами. Монтаж у стилі багатокамерної зйомки для імітації живого діалогу.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIAvatars</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#PodcastEditing</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#HeyGen</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">PodcastEditing</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIAvatars</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 7 (Category: avatars) -->
+            <!-- Картка 7 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Virtual Host for Luxury Real Estate" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/aOwXYDCj3W4" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/aOwXYDCj3W4?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/aOwXYDCj3W4/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">Hyggee Real Estate Avatar</span>
-                        <span class="lang-ua">Віртуальний ведучий для нерухомості</span>
+                        <span class="lang-en">Real Estate Virtual Host</span>
+                        <span class="lang-ua">Ведучий для нерухомості</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Instagram sales promo for premium villas. Enhanced a classic luxury property montage by integrating a custom AI avatar. Utilized chroma keying in Premiere Pro to seamlessly composite the virtual host into the frame. Generated natural-sounding Ukrainian voiceover to guide the viewer through the property.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Промо-відео для продажу елітних вілл в Instagram. Покращення класичного монтажу нерухомості шляхом інтеграції кастомного AI-аватара. Використано хромакей у Premiere Pro для акуратного розміщення віртуального ведучого в кадрі. Згенеровано природну україномовну озвучку для проведення екскурсії об'єктом.</span>
+                        <span class="lang-en">Enhanced a luxury property montage by integrating an AI avatar via chroma key. Generated natural Ukrainian voiceover.</span>
+                        <span class="lang-ua">Інтеграція кастомного AI-аватара через хромакей у відео нерухомості. Природна україномовна озвучка.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#RealEstate</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VirtualHost</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#ChromaKey</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VirtualHost</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">ChromaKey</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 8 (Category: avatars) -->
+            <!-- Картка 8 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
-                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Automated YouTube Quizzes" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/3yX_4x66irc" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/3yX_4x66irc?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/3yX_4x66irc/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
                         <span class="lang-en">Automated YouTube Quizzes</span>
-                        <span class="lang-ua">Автоматизована генерація квізів</span>
+                        <span class="lang-ua">Автогенерація квізів</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Custom automation for a German YouTube channel. Engineered a fully automated video production pipeline. Designed unique quiz visuals in After Effects and developed a custom ExtendScript (JS) that parses JSON data (questions, answers, audio) to automatically batch-render multiple quiz videos with alpha channels for final editing.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Розробка пайплайну для масового створення контенту (німецький YouTube канал). Створення унікального дизайну в After Effects та розробка кастомного JS-скрипту. Скрипт автоматично парсить JSON-дані (питання, відповіді, аудіо) та рендерить готові квізи з альфа-каналом, скорочуючи час виробництва в десятки разів.</span>
+                        <span class="lang-en">Engineered a pipeline with JS (ExtendScript) that parses JSON data to automatically batch-render multiple quiz videos.</span>
+                        <span class="lang-ua">Розробка JS-скрипту для After Effects. Автоматично парсить JSON (питання, відповіді) та рендерить готові квізи.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">After Effects, JavaScript (ExtendScript)</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">After Effects, JavaScript</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Automation</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Scripting</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionDesign</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Automation</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Scripting</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 9 (Category: generation) -->
+            <!-- Картка 9 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
-                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Water Carafe Commercial" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/8zlGfpVU1_E" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/8zlGfpVU1_E?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/8zlGfpVU1_E/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">Water Carafe Commercial</span>
-                        <span class="lang-ua">AI-реклама графина для води</span>
+                        <span class="lang-en">Water Carafe AI Promo</span>
+                        <span class="lang-ua">AI-реклама графина</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> High-end, fully AI-generated product commercial. Achieved 100% consistency of the product and background across all scenes. Solved the highly complex challenge of realistic AI fluid dynamics (water pouring) and precise object resizing (glass scaling). Executed complex multi-layered editing and integrated typography directly in Premiere Pro.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Преміальний продуктовий відеоролик, повністю згенерований через AI. Досягнуто 100% консистентності продукту та фону в усіх кадрах. Вирішено надскладне завдання реалістичної фізики рідин в AI (наливання води) та точної зміни масштабу склянки у потрібний момент. Виконано багатошаровий монтаж із накладанням фірмової типографіки.</span>
+                        <span class="lang-en">Achieved 100% product consistency. Solved realistic AI fluid dynamics (water pouring) and precise object resizing.</span>
+                        <span class="lang-ua">100% консистентність продукту. Вирішено завдання фізики рідин в AI (наливання води) та точної зміни масштабу.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Sora 2, Luma Ray 3, Higsfield, Wan 2.6, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, VEO 3, Sora 2, Luma Ray 3</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#ProductPromo</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#FluidDynamics</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIGeneration</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">FluidDynamics</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIGeneration</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 10 (Category: generation) -->
+            <!-- Картка 10 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Consistent Character Animation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/p7D-s_yMC30" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/p7D-s_yMC30?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/p7D-s_yMC30/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">Consistent Character Animation</span>
-                        <span class="lang-ua">Анімація зі збереженням персонажів</span>
+                        <span class="lang-en">Consistent AI Animation</span>
+                        <span class="lang-ua">AI-анімація з консистентністю</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Animated children's story for a psychologist. Solved the complex issue of AI character consistency. Maintained the exact facial features and styling of the main characters (a boy named Leo and his parents) across multiple scenes using photo-reference techniques. Enhanced the emotional storytelling with comprehensive custom sound design.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Створення дитячого мультфільму для сторінки психолога. Вирішено найскладнішу проблему AI — збереження зовнішності. За допомогою фото-референсів досягнуто 100% консистентності головних героїв (хлопчик Лео та його батьки) у різних сценах. Емоційну глибину історії підкреслено повноцінним саунд-дизайном.</span>
+                        <span class="lang-en">Solved AI character consistency. Maintained exact facial features of characters across scenes using photo-reference.</span>
+                        <span class="lang-ua">Вирішено проблему збереження зовнішності в AI. 100% консистентність головних героїв у різних сценах.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, VEO 3, Premiere Pro</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#CharacterConsistency</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Animation</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SoundDesign</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">CharacterConsistency</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Animation</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 11 (Category: generation) -->
+            <!-- Картка 11 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Ozerni Vezhi 3D Revival" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/eSdT8O2wU5E" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/eSdT8O2wU5E?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/eSdT8O2wU5E/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">"Ozerni Vezhi" 3D Revival</span>
-                        <span class="lang-ua">Оживлення 3D-рендерів нерухомості</span>
+                        <span class="lang-en">Architectural 3D Revival</span>
+                        <span class="lang-ua">Оживлення 3D-рендерів</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Photorealistic promotional video for a real estate developer. Transformed lifeless, static 3D architectural renders into a highly realistic, dynamic video environment. Populated the scenes with moving people and natural elements, finalized with crisp motion graphics and logo animation.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Фотореалістичне промо-відео для забудовника ЖК "Озерні Вежі". Перетворення статичних, неживих 3D-рендерів на реалістичне, динамічне відео. В середовище інтегровано рух людей та природні елементи, що додало кадрам життя. Фіналізовано анімацією логотипа та роботою з типографікою.</span>
+                        <span class="lang-en">Transformed static 3D renders into a highly realistic, dynamic video environment populated with moving people.</span>
+                        <span class="lang-ua">Перетворення неживих 3D-рендерів на реалістичне відео. В середовище інтегровано рух людей та природні елементи.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, VEO 3, Premiere Pro</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Architecture</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#3DRevival</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#B2B</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">3DRevival</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">B2B</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Картка 12 (Category: generation) -->
+            <!-- Картка 12 -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
-                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="MonoSpain Story-Driven Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="relative w-full aspect-[9/16] bg-zinc-950">
+                    <iframe class="w-full h-full absolute top-0 left-0" 
+                            src="https://www.youtube.com/embed/6RnonxLixGo" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.8;transition:0.3s}a:hover img{opacity:0.5;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/6RnonxLixGo?autoplay=1&rel=0'><img src='https://img.youtube.com/vi/6RnonxLixGo/hqdefault.jpg' alt='Video'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+                    </iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
-                        <span class="lang-en">MonoSpain Story-Driven Promo</span>
-                        <span class="lang-ua">Сюжетне промо елітної нерухомості</span>
+                        <span class="lang-en">Story-Driven Real Estate</span>
+                        <span class="lang-ua">Сюжетне промо нерухомості</span>
                     </h3>
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
-                        <span class="lang-en"><strong>Scope & Challenge:</strong> Narrative-led luxury property advertisement for MonoSpain. Engineered a complete emotional storyline—from a surprise apartment key proposal to a dynamic travel montage (flight, car ride), ending at the Spanish property. Flawlessly integrated AI-generated characters into actual architectural renders to create a cinematic, high-converting sales narrative.</span>
-                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Наративна відеореклама іспанських апартаментів для MonoSpain. Створення повноцінної емоційної історії: пропозиція з ключем від квартири замість обручки, динамічний монтаж подорожі (літак, авто) та вихід на терасу. Ювелірна інтеграція AI-персонажів у реальні архітектурні рендери забудовника для створення кінематографічного сторітелінгу, що продає.</span>
+                        <span class="lang-en">Engineered an emotional storyline integrating AI characters into actual architectural renders to create a cinematic narrative.</span>
+                        <span class="lang-ua">Створення емоційної історії. Ювелірна інтеграція AI-персонажів у реальні архітектурні рендери для сторітелінгу.</span>
                     </p>
-                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
-                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
-                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    <div class="text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools: </span><span class="lang-ua">Інструменти: </span>
+                        <span class="font-normal text-zinc-500">Kling, VEO 3, Premiere Pro</span>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Storytelling</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VFX</span>
-                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#RealEstate</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Storytelling</span>
+                        <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VFX</span>
                     </div>
                 </div>
             </article>
@@ -494,34 +663,45 @@
         </div>
     </section>
 
+    <!-- NEW SECTION: Contact Call to Action -->
+    <section id="contact" class="py-24 bg-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                <span class="lang-en">Ready to elevate your visual content?</span>
+                <span class="lang-ua">Готові вивести ваш візуальний контент на новий рівень?</span>
+            </h2>
+            <p class="text-xl text-blue-100 mb-10">
+                <span class="lang-en">Let's discuss how AI and expert editing can solve your business challenges.</span>
+                <span class="lang-ua">Обговоримо, як AI та експертний монтаж можуть вирішити завдання вашого бізнесу.</span>
+            </p>
+            <a href="mailto:contact@andrii.ai" class="inline-flex items-center justify-center px-10 py-4 text-lg font-bold rounded-full bg-white text-blue-600 hover:bg-zinc-100 hover:scale-105 transition-all shadow-xl">
+                <i class="fas fa-envelope mr-3"></i>
+                <span class="lang-en">Get in Touch</span>
+                <span class="lang-ua">Написати мені</span>
+            </a>
+        </div>
+    </section>
+
     <!-- Section 4: Footer -->
-    <footer id="contact" class="border-t border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 mt-10 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center">
-            <h2 class="text-2xl font-bold mb-6 tracking-tight">
-                ANDRII<span class="text-blue-600 dark:text-blue-400">.AI</span>
+    <footer class="bg-zinc-950 py-12 text-zinc-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <h2 class="text-2xl font-bold tracking-tight text-white">
+                ANDRII<span class="text-blue-500">.AI</span>
             </h2>
             
-            <a href="mailto:contact@andrii.ai" class="text-lg text-zinc-600 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-8">
-                contact@andrii.ai
-            </a>
-            
-            <div class="flex gap-6 mb-8">
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="LinkedIn">
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="Instagram">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="YouTube">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="Upwork">
-                    <!-- Використовуємо іншу іконку як заглушку для Upwork, оскільки в стандартному наборі fa її може не бути -->
-                    <i class="fas fa-briefcase"></i> 
                 </a>
             </div>
             
-            <p class="text-sm text-zinc-500 dark:text-zinc-500">
+            <p class="text-sm">
                 &copy; <span id="year"></span> ANDRII.AI. <span class="lang-en">All rights reserved.</span><span class="lang-ua">Всі права захищено.</span>
             </p>
         </div>
@@ -548,27 +728,20 @@
             // Керування кнопкою звуку
             const muteBtn = document.getElementById('muteToggleBtn');
             const muteIcon = document.getElementById('muteIcon');
-            const muteTextEn = document.getElementById('muteTextEn');
-            const muteTextUa = document.getElementById('muteTextUa');
 
             muteBtn.addEventListener('click', () => {
                 if (player.isMuted()) {
                     player.unMute();
                     muteIcon.classList.remove('fa-volume-mute');
                     muteIcon.classList.add('fa-volume-up');
-                    muteTextEn.innerText = "Mute Showreel";
-                    muteTextUa.innerText = "Вимкнути звук";
                 } else {
                     player.mute();
                     muteIcon.classList.remove('fa-volume-up');
                     muteIcon.classList.add('fa-volume-mute');
-                    muteTextEn.innerText = "Unmute Showreel";
-                    muteTextUa.innerText = "Увімкнути звук";
                 }
             });
         }
 
-        // --- Основна логіка сайту ---
         document.addEventListener('DOMContentLoaded', () => {
             // Встановлення поточного року в футері
             document.getElementById('year').textContent = new Date().getFullYear();
@@ -577,12 +750,11 @@
             const themeToggleBtn = document.getElementById('themeToggle');
             const htmlElement = document.documentElement;
 
-            // Перевіряємо локальне сховище або налаштування системи
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // Темна за замовчуванням
             if (savedTheme === 'light') {
                 htmlElement.classList.remove('dark');
             } else {
-                htmlElement.classList.add('dark'); // Темна за замовчуванням
+                htmlElement.classList.add('dark'); 
             }
 
             themeToggleBtn.addEventListener('click', () => {
@@ -595,20 +767,34 @@
                 }
             });
 
-            // --- Логіка перемикання мов (EN/UA) ---
-            const langToggleBtn = document.getElementById('langToggle');
+            // --- Перемикач мов (Новий, візуальний) ---
+            const htmlTag = document.documentElement;
+            const langToggleBox = document.getElementById('langToggleBox');
+            const btnEn = document.getElementById('langBtnEn');
+            const btnUa = document.getElementById('langBtnUa');
             
-            // Встановлюємо мову за замовчуванням (EN)
             const savedLang = localStorage.getItem('lang') || 'en';
-            htmlElement.setAttribute('lang', savedLang);
+            htmlTag.setAttribute('lang', savedLang);
+            updateLangStyles(savedLang);
 
-            langToggleBtn.addEventListener('click', () => {
-                const currentLang = htmlElement.getAttribute('lang');
+            langToggleBox.addEventListener('click', () => {
+                const currentLang = htmlTag.getAttribute('lang');
                 const newLang = currentLang === 'en' ? 'ua' : 'en';
                 
-                htmlElement.setAttribute('lang', newLang);
+                htmlTag.setAttribute('lang', newLang);
                 localStorage.setItem('lang', newLang);
+                updateLangStyles(newLang);
             });
+
+            function updateLangStyles(lang) {
+                if(lang === 'en') {
+                    btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white";
+                    btnUa.className = "px-3 py-1 text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white";
+                } else {
+                    btnUa.className = "px-3 py-1 text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white";
+                    btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white";
+                }
+            }
 
             // --- Логіка фільтрації портфоліо ---
             const filterBtns = document.querySelectorAll('.filter-btn');
@@ -616,13 +802,11 @@
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Видаляємо активний клас у всіх кнопок
                     filterBtns.forEach(b => {
                         b.classList.remove('bg-zinc-900', 'text-white', 'dark:bg-white', 'dark:text-black');
                         b.classList.add('hover:bg-zinc-100', 'dark:hover:bg-white/10');
                     });
                     
-                    // Додаємо активний клас натиснутій кнопці
                     btn.classList.add('bg-zinc-900', 'text-white', 'dark:bg-white', 'dark:text-black');
                     btn.classList.remove('hover:bg-zinc-100', 'dark:hover:bg-white/10');
 
@@ -630,10 +814,8 @@
 
                     cards.forEach(card => {
                         const category = card.getAttribute('data-category');
-                        
                         if (filterValue === 'all' || filterValue === category) {
                             card.style.display = 'flex';
-                            // Невелика затримка для плавного проявлення
                             setTimeout(() => {
                                 card.style.opacity = '1';
                                 card.style.transform = 'scale(1)';
@@ -641,9 +823,7 @@
                         } else {
                             card.style.opacity = '0';
                             card.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300); // Збігається з duration-300 у Tailwind
+                            setTimeout(() => { card.style.display = 'none'; }, 300);
                         }
                     });
                 });
