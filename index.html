@@ -104,17 +104,19 @@
     </header>
 
     <!-- Section 2: Hero Section -->
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <!-- Background Video with Fallback Poster -->
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-            <!-- Заглушка для відео. Можете замінити showreel.mp4 на своє відео -->
-            <source src="showreel.mp4" type="video/mp4">
-            <!-- Зображення на випадок якщо відео не завантажиться -->
-            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover" alt="Background">
-        </video>
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+        
+        <!-- Background YouTube Video (Showreel) -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <!-- min-w-[177.77vh] ensures 16:9 aspect ratio cover -->
+            <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-80"
+                    src="https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&mute=1&loop=1&playlist=LqUWmvRhwq4&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&iv_load_policy=3"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
         
         <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
+        <div class="absolute inset-0 bg-black/60 dark:bg-black/70 z-0"></div>
 
         <!-- Hero Content -->
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
@@ -129,11 +131,13 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white text-black hover:bg-zinc-200 transition-colors">
-                    <i class="fas fa-play mr-2"></i>
-                    <span class="lang-en">Watch Showreel</span>
-                    <span class="lang-ua">Дивитись Showreel</span>
-                </a>
+                <!-- Custom Mute/Unmute Toggle Button -->
+                <button id="muteToggleBtn" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg cursor-pointer">
+                    <i id="muteIcon" class="fas fa-volume-mute mr-2"></i>
+                    <span id="muteTextEn" class="lang-en">Unmute Showreel</span>
+                    <span id="muteTextUa" class="lang-ua">Увімкнути звук</span>
+                </button>
+
                 <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
                     <span class="lang-en">View Works</span>
                     <span class="lang-ua">Переглянути роботи</span>
@@ -178,7 +182,7 @@
             <!-- Картка 1 (Category: editing) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/YPo45sz-9ck" title="Dynamic Real Estate Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Dynamic Real Estate Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -204,7 +208,7 @@
             <!-- Картка 2 (Category: editing) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/K9BmoRnk0iY" title="Meow Bakery AI Concept" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Meow Bakery AI Concept" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -230,7 +234,7 @@
             <!-- Картка 3 (Category: editing) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/fRyDk_Ez7rA" title="Expert Reels for Marketing Agency" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Expert Reels for Marketing Agency" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -256,7 +260,7 @@
             <!-- Картка 4 (Category: editing) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/IV5_Deej-ns" title="Dynamic Split-Mask Montage" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Dynamic Split-Mask Montage" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -282,7 +286,7 @@
             <!-- Картка 5 (Category: avatars) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/rYIkJe4vjo0" title="AI Spokesperson & B-Roll Integration" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="AI Spokesperson & B-Roll Integration" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -308,7 +312,7 @@
             <!-- Картка 6 (Category: avatars) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/H_6JICZRXWI" title="AI Podcast Simulation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="AI Podcast Simulation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -334,7 +338,7 @@
             <!-- Картка 7 (Category: avatars) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/aOwXYDCj3W4" title="Virtual Host for Luxury Real Estate" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Virtual Host for Luxury Real Estate" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -360,7 +364,7 @@
             <!-- Картка 8 (Category: avatars) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/3yX_4x66irc" title="Automated YouTube Quizzes" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Automated YouTube Quizzes" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -386,7 +390,7 @@
             <!-- Картка 9 (Category: generation) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/8zlGfpVU1_E" title="Water Carafe Commercial" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Water Carafe Commercial" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -412,7 +416,7 @@
             <!-- Картка 10 (Category: generation) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/p7D-s_yMC30" title="Consistent Character Animation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Consistent Character Animation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -438,7 +442,7 @@
             <!-- Картка 11 (Category: generation) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/eSdT8O2wU5E" title="Ozerni Vezhi 3D Revival" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="Ozerni Vezhi 3D Revival" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -464,7 +468,7 @@
             <!-- Картка 12 (Category: generation) -->
             <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
-                    <iframe src="https://www.youtube.com/embed/6RnonxLixGo" title="MonoSpain Story-Driven Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <iframe src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3" title="MonoSpain Story-Driven Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="text-lg font-bold mb-2">
@@ -525,6 +529,46 @@
 
     <!-- Vanilla JS Logic -->
     <script>
+        // --- YouTube Iframe API for Hero Background Setup ---
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('hero-youtube', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Керування кнопкою звуку
+            const muteBtn = document.getElementById('muteToggleBtn');
+            const muteIcon = document.getElementById('muteIcon');
+            const muteTextEn = document.getElementById('muteTextEn');
+            const muteTextUa = document.getElementById('muteTextUa');
+
+            muteBtn.addEventListener('click', () => {
+                if (player.isMuted()) {
+                    player.unMute();
+                    muteIcon.classList.remove('fa-volume-mute');
+                    muteIcon.classList.add('fa-volume-up');
+                    muteTextEn.innerText = "Mute Showreel";
+                    muteTextUa.innerText = "Вимкнути звук";
+                } else {
+                    player.mute();
+                    muteIcon.classList.remove('fa-volume-up');
+                    muteIcon.classList.add('fa-volume-mute');
+                    muteTextEn.innerText = "Unmute Showreel";
+                    muteTextUa.innerText = "Увімкнути звук";
+                }
+            });
+        }
+
+        // --- Основна логіка сайту ---
         document.addEventListener('DOMContentLoaded', () => {
             // Встановлення поточного року в футері
             document.getElementById('year').textContent = new Date().getFullYear();
