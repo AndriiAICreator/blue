@@ -126,16 +126,17 @@
                     <i class="fas fa-moon text-lg sm:text-xl block dark:hidden"></i>
                 </button>
 
-                <!-- Language Toggle -->
-                <div class="flex items-center bg-zinc-200 dark:bg-zinc-800 rounded-full p-1 cursor-pointer" id="langToggleBox">
-                    <span id="langBtnEn" class="px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white">EN</span>
-                    <span id="langBtnUa" class="px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white">UA</span>
+                <!-- Language Toggle (Minimalist) -->
+                <div class="flex items-center gap-1.5 sm:gap-2 cursor-pointer text-xs sm:text-sm font-medium z-50 tracking-wide" id="langToggleBox">
+                    <span id="langBtnEn" class="transition-colors">EN</span>
+                    <span class="text-zinc-300 dark:text-zinc-600 cursor-default">·</span>
+                    <span id="langBtnUa" class="transition-colors">UA</span>
                 </div>
 
                 <!-- Contact Button (Desktop) -->
                 <a href="#contact" class="hidden md:inline-flex nav-link items-center justify-center px-5 py-2 text-sm font-medium border border-zinc-300 dark:border-white/20 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
-                    <span class="lang-en">Contact</span>
-                    <span class="lang-ua">Зв'язок</span>
+                    <span class="lang-en">Let's Talk</span>
+                    <span class="lang-ua">Обговорити проєкт</span>
                 </a>
 
                 <!-- Mobile Menu Hamburger -->
@@ -157,7 +158,7 @@
                 <span class="lang-en">Portfolio</span><span class="lang-ua">Мої роботи</span>
             </a>
             <a href="#contact" class="nav-link-mobile block py-2 text-zinc-600 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
-                <span class="lang-en">Contact</span><span class="lang-ua">Зв'язатися</span>
+                <span class="lang-en">Let's Talk</span><span class="lang-ua">Обговорити проєкт</span>
             </a>
         </div>
     </header>
@@ -180,12 +181,12 @@
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
             <div class="max-w-2xl">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
-                    <span class="lang-en">AI Creator &<br>Video Editor</span>
-                    <span class="lang-ua">AI Creator &<br>Video Editor</span>
+                    <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
+                    <span class="lang-ua">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                 </h1>
                 <p class="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 font-light max-w-xl">
-                    <span class="lang-en">Crafting premium visual experiences through cutting-edge AI generation, automation, and dynamic video editing.</span>
-                    <span class="lang-ua">Створення преміального візуалу за допомогою передової AI-генерації, автоматизації та динамічного відеомонтажу.</span>
+                    <span class="lang-en">Transforming concepts into high-end cinematic visuals. I craft emotion-driven content designed to captivate and maximize viewer retention from the very first second.</span>
+                    <span class="lang-ua">Трансформую ідеї у преміальний кінематографічний візуал. Створюю контент, який захоплює емоцією та безвідмовно утримує увагу з першої секунди.</span>
                 </p>
                 <div class="flex gap-4">
                     <a href="#portfolio" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-medium rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg">
@@ -199,6 +200,12 @@
             <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
                 <i id="muteIcon" class="fas fa-volume-mute text-base sm:text-lg group-hover:scale-110 transition-transform"></i>
             </button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none">
+            <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
+            <div class="w-[1px] h-10 sm:h-14 bg-gradient-to-b from-white to-transparent animate-pulse"></div>
         </div>
     </section>
 
@@ -262,8 +269,8 @@
                     <span class="lang-ua">1. Ідея та Бриф</span>
                 </h3>
                 <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                    <span class="lang-en">Analyzing your request, target audience, and core message. Together, we define a visual concept that best conveys your brand's atmosphere and achieves your goals.</span>
-                    <span class="lang-ua">Аналіз вашого запиту, цільової аудиторії та головного меседжу. Ми визначаємо концепцію, яка найкраще передасть атмосферу бренду та виконає поставлене завдання.</span>
+                    <span class="lang-en">Analyzing your objective, target audience, and desired outcome. Together, we define a visual concept that best captures the right atmosphere and flawlessly engages your viewers.</span>
+                    <span class="lang-ua">Аналізую вашу задачу, цільову аудиторію та очікуваний результат. Ми узгоджуємо візуальну концепцію, яка найкраще передасть потрібну атмосферу та безвідмовно спрацює на вашого глядача.</span>
                 </p>
             </div>
 
@@ -271,12 +278,12 @@
             <div class="relative group">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    <span class="lang-en">2. Strategy & Preparation</span>
-                    <span class="lang-ua">2. Стратегія та Підготовка</span>
+                    <span class="lang-en">2. Strategy & Proposal</span>
+                    <span class="lang-ua">2. Стратегія та Оцінка</span>
                 </h3>
                 <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                    <span class="lang-en">Developing the optimal action plan. I evaluate your raw materials, source necessary additions, or build the visual foundation from scratch using cutting-edge technologies.</span>
-                    <span class="lang-ua">Розробка оптимального плану дій. Я аналізую ваші вихідні матеріали, підбираю необхідні доповнення або ж створюю візуальну базу з нуля за допомогою сучасних технологій.</span>
+                    <span class="lang-en">Developing the optimal action plan. I evaluate materials, select the right tech stack (AI/Editing), and provide a transparent project quote with clear timelines before we begin.</span>
+                    <span class="lang-ua">Розробка оптимального плану дій. Я оцінюю матеріали, підбираю технології (AI/Монтаж) та формую прозорий кошторис із чіткими дедлайнами до початку роботи.</span>
                 </p>
             </div>
 
@@ -288,8 +295,8 @@
                     <span class="lang-ua">3. Виробництво та Динаміка</span>
                 </h3>
                 <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                    <span class="lang-en">Transforming scattered assets into a cohesive story. The main focus is on perfect pacing, flawless visual style, and maximizing viewer retention from the first to the last second.</span>
-                    <span class="lang-ua">Перетворення розрізнених матеріалів на цілісну історію. Головний фокус — на ідеальній динаміці, бездоганному візуальному стилі та максимальному утриманні уваги глядача (retention).</span>
+                    <span class="lang-en">Transforming scattered assets into a cohesive story. The absolute focus is on perfect pacing, flawless visual style, and maximizing viewer retention.</span>
+                    <span class="lang-ua">Перетворення розрізнених матеріалів на цілісну історію. Головний фокус — на ідеальній динаміці, бездоганному стилі та максимальному утриманні уваги глядача (retention).</span>
                 </p>
             </div>
 
@@ -297,12 +304,12 @@
             <div class="relative group">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    <span class="lang-en">4. Post-Production Polish</span>
-                    <span class="lang-ua">4. Преміальне шліфування</span>
+                    <span class="lang-en">4. Polish & Review</span>
+                    <span class="lang-ua">4. Шліфування та Рев'ю</span>
                 </h3>
                 <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                    <span class="lang-en">Elevating the project to a premium tier. In-depth work with sound design, color grading, and typography to create a cinematic effect that evokes genuine emotion.</span>
-                    <span class="lang-ua">Доведення проєкту до найвищого рівня. Глибока робота зі звуком, кольорокорекцією та типографікою для створення того самого кінематографічного ефекту, який викликає емоції.</span>
+                    <span class="lang-en">Elevating the project to perfection. We conduct structured feedback rounds (typically 1-2 revisions) to fine-tune sound, color grading, and overall pacing to a premium cinematic standard.</span>
+                    <span class="lang-ua">Доведення проєкту до ідеалу. Ми проводимо структурні ітерації правок (зазвичай 1-2 раунди), щоб відшліфувати звук, колір та загальну динаміку до кінематографічного рівня.</span>
                 </p>
             </div>
 
@@ -315,7 +322,7 @@
                 </h3>
                 <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                     <span class="lang-en">You receive the final files in the highest quality, perfectly adapted and optimized for the specific algorithms of your target platforms.</span>
-                    <span class="lang-ua">Ви отримуєте фінальні файли у найвищій якості, повністю адаптовані та оптимізовані під алгоритми ваших цільових платформ.</span>
+                    <span class="lang-ua">Ви отримуєте фінальні файли у найвищій якості, повністю адаптовані та оптимізовані під специфічні алгоритми ваших цільових платформ.</span>
                 </p>
             </div>
         </div>
@@ -865,6 +872,24 @@
                     muteIcon.classList.add('fa-volume-mute');
                 }
             });
+
+            // Автопауза відео при скролі вниз (для оптимізації та щоб звук не заважав)
+            window.addEventListener('scroll', () => {
+                // Визначаємо висоту головного екрану
+                const heroHeight = document.getElementById('hero').offsetHeight;
+                
+                // Якщо проскролили більше ніж на половину висоти hero-секції
+                if (window.scrollY > heroHeight * 0.6) {
+                    if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                        player.pauseVideo();
+                    }
+                } else {
+                    // Якщо повернулися наверх
+                    if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                        player.playVideo();
+                    }
+                }
+            }, { passive: true });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -913,11 +938,11 @@
 
             function updateLangStyles(lang) {
                 if(lang === 'en') {
-                    btnEn.className = "px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white";
-                    btnUa.className = "px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white";
+                    btnEn.className = "text-black dark:text-white font-bold transition-colors";
+                    btnUa.className = "text-zinc-400 hover:text-black dark:text-zinc-500 dark:hover:text-white transition-colors";
                 } else {
-                    btnUa.className = "px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors bg-white text-black shadow dark:bg-zinc-600 dark:text-white";
-                    btnEn.className = "px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-bold rounded-full transition-colors text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white";
+                    btnUa.className = "text-black dark:text-white font-bold transition-colors";
+                    btnEn.className = "text-zinc-400 hover:text-black dark:text-zinc-500 dark:hover:text-white transition-colors";
                 }
             }
 
