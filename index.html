@@ -92,9 +92,33 @@
             color: black;
             transform: translate(-50%, -50%) scale(1.1);
         }
+
+        /* Анімація індикатора скролу */
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scroll-indicator-line {
+            animation: scrollLine 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+        }
+
+        /* Анімація появи елементів (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Затримка для карток в гріді */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
     </style>
 </head>
-<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300 font-sans antialiased relative">
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300 font-sans antialiased relative selection:bg-blue-500/30">
 
     <!-- Section 1: Header & Navigation -->
     <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-200 dark:border-white/10 transition-colors duration-300">
@@ -178,7 +202,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/20 z-0"></div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 reveal active">
             <div class="max-w-2xl">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
                     <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
@@ -202,17 +226,20 @@
             </button>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none">
+        <!-- Active Scroll Indicator -->
+        <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
             <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
-            <div class="w-[1px] h-10 sm:h-14 bg-gradient-to-b from-white to-transparent animate-pulse"></div>
+            <!-- Лінія з анімацією бігунка -->
+            <div class="relative w-[1px] h-10 sm:h-14 bg-white/20 overflow-hidden">
+                <div class="absolute top-0 w-full h-full bg-white scroll-indicator-line"></div>
+            </div>
         </div>
     </section>
 
     <!-- Section 3: About & Minimalist Skills Cloud -->
     <section id="about" class="py-16 sm:py-24 bg-zinc-50 dark:bg-zinc-900/40 border-b border-zinc-200 dark:border-white/5 transition-colors duration-300 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mb-10">
+            <div class="max-w-3xl mb-10 reveal">
                 <h2 class="text-xs sm:text-sm font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase mb-4">
                     <span class="lang-en">About Me</span>
                     <span class="lang-ua">Про мене</span>
@@ -227,27 +254,36 @@
                 </p>
             </div>
             
-            <!-- Modern Software Stack (Pill Tags with Full Icons) -->
-            <div class="flex flex-wrap gap-2.5 sm:gap-3">
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-video text-purple-600"></i> Premiere Pro</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-layer-group text-purple-500"></i> After Effects</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-robot text-blue-500"></i> HeyGen / 11Labs</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-brain text-green-500"></i> Kling</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-cube text-indigo-500"></i> Luma</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-magic text-yellow-400"></i> NanoBanana</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-film text-red-500"></i> Runway</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-paint-brush text-pink-500"></i> Krea</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-ship text-teal-500"></i> Midjourney</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-cloud text-sky-400"></i> Sora</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-pen-nib text-blue-400"></i> Photoshop</span>
-                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 transition-colors"><i class="fas fa-code text-yellow-500"></i> JS Automation</span>
+            <!-- Modern Software Stack (Grouped logically) -->
+            <div class="flex flex-wrap gap-2.5 sm:gap-3 reveal delay-100">
+                <!-- Video & Editing -->
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"><i class="fas fa-video text-purple-600"></i> Premiere Pro</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"><i class="fas fa-layer-group text-purple-500"></i> After Effects</span>
+                
+                <!-- Image & Design -->
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-400/50 hover:text-blue-500 transition-colors"><i class="fas fa-pen-nib text-blue-400"></i> Photoshop</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-teal-500/50 hover:text-teal-500 transition-colors"><i class="fas fa-ship text-teal-500"></i> Midjourney</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-pink-500/50 hover:text-pink-500 transition-colors"><i class="fas fa-paint-brush text-pink-500"></i> Krea</span>
+
+                <!-- AI Generation (Video) -->
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-sky-400/50 hover:text-sky-500 transition-colors"><i class="fas fa-cloud text-sky-400"></i> Sora</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-red-500/50 hover:text-red-500 transition-colors"><i class="fas fa-film text-red-500"></i> Runway</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-green-500/50 hover:text-green-500 transition-colors"><i class="fas fa-brain text-green-500"></i> Kling</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-indigo-500/50 hover:text-indigo-500 transition-colors"><i class="fas fa-cube text-indigo-500"></i> Luma</span>
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-yellow-400/50 hover:text-yellow-500 transition-colors"><i class="fas fa-magic text-yellow-400"></i> NanoBanana</span>
+
+                <!-- AI Avatars & Audio -->
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 hover:text-blue-500 transition-colors"><i class="fas fa-robot text-blue-500"></i> HeyGen / 11Labs</span>
+
+                <!-- Automation / Coding -->
+                <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-yellow-500/50 hover:text-yellow-600 transition-colors"><i class="fas fa-code text-yellow-500"></i> JS Automation</span>
             </div>
         </div>
     </section>
 
     <!-- Section 4: Workflow (Timeline Design) - 5 Steps Updated -->
     <section id="workflow" class="py-20 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-        <div class="mb-16">
+        <div class="mb-16 reveal">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4">
                 <span class="lang-en">How I Work</span>
                 <span class="lang-ua">Як я працюю</span>
@@ -262,7 +298,7 @@
         <div class="relative border-l-2 border-zinc-200 dark:border-white/10 ml-3 sm:ml-6 pl-8 sm:pl-12 py-2 space-y-12">
             
             <!-- Step 1 -->
-            <div class="relative group">
+            <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span class="lang-en">1. Vision & Briefing</span>
@@ -275,7 +311,7 @@
             </div>
 
             <!-- Step 2 -->
-            <div class="relative group">
+            <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span class="lang-en">2. Strategy & Proposal</span>
@@ -288,7 +324,7 @@
             </div>
 
             <!-- Step 3 -->
-            <div class="relative group">
+            <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span class="lang-en">3. Production & Flow</span>
@@ -301,7 +337,7 @@
             </div>
 
             <!-- Step 4 -->
-            <div class="relative group">
+            <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span class="lang-en">4. Polish & Review</span>
@@ -314,7 +350,7 @@
             </div>
 
             <!-- Step 5 -->
-            <div class="relative group">
+            <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     <span class="lang-en">5. Final Delivery</span>
@@ -330,7 +366,7 @@
 
     <!-- Section 5: Selected Works (Portfolio) -->
     <section id="portfolio" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-zinc-200 dark:border-white/5 scroll-mt-20">
-        <div class="text-center mb-10 sm:mb-12">
+        <div class="text-center mb-10 sm:mb-12 reveal">
             <h2 class="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
                 <span class="lang-en">Selected Works</span>
                 <span class="lang-ua">Вибрані роботи</span>
@@ -357,11 +393,11 @@
             </div>
         </div>
 
-        <!-- Portfolio Grid (Restored Full Text Info & Updated YouTube Embeds) -->
+        <!-- Portfolio Grid (Added reveal animations & lift on hover) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
             
             <!-- Картка 1 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+            <article class="portfolio-card reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1" 
@@ -397,7 +433,7 @@
             </article>
 
             <!-- Картка 2 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+            <article class="portfolio-card reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1" 
@@ -433,7 +469,7 @@
             </article>
 
             <!-- Картка 3 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+            <article class="portfolio-card reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1" 
@@ -469,7 +505,7 @@
             </article>
 
             <!-- Картка 4 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+            <article class="portfolio-card reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1" 
@@ -504,8 +540,8 @@
                 </div>
             </article>
 
-            <!-- Картка 5 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+            <!-- Картка 5 (Оновлено Upwork) -->
+            <article class="portfolio-card reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1" 
@@ -520,12 +556,12 @@
                     </h3>
                     <div class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1 space-y-2">
                         <p>
-                            <span class="lang-en"><strong>Scope:</strong> Full-cycle production for an Upwork client.</span>
-                            <span class="lang-ua"><strong>Завдання:</strong> Повний цикл виробництва для клієнта з Upwork.</span>
+                            <span class="lang-en"><strong>Scope:</strong> Full-cycle production for an international commercial client.</span>
+                            <span class="lang-ua"><strong>Завдання:</strong> Повний цикл виробництва для міжнародного B2B-клієнта.</span>
                         </p>
                         <p>
-                            <span class="lang-en"><strong>Challenge:</strong> Created a photorealistic AI avatar with a highly natural, custom-generated voiceover. Seamlessly integrated the spokesperson with relevant stock B-roll cuts and background audio to meet strict client guidelines.</span>
-                            <span class="lang-ua"><strong>Рішення:</strong> Створення фотореалістичного AI-аватара з максимально природною кастомною озвучкою. Безшовна інтеграція ведучої з релевантними стоковими перебивками (B-roll) та фоновою музикою згідно з жорстким ТЗ.</span>
+                            <span class="lang-en"><strong>Challenge:</strong> Created a photorealistic AI avatar with a highly natural, custom-generated voiceover. Seamlessly integrated the spokesperson with relevant stock B-roll cuts and background audio to meet strict corporate guidelines.</span>
+                            <span class="lang-ua"><strong>Рішення:</strong> Створення фотореалістичного AI-аватара з максимально природною кастомною озвучкою. Безшовна інтеграція ведучої з релевантними стоковими перебивками (B-roll) та фоновою музикою згідно з жорстким корпоративним ТЗ.</span>
                         </p>
                     </div>
                     <div class="text-[11px] sm:text-xs font-medium mb-3 text-zinc-800 dark:text-zinc-200">
@@ -535,13 +571,13 @@
                     <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIAvatars</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Voiceover</span>
-                        <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Upwork</span>
+                        <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Commercial</span>
                     </div>
                 </div>
             </article>
 
             <!-- Картка 6 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+            <article class="portfolio-card reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1" 
@@ -577,7 +613,7 @@
             </article>
 
             <!-- Картка 7 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+            <article class="portfolio-card reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1" 
@@ -613,7 +649,7 @@
             </article>
 
             <!-- Картка 8 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+            <article class="portfolio-card reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars">
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1" 
@@ -628,8 +664,8 @@
                     </h3>
                     <div class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1 space-y-2">
                         <p>
-                            <span class="lang-en"><strong>Scope:</strong> Custom automation for a German YouTube channel.</span>
-                            <span class="lang-ua"><strong>Завдання:</strong> Розробка пайплайну для масового створення контенту (німецький YouTube канал).</span>
+                            <span class="lang-en"><strong>Scope:</strong> Custom automation for a commercial YouTube channel.</span>
+                            <span class="lang-ua"><strong>Завдання:</strong> Розробка пайплайну для масового створення контенту (комерційний YouTube канал).</span>
                         </p>
                         <p>
                             <span class="lang-en"><strong>Challenge:</strong> Engineered a fully automated video production pipeline. Designed unique quiz visuals in After Effects and developed a custom ExtendScript (JS) that parses JSON data (questions, answers, audio) to automatically batch-render multiple quiz videos with alpha channels for final editing.</span>
@@ -649,7 +685,7 @@
             </article>
 
             <!-- Картка 9 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+            <article class="portfolio-card reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation">
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1" 
@@ -685,7 +721,7 @@
             </article>
 
             <!-- Картка 10 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+            <article class="portfolio-card reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1" 
@@ -721,7 +757,7 @@
             </article>
 
             <!-- Картка 11 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+            <article class="portfolio-card reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1" 
@@ -757,7 +793,7 @@
             </article>
 
             <!-- Картка 12 -->
-            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+            <article class="portfolio-card reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation">
                 <div class="relative w-full aspect-[9/16] bg-zinc-950">
                     <iframe class="w-full h-full absolute top-0 left-0" 
                             src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1" 
@@ -797,7 +833,7 @@
 
     <!-- Section 6: Contact Call to Action -->
     <section id="contact" class="py-20 sm:py-24 bg-blue-600 text-white scroll-mt-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
                 <span class="lang-en">Ready to elevate your visual content?</span>
                 <span class="lang-ua">Готові вивести візуальний контент на новий рівень?</span>
@@ -806,7 +842,7 @@
                 <span class="lang-en">Let's discuss how AI and expert editing can solve your business challenges.</span>
                 <span class="lang-ua">Обговоримо, як AI та експертний монтаж можуть вирішити завдання вашого бізнесу.</span>
             </p>
-            <a href="mailto:contact@andrii.ai" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-bold rounded-full bg-white text-blue-600 hover:bg-zinc-100 hover:scale-105 transition-all shadow-xl">
+            <a href="mailto:contact@andrii.ai" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-bold rounded-full bg-white text-blue-600 hover:bg-zinc-100 hover:-translate-y-1 transition-all shadow-xl hover:shadow-2xl">
                 <i class="fas fa-envelope mr-3"></i>
                 <span class="lang-en">Get in Touch</span>
                 <span class="lang-ua">Написати мені</span>
@@ -816,19 +852,19 @@
 
     <!-- Section 7: Footer -->
     <footer class="bg-zinc-950 py-10 sm:py-12 text-zinc-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 reveal">
             <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">
                 ANDRII<span class="text-blue-500">.VISUALS</span>
             </h2>
             
             <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="LinkedIn">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:-translate-y-1 transition-all" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="Instagram">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:-translate-y-1 transition-all" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" aria-label="YouTube">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:-translate-y-1 transition-all" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>
@@ -895,6 +931,30 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Встановлення поточного року в футері
             document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Scroll Reveal Logic ---
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            // Налаштування для Intersection Observer
+            const revealOptions = {
+                threshold: 0.1, // 10% елемента має бути видно
+                rootMargin: "0px 0px -50px 0px" // Спрацьовує трохи раніше, ніж елемент з'явиться
+            };
+
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Відписуємося після появи (анімація грає лише раз)
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
 
             // --- Логіка перемикання тем (Dark/Light) ---
             const themeToggleBtn = document.getElementById('themeToggle');
@@ -1012,7 +1072,7 @@
                             card.style.display = 'flex';
                             setTimeout(() => {
                                 card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
+                                card.style.transform = 'translateY(0)'; // Для hover ефектів
                             }, 50);
                         } else {
                             card.style.opacity = '0';
