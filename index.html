@@ -1,370 +1,610 @@
 <!DOCTYPE html>
-<html lang="uk">
+<!-- За замовчуванням встановлено темну тему та англійську мову -->
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест: Розкрийте свій потенціал продуктивності</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- SEO Meta Tags -->
+    <title>ANDRII.AI | AI Creator & Video Editor</title>
+    <meta name="description" content="Portfolio of Andrii, a Senior AI Creator and Video Editor specializing in commercial video production, AI avatars, dynamic editing, and full AI generation.">
+    <meta name="keywords" content="AI Creator, Video Editor, AI Avatars, Commercial Video Production, Dynamic Editing, VFX, HeyGen, AI Generation, Motion Graphics">
+    <meta name="author" content="ANDRII.AI">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="ANDRII.AI | Premium Video Production & AI Generation">
+    <meta property="og:description" content="Explore my portfolio of commercial video production, AI avatars, and dynamic editing.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            950: '#09090b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Language Toggle & Base Styling -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8; /* Warm, premium off-white */
+        /* Базова логіка багатомовності */
+        html[lang="en"] .lang-ua { display: none !important; }
+        html[lang="ua"] .lang-en { display: none !important; }
+        
+        /* Ховаємо скролбар для більш преміального вигляду, залишаючи можливість скролити */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
-        .content-card {
-            background: #FFFFFF;
-            border-radius: 1.5rem;
-            border: 1px solid #F3F4F6;
-            box-shadow: 0 25px 50px -12px rgba(56, 56, 56, 0.1);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s ease-out;
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.3);
+            border-radius: 20px;
         }
-        .content-card.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .btn-primary {
-            background-color: #D97706; /* Amber 600 - warm orange */
-            color: #FFFFFF;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
-        }
-        .btn-primary:hover {
-            background-color: #B45309; /* Amber 700 */
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
-        }
-        .btn-secondary {
-             background-color: transparent;
-             color: #B45309;
-             border: 1px solid #D97706;
-             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .btn-secondary:hover {
-            background-color: rgba(217, 119, 6, 0.05);
-            transform: translateY(-4px);
-        }
-        .progress-bar-inner {
-            transition: width 0.5s ease-in-out;
-            background-color: #D97706;
-        }
-        .lang-switcher button {
-            transition: all 0.3s ease;
-            color: #6B7280; /* Gray 500 */
-        }
-        .lang-switcher button.active {
-            color: #D97706;
-            font-weight: 600;
-        }
-        .pulsate {
-            animation: pulsate 2.5s infinite;
-        }
-        @keyframes pulsate {
-            0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(217, 119, 6, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
-        }
-        .mountain-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity: 0.05;
-            z-index: -1;
-            pointer-events: none;
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex items-center justify-center p-4">
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300 font-sans antialiased">
 
-    <div class="lang-switcher absolute top-4 right-4 bg-white/70 backdrop-blur-sm space-x-2 p-2 rounded-lg shadow-sm z-10">
-        <button id="lang-uk" class="px-2 py-1 rounded active">UK</button>
-        <button id="lang-en" class="px-2 py-1 rounded">EN</button>
-    </div>
+    <!-- Section 1: Header -->
+    <header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border-b border-zinc-200 dark:border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold tracking-tight">
+                ANDRII<span class="text-blue-600 dark:text-blue-400">.AI</span>
+            </a>
 
-    <div id="app" class="w-full max-w-4xl mx-auto">
+            <!-- Controls (Theme, Lang, Contact) -->
+            <div class="flex items-center gap-4 sm:gap-6">
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
+                    <i class="fas fa-sun text-xl hidden dark:block"></i>
+                    <i class="fas fa-moon text-xl block dark:hidden"></i>
+                </button>
 
-        <!-- Start Screen -->
-        <div id="start-screen" class="relative text-center space-y-8 content-card p-8 md:p-12">
-            <h1 class="text-4xl md:text-6xl font-semibold text-slate-900" data-translate="start_title"></h1>
-            <p class="text-slate-600 text-lg max-w-xl mx-auto" data-translate="start_subtitle"></p>
-            <button id="start-btn" class="btn-primary font-bold py-4 px-10 rounded-lg text-lg" data-translate="start_button"></button>
-            <div class="mountain-bg">
-                <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="#1E293B" fill-opacity="1" d="M0,224L80,208C160,192,320,160,480,170.7C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-            </div>
-        </div>
-
-        <!-- Quiz Screen -->
-        <div id="quiz-screen" class="hidden content-card p-8 md:p-12 max-w-2xl mx-auto">
-            <div id="quiz-header" class="mb-8">
-                <div class="flex justify-between items-center mb-2 text-slate-500">
-                    <span id="question-counter"></span>
-                    <span data-translate="quiz_questions_total"></span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-2">
-                    <div id="progress-bar" class="h-2 rounded-full progress-bar-inner" style="width: 0%"></div>
-                </div>
-            </div>
-            <div id="quiz-content" class="space-y-6">
-                <h2 id="question-title" class="text-3xl md:text-4xl font-semibold text-slate-900"></h2>
-                <p id="question-text" class="text-slate-700 text-lg"></p>
-                <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg">
-                    <p id="question-explanation" class="text-slate-600 text-sm italic"></p>
-                </div>
-                <div id="answer-buttons" class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button data-answer="yes" class="answer-btn btn-primary w-full font-semibold py-3 px-6 rounded-lg" data-translate="quiz_yes"></button>
-                    <button data-answer="no" class="answer-btn btn-secondary w-full font-semibold py-3 px-6 rounded-lg" data-translate="quiz_no"></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Result Screen -->
-        <div id="result-screen" class="hidden text-center space-y-8 content-card p-8 md:p-12 max-w-2xl mx-auto">
-            <div id="result-high" class="hidden space-y-6">
-                <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#10B981"/><circle cx="12" cy="12" r="5" fill="#10B981"/></svg></div>
-                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_high_title"></h2>
-                <p class="text-slate-600 text-lg" data-translate="result_high_text"></p>
-                <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_high_button"></button>
-            </div>
-            <div id="result-medium" class="hidden space-y-6">
-                 <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.99 12c0-5.52-4.47-10-9.99-10S2 6.48 2 12s4.47 10 9.99 10L22 22l-2-10h2zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#F59E0B"/></svg></div>
-                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_medium_title"></h2>
-                <p class="text-slate-600 text-lg" data-translate="result_medium_text"></p>
-                <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_medium_button"></button>
-            </div>
-            <div id="result-low" class="hidden space-y-6">
-                <div class="flex justify-center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#EF4444"/></svg></div>
-                <h2 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="result_low_title"></h2>
-                <p class="text-slate-600 text-lg" data-translate="result_low_text"></p>
-                <button class="result-btn btn-primary font-bold py-3 px-8 rounded-lg text-lg" data-translate="result_low_button"></button>
-            </div>
-        </div>
-        
-        <!-- Product Screen -->
-        <div id="product-screen" class="hidden content-card p-8 md:p-12">
-            <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
-                <div class="mb-8 md:mb-0">
-                    <img src="https://raw.githubusercontent.com/AndriiAICreator/blue/main/foto_blue" alt="Seven Mountains Methylene Blue Bottle" class="rounded-lg shadow-xl mx-auto transform hover:scale-105 transition-transform duration-500 ease-in-out">
-                </div>
-                <div class="space-y-6">
-                    <h1 class="text-4xl md:text-5xl font-semibold text-slate-900" data-translate="product_title"></h1>
-                    <p class="text-slate-600" data-translate="product_intro"></p>
+                <!-- Language Toggle -->
+                <button id="langToggle" class="text-sm font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1" aria-label="Toggle Language">
+                    <span class="lang-en text-zinc-400">EN</span>
+                    <span class="lang-en">| UA</span>
                     
-                    <div>
-                        <h3 class="font-semibold text-slate-800 mb-3 text-lg" data-translate="product_key_features"></h3>
-                        <ul class="space-y-3 text-slate-600">
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_formaldehyde_free"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_alcohol_free"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_made_in_usa"></span></li>
-                            <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-translate="feature_lab_tested"></span></li>
-                        </ul>
-                    </div>
+                    <span class="lang-ua">EN |</span>
+                    <span class="lang-ua text-zinc-500"> UA</span>
+                </button>
 
-                    <div class="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg mt-4">
-                        <p class="text-amber-800 text-sm" data-translate="product_disclaimer"></p>
-                    </div>
+                <!-- Contact Button -->
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2 text-sm font-medium border border-zinc-300 dark:border-white/20 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
+                    <span class="lang-en">Contact Me</span>
+                    <span class="lang-ua">Зв'язатися</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-                    <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                        <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center font-bold py-3 px-8 rounded-lg text-lg pulsate" data-translate="product_buy_button"></a>
-                        <button id="back-to-start-btn" class="btn-secondary w-full font-bold py-3 px-8 rounded-lg text-lg" data-translate="product_back_button"></button>
-                    </div>
-                </div>
+    <!-- Section 2: Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Background Video with Fallback Poster -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+            <!-- Заглушка для відео. Можете замінити showreel.mp4 на своє відео -->
+            <source src="showreel.mp4" type="video/mp4">
+            <!-- Зображення на випадок якщо відео не завантажиться -->
+            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1920&auto=format&fit=crop" class="w-full h-full object-cover" alt="Background">
+        </video>
+        
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6">
+                <span class="lang-en">AI Creator & Video Editor</span>
+                <span class="lang-ua">AI Creator & Video Editor</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-zinc-300 mb-10 max-w-2xl font-light">
+                <span class="lang-en">Crafting premium visual experiences through cutting-edge AI generation and dynamic editing.</span>
+                <span class="lang-ua">Створення преміального візуалу за допомогою передової AI-генерації та динамічного монтажу.</span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white text-black hover:bg-zinc-200 transition-colors">
+                    <i class="fas fa-play mr-2"></i>
+                    <span class="lang-en">Watch Showreel</span>
+                    <span class="lang-ua">Дивитись Showreel</span>
+                </a>
+                <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors">
+                    <span class="lang-en">View Works</span>
+                    <span class="lang-ua">Переглянути роботи</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Selected Works (Portfolio) -->
+    <section id="portfolio" class="py-24 max-w-7xl mx-auto px-4">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8">
+                <span class="lang-en">Selected Works</span>
+                <span class="lang-ua">Вибрані роботи</span>
+            </h2>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 bg-zinc-900 text-white dark:bg-white dark:text-black transition-colors" data-filter="all">
+                    <span class="lang-en">All</span>
+                    <span class="lang-ua">Всі</span>
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors" data-filter="editing">
+                    <span class="lang-en">Editing & VFX</span>
+                    <span class="lang-ua">Монтаж та VFX</span>
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors" data-filter="avatars">
+                    <span class="lang-en">AI Avatars & Automation</span>
+                    <span class="lang-ua">AI Аватари та Автоматизація</span>
+                </button>
+                <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-zinc-300 dark:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors" data-filter="generation">
+                    <span class="lang-en">Full AI Generation</span>
+                    <span class="lang-ua">Повна AI Генерація</span>
+                </button>
             </div>
         </div>
 
-    </div>
+        <!-- Portfolio Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="portfolio-grid">
+            
+            <!-- Картка 1 (Category: editing) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/YPo45sz-9ck" title="Dynamic Real Estate Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Dynamic Real Estate Promo</span>
+                        <span class="lang-ua">Динамічне промо нерухомості</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Architectural teaser for Instagram Reels. Transformed static residential complex renders into a high-retention promotional video. Engineered a beat-synced montage starting with a 3x3 monochrome grid that shifts to full color, followed by custom pendulum-swing transitions to create a premium dynamic feel.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Архітектурний тизер для Instagram Reels. Перетворення статичних рендерів ЖК на відео з високим утриманням уваги. Розроблено монтаж під біт: стильне інтро з чорно-білою сіткою 3x3, що забарвлюється на дропі, та кастомні маятникові переходи для преміальної динаміки.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">Premiere Pro, After Effects</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#BeatSync</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionGraphics</span>
+                    </div>
+                </div>
+            </article>
 
+            <!-- Картка 2 (Category: editing) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/K9BmoRnk0iY" title="Meow Bakery AI Concept" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">"Meow" Bakery AI Concept</span>
+                        <span class="lang-ua">Концепт пекарні "Meow"</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated commercial concept based solely on a brand logo. Generated a cohesive, realistic cafe interior and signature pastries from a single logo. Executed a highly precise beat-synced montage, opening with a dynamic 4-way split-screen that smoothly transitions into rhythm-driven promotional visuals.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Створення повноцінного відеоконцепту закладу лише на основі логотипу. Згенеровано реалістичний інтер'єр кав'ярні та фірмову випічку зі збереженням стилістики бренду. Виконано філігранний монтаж: ефектний вступ із розділеним на 4 частини екраном та чітка розстановка кадрів під музичний біт.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, Luma, VEO 3, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIGeneration</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#BeatSync</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SplitScreen</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 3 (Category: editing) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/fRyDk_Ez7rA" title="Expert Reels for Marketing Agency" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Expert Reels for Marketing Agency</span>
+                        <span class="lang-ua">Експертний Reels для маркетингової агенції</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> High-retention Instagram Reel for an expert speaker. Executed dynamic editing to maximize viewer retention. Integrated highly relevant stock B-roll and crafted custom manual text animations (fly-ins, wobbles) to emphasize key points. Polished with professional color grading.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Instagram Reel з ведучим для максимального утримання уваги. Динамічний монтаж експертного відео. Точний підбір релевантних B-roll кадрів зі стоків та створення ручної анімації субтитрів (вильоти, коливання) для акцентування уваги на головних думках. Професійна кольорокорекція.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">Premiere Pro, After Effects</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionGraphics</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SMM</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 4 (Category: editing) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="editing">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/IV5_Deej-ns" title="Dynamic Split-Mask Montage" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Dynamic Split-Mask Montage</span>
+                        <span class="lang-ua">Динамічний монтаж із масками</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated footage editing & VFX. Crafted a high-energy sequence using custom AI-generated footage (automotive and forest environments). Executed complex mask transitions in Premiere Pro—specifically precise split-screen merging effects—to create a seamless, rhythm-driven visual experience.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Монтаж та VFX згенерованих AI-футажів. Збірка динамічного відео з власноруч згенерованих кадрів (автомобіль у лісі). Використано складні переходи через маски у Premiere Pro (ефект розрізання екрану та злиття частин) для створення безшовного та енергійного візуального ритму.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MaskTransitions</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#DynamicEditing</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VFX</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 5 (Category: avatars) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/rYIkJe4vjo0" title="AI Spokesperson & B-Roll Integration" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">AI Spokesperson & B-Roll</span>
+                        <span class="lang-ua">Віртуальний ведучий та B-Roll</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Full-cycle production for an Upwork client. Created a photorealistic AI avatar with a highly natural, custom-generated voiceover. Seamlessly integrated the spokesperson with relevant stock B-roll cuts and background audio to meet strict client guidelines.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Повний цикл виробництва для клієнта з Upwork. Створення фотореалістичного AI-аватара з максимально природною кастомною озвучкою. Безшовна інтеграція ведучої з релевантними стоковими перебивками (B-roll) та фоновою музикою згідно з жорстким ТЗ.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIAvatars</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Voiceover</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Upwork</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 6 (Category: avatars) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/H_6JICZRXWI" title="AI Podcast Simulation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">AI Podcast Simulation</span>
+                        <span class="lang-ua">Імітація AI-подкасту</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> AI-generated podcast-style promotional video. Engineered a realistic studio podcast environment featuring two interacting AI avatars (a host and an expert). Executed precise multi-camera style editing to simulate a natural, engaging conversational flow that builds brand authority.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> AI-згенероване промо-відео у форматі студійного подкасту. Створення реалістичної атмосфери подкасту з двома взаємодіючими AI-аватарами (ведучий задає питання, експерт відповідає). Виконано точний монтаж у стилі багатокамерної зйомки для імітації природного, живого діалогу.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIAvatars</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#PodcastEditing</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#HeyGen</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 7 (Category: avatars) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/aOwXYDCj3W4" title="Virtual Host for Luxury Real Estate" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Hyggee Real Estate Avatar</span>
+                        <span class="lang-ua">Віртуальний ведучий для нерухомості</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Instagram sales promo for premium villas. Enhanced a classic luxury property montage by integrating a custom AI avatar. Utilized chroma keying in Premiere Pro to seamlessly composite the virtual host into the frame. Generated natural-sounding Ukrainian voiceover to guide the viewer through the property.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Промо-відео для продажу елітних вілл в Instagram. Покращення класичного монтажу нерухомості шляхом інтеграції кастомного AI-аватара. Використано хромакей у Premiere Pro для акуратного розміщення віртуального ведучого в кадрі. Згенеровано природну україномовну озвучку для проведення екскурсії об'єктом.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">HeyGen, ElevenLabs, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#RealEstate</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VirtualHost</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#ChromaKey</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 8 (Category: avatars) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="avatars">
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/3yX_4x66irc" title="Automated YouTube Quizzes" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Automated YouTube Quizzes</span>
+                        <span class="lang-ua">Автоматизована генерація квізів</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Custom automation for a German YouTube channel. Engineered a fully automated video production pipeline. Designed unique quiz visuals in After Effects and developed a custom ExtendScript (JS) that parses JSON data (questions, answers, audio) to automatically batch-render multiple quiz videos with alpha channels for final editing.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Розробка пайплайну для масового створення контенту (німецький YouTube канал). Створення унікального дизайну в After Effects та розробка кастомного JS-скрипту. Скрипт автоматично парсить JSON-дані (питання, відповіді, аудіо) та рендерить готові квізи з альфа-каналом, скорочуючи час виробництва в десятки разів.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">After Effects, JavaScript (ExtendScript)</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Automation</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Scripting</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#MotionDesign</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 9 (Category: generation) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/8zlGfpVU1_E" title="Water Carafe Commercial" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Water Carafe Commercial</span>
+                        <span class="lang-ua">AI-реклама графина для води</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> High-end, fully AI-generated product commercial. Achieved 100% consistency of the product and background across all scenes. Solved the highly complex challenge of realistic AI fluid dynamics (water pouring) and precise object resizing (glass scaling). Executed complex multi-layered editing and integrated typography directly in Premiere Pro.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Преміальний продуктовий відеоролик, повністю згенерований через AI. Досягнуто 100% консистентності продукту та фону в усіх кадрах. Вирішено надскладне завдання реалістичної фізики рідин в AI (наливання води) та точної зміни масштабу склянки у потрібний момент. Виконано багатошаровий монтаж із накладанням фірмової типографіки.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Sora 2, Luma Ray 3, Higsfield, Wan 2.6, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#ProductPromo</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#FluidDynamics</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#AIGeneration</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 10 (Category: generation) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/p7D-s_yMC30" title="Consistent Character Animation" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">Consistent Character Animation</span>
+                        <span class="lang-ua">Анімація зі збереженням персонажів</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Animated children's story for a psychologist. Solved the complex issue of AI character consistency. Maintained the exact facial features and styling of the main characters (a boy named Leo and his parents) across multiple scenes using photo-reference techniques. Enhanced the emotional storytelling with comprehensive custom sound design.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Створення дитячого мультфільму для сторінки психолога. Вирішено найскладнішу проблему AI — збереження зовнішності. За допомогою фото-референсів досягнуто 100% консистентності головних героїв (хлопчик Лео та його батьки) у різних сценах. Емоційну глибину історії підкреслено повноцінним саунд-дизайном.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#CharacterConsistency</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Animation</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#SoundDesign</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 11 (Category: generation) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/eSdT8O2wU5E" title="Ozerni Vezhi 3D Revival" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">"Ozerni Vezhi" 3D Revival</span>
+                        <span class="lang-ua">Оживлення 3D-рендерів нерухомості</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Photorealistic promotional video for a real estate developer. Transformed lifeless, static 3D architectural renders into a highly realistic, dynamic video environment. Populated the scenes with moving people and natural elements, finalized with crisp motion graphics and logo animation.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Фотореалістичне промо-відео для забудовника ЖК "Озерні Вежі". Перетворення статичних, неживих 3D-рендерів на реалістичне, динамічне відео. В середовище інтегровано рух людей та природні елементи, що додало кадрам життя. Фіналізовано анімацією логотипа та роботою з типографікою.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Architecture</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#3DRevival</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#B2B</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Картка 12 (Category: generation) -->
+            <article class="portfolio-card flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 transition-all duration-300" data-category="generation">
+                <div class="relative w-full aspect-[9/16] bg-zinc-100 dark:bg-zinc-950">
+                    <iframe src="https://www.youtube.com/embed/6RnonxLixGo" title="MonoSpain Story-Driven Promo" class="w-full h-full absolute top-0 left-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold mb-2">
+                        <span class="lang-en">MonoSpain Story-Driven Promo</span>
+                        <span class="lang-ua">Сюжетне промо елітної нерухомості</span>
+                    </h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1">
+                        <span class="lang-en"><strong>Scope & Challenge:</strong> Narrative-led luxury property advertisement for MonoSpain. Engineered a complete emotional storyline—from a surprise apartment key proposal to a dynamic travel montage (flight, car ride), ending at the Spanish property. Flawlessly integrated AI-generated characters into actual architectural renders to create a cinematic, high-converting sales narrative.</span>
+                        <span class="lang-ua"><strong>Завдання та Рішення:</strong> Наративна відеореклама іспанських апартаментів для MonoSpain. Створення повноцінної емоційної історії: пропозиція з ключем від квартири замість обручки, динамічний монтаж подорожі (літак, авто) та вихід на терасу. Ювелірна інтеграція AI-персонажів у реальні архітектурні рендери забудовника для створення кінематографічного сторітелінгу, що продає.</span>
+                    </p>
+                    <div class="text-sm font-medium mb-4 text-zinc-800 dark:text-zinc-200">
+                        <span class="lang-en">Tools:</span><span class="lang-ua">Інструменти:</span>
+                        <span class="font-normal text-zinc-600 dark:text-zinc-400">NanoBanana, Kling, VEO 3, Premiere Pro</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#Storytelling</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#VFX</span>
+                        <span class="px-2 py-1 text-xs rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">#RealEstate</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Section 4: Footer -->
+    <footer id="contact" class="border-t border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 mt-10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center">
+            <h2 class="text-2xl font-bold mb-6 tracking-tight">
+                ANDRII<span class="text-blue-600 dark:text-blue-400">.AI</span>
+            </h2>
+            
+            <a href="mailto:contact@andrii.ai" class="text-lg text-zinc-600 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-8">
+                contact@andrii.ai
+            </a>
+            
+            <div class="flex gap-6 mb-8">
+                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-white/5 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors" aria-label="Upwork">
+                    <!-- Використовуємо іншу іконку як заглушку для Upwork, оскільки в стандартному наборі fa її може не бути -->
+                    <i class="fas fa-briefcase"></i> 
+                </a>
+            </div>
+            
+            <p class="text-sm text-zinc-500 dark:text-zinc-500">
+                &copy; <span id="year"></span> ANDRII.AI. <span class="lang-en">All rights reserved.</span><span class="lang-ua">Всі права захищено.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Vanilla JS Logic -->
     <script>
-        // DOM Elements
-        const screens = { start: document.getElementById('start-screen'), quiz: document.getElementById('quiz-screen'), result: document.getElementById('result-screen'), product: document.getElementById('product-screen') };
-        const startBtn = document.getElementById('start-btn');
-        const questionCounter = document.getElementById('question-counter');
-        const progressBar = document.getElementById('progress-bar');
-        const questionTitle = document.getElementById('question-title');
-        const questionText = document.getElementById('question-text');
-        const questionExplanation = document.getElementById('question-explanation');
-        const answerButtons = document.querySelectorAll('.answer-btn');
-        const resultBtns = document.querySelectorAll('.result-btn');
-        const backToStartBtn = document.getElementById('back-to-start-btn');
-        const langUkBtn = document.getElementById('lang-uk');
-        const langEnBtn = document.getElementById('lang-en');
-        const results = { high: document.getElementById('result-high'), medium: document.getElementById('result-medium'), low: document.getElementById('result-low') };
-        
-        // Translations
-        const translations = {
-            uk: {
-                start_title: "Розкрийте свій потенціал продуктивності",
-                start_subtitle: "Пройдіть наш експертний тест, щоб визначити ваш унікальний архітип продуктивності та отримати персоналізований протокол для його розвитку.",
-                start_button: "Пройти тест",
-                quiz_questions_total: "10 Питань",
-                quiz_question_counter: "Питання",
-                quiz_yes: "Так",
-                quiz_no: "Ні",
-                result_high_title: "Архітип: Стратег",
-                result_high_text: "Ваша енергія стабільна, а розум — гострий. Ви вмієте планувати та досягати мети. Ваша задача — підтримувати цей високий рівень та захищати мозок від стресу.",
-                result_high_button: "Дізнатися більше",
-                result_medium_title: "Архітип: Спринтер",
-                result_medium_text: "Ви маєте потужні сплески енергії, але іноді відчуваєте спади. Ваша сила — у швидких ривках, але вам потрібна підтримка для стабільної продуктивності протягом дня.",
-                result_medium_button: "Дізнатися більше",
-                result_low_title: "Архітип: Візіонер під навантаженням",
-                result_low_text: "У вас є великі ідеї, але брак енергії заважає їх реалізації. Вашому мозку потрібна фундаментальна підтримка, щоб відновити ресурс та втілити ваш потенціал.",
-                result_low_button: "Дізнатися більше",
-                product_title: "Methylene Blue by Seven Mountains",
-                product_intro: "Наша формула з Methylene Blue 1% розроблена для підтримки ефективності мітохондрій. Коли ваші клітини виробляють енергію оптимально, ви відчуваєте це через ясність розуму та стабільну концентрацію.",
-                product_key_features: "Ключові переваги",
-                feature_formaldehyde_free: "Без формальдегіду",
-                feature_alcohol_free: "Без спирту",
-                feature_made_in_usa: "Вироблено в США",
-                feature_lab_tested: "Перевірено в лабораторії",
-                product_disclaimer: "Застереження: Використовуйте свідомо. Завжди читайте етикетку та дотримуйтесь рекомендацій. Цей продукт не призначений для діагностики, лікування чи запобігання будь-яким захворюванням.",
-                product_buy_button: "Отримати Methylene Blue",
-                product_back_button: "Пройти тест знову",
-                questions: [
-                    { title: "Післяобідній спад", text: "Чи відчуваєте ви різкий спад енергії та працездатності в другій половині дня, особливо після 15:00?", explanation: "Чому це важливо? Це класичний симптом виснаження мітохондрій, які не можуть підтримувати стабільний рівень енергії протягом дня." },
-                    { title: "Залежність від стимуляторів", text: "Чи покладаєтесь ви на каву, щоб 'пережити' день, але відчуваєте, що це лише тимчасовий 'пластир'?", explanation: "Чому це важливо? Стимулятори маскують проблему, не вирішуючи її причину — нестачу власної, клітинної енергії." },
-                    { title: "Туман в голові", text: "Чи бувають у вас дні, коли ви відчуваєте 'туман в голові', що заважає вам чітко мислити?", explanation: "Чому це важливо? Ясність думки напряму залежить від енергії, доступної нейронам. Її нестача призводить до 'туману'." },
-                    { title: "Проблеми з пам'яттю", text: "Чи стало вам важче згадувати імена, дати або дрібні, але важливі деталі?", explanation: "Чому це важливо? Нейронні зв'язки, що відповідають за пам'ять, потребують величезної кількості енергії. Коли її бракує, доступ до інформації сповільнюється." },
-                    { title: "Прокрастинація", text: "Чи відкладаєте ви важливі завдання на потім через брак внутрішнього 'драйву'?", explanation: "Чому це важливо? Прокрастинація — це часто захисний механізм мозку, який 'економить' енергію, уникаючи складних завдань." },
-                    { title: "Втрата переваги", text: "Чи відчуваєте ви, що втратили той драйв або 'іскру', які раніше допомагали вам бути на крок попереду?", explanation: "Чому це важливо? Втрата 'драйву' часто пов'язана зі зниженням вироблення енергії, що впливає на мотивацію та амбіції." },
-                    { title: "Труднощі з концентрацією", text: "Чи важко вам утримувати фокус на одному завданні протягом тривалого часу?", explanation: "Чому це важливо? Концентрація — енергозатратний процес. При дефіциті енергії мозок схильний до постійного перемикання уваги." },
-                    { title: "Ступор перед початком", text: "Чи буває у вас відчуття 'ступору', коли потрібно почати новий проєкт або складне завдання?", explanation: "Чому це важливо? Це може бути ознакою того, що мозок не може виділити достатньо енергетичного ресурсу для ініціації дії." },
-                    { title: "Втрата точності", text: "Чи відчуваєте ви, що ваші думки стали менш точними, а для розумових завдань потрібно більше часу?", explanation: "Чому це важливо? Висока швидкість та точність мислення вимагають оптимального енергозабезпечення нейронів." },
-                    { title: "Щоденний патерн втоми", text: "Чи помітили ви, що спад енергії відбувається приблизно в один і той самий час щодня, ніби за розкладом?", explanation: "Чому це важливо? Стабільний патерн вказує на системну, а не ситуативну проблему з регуляцією енергії в організмі." }
-                ]
-            },
-            en: {
-                start_title: "Unlock Your Productivity Potential",
-                start_subtitle: "Take our expert quiz to determine your unique productivity archetype and get a personalized protocol to develop it.",
-                start_button: "Take The Test",
-                quiz_questions_total: "10 Questions",
-                quiz_question_counter: "Question",
-                quiz_yes: "Yes",
-                quiz_no: "No",
-                result_high_title: "Archetype: The Strategist",
-                result_high_text: "Your energy is stable, and your mind is sharp. You know how to plan and achieve goals. Your task is to maintain this high level and protect your brain from stress.",
-                result_high_button: "Learn More",
-                result_medium_title: "Archetype: The Sprinter",
-                result_medium_text: "You have powerful bursts of energy but sometimes experience slumps. Your strength is in quick sprints, but you need support for stable performance throughout the day.",
-                result_medium_button: "Learn More",
-                result_low_title: "Archetype: The Visionary Under Strain",
-                result_low_text: "You have big ideas, but a lack of energy prevents their realization. Your brain needs fundamental support to restore resources and fulfill your potential.",
-                result_low_button: "Learn More",
-                product_title: "Methylene Blue by Seven Mountains",
-                product_intro: "Our formula with Methylene Blue 1% is designed to support mitochondrial efficiency. When your cells produce energy optimally, you feel it through mental clarity and stable focus.",
-                product_key_features: "Key Features",
-                feature_formaldehyde_free: "Formaldehyde Free",
-                feature_alcohol_free: "Alcohol Free",
-                feature_made_in_usa: "Made in USA",
-                feature_lab_tested: "Lab Tested",
-                product_disclaimer: "Disclaimer: Use thoughtfully. Always read the label and follow the recommendations. This product is not intended to diagnose, treat, cure, or prevent any disease.",
-                product_buy_button: "Get Methylene Blue",
-                product_back_button: "Retake The Test",
-                questions: [
-                    { title: "Afternoon Slump", text: "Do you experience a sharp drop in energy and productivity in the afternoon, especially after 3 PM?", explanation: "Why it matters: This is a classic symptom of mitochondrial fatigue, as they can't maintain a stable energy level throughout the day." },
-                    { title: "Stimulant Dependence", text: "Do you rely on coffee to get through the day, feeling it's just a temporary 'band-aid'?", explanation: "Why it matters: Stimulants mask the problem without solving its root cause—a lack of your own cellular energy." },
-                    { title: "Brain Fog", text: "Do you have days when you experience 'brain fog' that prevents you from thinking clearly?", explanation: "Why it matters: Mental clarity directly depends on the energy available to neurons. A shortage leads to 'fog'." },
-                    { title: "Memory Issues", text: "Has it become harder for you to recall names, dates, or small but important details?", explanation: "Why it matters: The neural connections responsible for memory require a vast amount of energy. When it's lacking, access to information slows down." },
-                    { title: "Procrastination", text: "Do you postpone important tasks due to a lack of inner 'drive'?", explanation: "Why it matters: Procrastination is often a defense mechanism of the brain to 'conserve' energy by avoiding complex tasks." },
-                    { title: "Losing Your Edge", text: "Do you feel you've lost the drive or 'spark' that used to keep you one step ahead?", explanation: "Why it matters: Losing your 'edge' is often linked to decreased energy production, which affects motivation and ambition." },
-                    { title: "Difficulty Concentrating", text: "Do you find it hard to stay focused on one task for a long period?", explanation: "Why it matters: Concentration is an energy-intensive process. With an energy deficit, the brain is prone to constant attention switching." },
-                    { title: "Initial Inertia", text: "Do you experience a feeling of being 'stuck' when you need to start a new project or a difficult task?", explanation: "Why it matters: This can be a sign that the brain cannot allocate enough energy resources to initiate action." },
-                    { title: "Loss of Precision", text: "Do you feel that your thoughts have become less precise and that mental tasks take more time?", explanation: "Why it matters: High speed and precision of thought require optimal energy supply to neurons." },
-                    { title: "Daily Fatigue Pattern", text: "Have you noticed that your energy slump occurs at about the same time every day, as if on a schedule?", explanation: "Why it matters: A consistent pattern points to a systemic, rather than situational, problem with energy regulation in the body." }
-                ]
+        document.addEventListener('DOMContentLoaded', () => {
+            // Встановлення поточного року в футері
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- Логіка перемикання тем (Dark/Light) ---
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+
+            // Перевіряємо локальне сховище або налаштування системи
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                htmlElement.classList.remove('dark');
+            } else {
+                htmlElement.classList.add('dark'); // Темна за замовчуванням
             }
-        };
 
-        // App State
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let currentLanguage = 'uk';
-
-        // Functions
-        function showScreen(screenName) {
-            const activeScreen = document.querySelector('.content-card.active');
-            if (activeScreen) { activeScreen.classList.remove('active'); }
-            setTimeout(() => {
-                Object.values(screens).forEach(screen => screen.classList.add('hidden'));
-                screens[screenName].classList.remove('hidden');
-                setTimeout(() => screens[screenName].classList.add('active'), 50);
-            }, 300);
-        }
-
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            document.documentElement.lang = lang;
-            langUkBtn.classList.toggle('active', lang === 'uk');
-            langEnBtn.classList.toggle('active', lang === 'en');
-            const langData = translations[lang];
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.dataset.translate;
-                if (langData[key]) { el.textContent = langData[key]; }
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
             });
-            if (!screens.quiz.classList.contains('hidden')) { displayQuestion(); }
-        }
 
-        function startQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
-            showScreen('quiz');
-            displayQuestion();
-        }
+            // --- Логіка перемикання мов (EN/UA) ---
+            const langToggleBtn = document.getElementById('langToggle');
+            
+            // Встановлюємо мову за замовчуванням (EN)
+            const savedLang = localStorage.getItem('lang') || 'en';
+            htmlElement.setAttribute('lang', savedLang);
 
-        function displayQuestion() {
-            const questionData = translations[currentLanguage].questions[currentQuestionIndex];
-            questionCounter.textContent = `${translations[currentLanguage].quiz_question_counter} ${currentQuestionIndex + 1}`;
-            progressBar.style.width = `${((currentQuestionIndex + 1) / translations[currentLanguage].questions.length) * 100}%`;
-            questionTitle.textContent = questionData.title;
-            questionText.textContent = questionData.text;
-            questionExplanation.textContent = questionData.explanation;
-        }
+            langToggleBtn.addEventListener('click', () => {
+                const currentLang = htmlElement.getAttribute('lang');
+                const newLang = currentLang === 'en' ? 'ua' : 'en';
+                
+                htmlElement.setAttribute('lang', newLang);
+                localStorage.setItem('lang', newLang);
+            });
 
-        function handleAnswer(event) {
-            if (event.target.dataset.answer === 'yes') { score++; }
-            currentQuestionIndex++;
-            if (currentQuestionIndex < translations[currentLanguage].questions.length) {
-                displayQuestion();
-            } else {
-                showResults();
-            }
-        }
+            // --- Логіка фільтрації портфоліо ---
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.portfolio-card');
 
-        function showResults() {
-            showScreen('result');
-            Object.values(results).forEach(result => result.classList.add('hidden'));
-            // The logic is inverted: more "yes" answers (higher score) means more problems.
-            if (score >= 8) {
-                results.low.classList.remove('hidden'); // Many problems -> "Visionary"
-            } else if (score >= 4) {
-                results.medium.classList.remove('hidden'); // Some problems -> "Sprinter"
-            } else {
-                results.high.classList.remove('hidden'); // Few problems -> "Strategist"
-            }
-        }
-        
-        function showProduct() { showScreen('product'); }
-        function showStartScreen() { showScreen('start'); }
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Видаляємо активний клас у всіх кнопок
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-zinc-900', 'text-white', 'dark:bg-white', 'dark:text-black');
+                        b.classList.add('hover:bg-zinc-100', 'dark:hover:bg-white/10');
+                    });
+                    
+                    // Додаємо активний клас натиснутій кнопці
+                    btn.classList.add('bg-zinc-900', 'text-white', 'dark:bg-white', 'dark:text-black');
+                    btn.classList.remove('hover:bg-zinc-100', 'dark:hover:bg-white/10');
 
-        // Event Listeners
-        startBtn.addEventListener('click', startQuiz);
-        answerButtons.forEach(button => button.addEventListener('click', handleAnswer));
-        resultBtns.forEach(button => button.addEventListener('click', showProduct));
-        backToStartBtn.addEventListener('click', showStartScreen);
-        langUkBtn.addEventListener('click', () => setLanguage('uk'));
-        langEnBtn.addEventListener('click', () => setLanguage('en'));
+                    const filterValue = btn.getAttribute('data-filter');
 
-        // Initial Load
-        window.onload = () => {
-            screens.start.classList.add('active');
-            setLanguage('uk');
-        };
-
+                    cards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === category) {
+                            card.style.display = 'flex';
+                            // Невелика затримка для плавного проявлення
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300); // Збігається з duration-300 у Tailwind
+                        }
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>
