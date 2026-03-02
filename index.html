@@ -111,7 +111,6 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Стан 1: На самому верху (Повна прозорість) */
         #main-header.on-top {
             background-color: transparent !important;
             border-color: transparent !important;
@@ -167,7 +166,7 @@
             
             <!-- Logo Area -->
             <a href="#" class="shrink-0 z-50 flex items-center group">
-                <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-10 sm:h-12 md:h-14 w-auto max-w-[280px] sm:max-w-none object-contain transition-all duration-300" onerror="this.classList.add('hidden'); document.getElementById('text-logo').classList.remove('hidden'); document.getElementById('text-logo').classList.add('flex');">
+                <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-10 sm:h-12 md:h-14 w-auto max-w-[250px] sm:max-w-none object-contain transition-all duration-300" onerror="this.classList.add('hidden'); document.getElementById('text-logo').classList.remove('hidden'); document.getElementById('text-logo').classList.add('flex');">
                 
                 <!-- Текстовий Логотип (Fallback) -->
                 <div id="text-logo" class="hidden items-center text-xl sm:text-2xl font-bold tracking-tight transition-colors text-zinc-900 dark:text-white">
@@ -233,8 +232,8 @@
         </div>
     </header>
 
-    <!-- Section 2: Hero Section -->
-    <section id="hero" class="relative h-[100svh] w-full flex items-end pb-16 sm:pb-24 overflow-hidden bg-zinc-950 pt-20">
+    <!-- Section 2: Hero Section (Оновлено вирівнювання) -->
+    <section id="hero" class="relative h-[100svh] w-full flex items-center justify-center overflow-hidden bg-zinc-950">
         <!-- Background YouTube Video -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70"
@@ -246,14 +245,14 @@
         <!-- Dark Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/20 z-0"></div>
 
-        <!-- Hero Content (Centered on Mobile, Left on Desktop) -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end gap-8 reveal active h-full pb-8">
-            <div class="max-w-3xl mx-auto sm:mx-0 flex flex-col items-center sm:items-start text-center sm:text-left">
+        <!-- Hero Content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center gap-8 reveal active mt-16 sm:mt-0">
+            <div class="max-w-3xl mx-auto md:mx-0 flex flex-col items-center md:items-start text-center md:text-left">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
                     <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                     <span class="lang-ua">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 font-light max-w-xl mx-auto sm:mx-0">
+                <p class="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 font-light max-w-xl mx-auto md:mx-0">
                     <span class="lang-en">Transforming concepts into high-end cinematic visuals. I craft emotion-driven content designed to captivate and maximize viewer retention from the very first second.</span>
                     <span class="lang-ua">Трансформую ідеї у преміальний кінематографічний візуал. Створюю контент, який захоплює емоцією та безвідмовно утримує увагу з першої секунди.</span>
                 </p>
@@ -267,11 +266,13 @@
         </div>
 
         <!-- Floating Controls -->
-        <div class="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 flex flex-col items-end gap-4 z-20 reveal active">
+        <div class="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
+            <!-- Mute Button -->
             <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
                 <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
             </button>
-            <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer">
+            <!-- Minimal Showreel Link (Opens Modal) -->
+            <a href="#" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer showreel-trigger">
                 <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
                     <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
                 </span>
@@ -428,17 +429,17 @@
             </div>
         </div>
 
-        <!-- Portfolio Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+        <!-- Portfolio Grid (Оновлено до 4 колонок на великих екранах) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="portfolio-grid">
             
             <!-- Картка 1 -->
             <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1">
                 
-                <!-- Desktop Modal Trigger Overlay -->
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <!-- Desktop Modal Trigger Overlay (Оновлений дизайн із розмиттям фону) -->
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
 
@@ -450,13 +451,12 @@
                     </iframe>
                 </div>
                 
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Dynamic Real Estate Promo</span>
                         <span class="lang-ua">Динамічне промо нерухомості</span>
                     </h3>
                     
-                    <!-- Text hidden on desktop, full visible on mobile -->
                     <div class="card-details block md:hidden mt-3">
                         <div class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-4 space-y-2">
                             <p>
@@ -474,7 +474,7 @@
                         </div>
                     </div>
 
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">DynamicEditing</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">BeatSync</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MotionGraphics</span>
@@ -484,10 +484,10 @@
 
             <!-- Картка 2 -->
             <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -497,8 +497,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">"Meow" Bakery AI Concept</span>
                         <span class="lang-ua">Концепт пекарні "Meow"</span>
                     </h3>
@@ -518,7 +518,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, Luma, VEO 3, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIGeneration</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">BeatSync</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">SplitScreen</span>
@@ -528,10 +528,10 @@
 
             <!-- Картка 3 -->
             <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -541,8 +541,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Expert Reels for Marketing Agency</span>
                         <span class="lang-ua">Експертний Reels для маркетингу</span>
                     </h3>
@@ -562,7 +562,7 @@
                             <span class="font-normal text-zinc-500">Premiere Pro, After Effects.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">DynamicEditing</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MotionGraphics</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">SMM</span>
@@ -572,10 +572,10 @@
 
             <!-- Картка 4 -->
             <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -585,8 +585,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Dynamic Split-Mask Montage</span>
                         <span class="lang-ua">Динамічний монтаж із масками</span>
                     </h3>
@@ -606,7 +606,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, VEO 3, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MaskTransitions</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">DynamicEditing</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VFX</span>
@@ -616,10 +616,10 @@
 
             <!-- Картка 5 -->
             <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -629,8 +629,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">AI Spokesperson & B-Roll Integration</span>
                         <span class="lang-ua">Віртуальний ведучий та B-Roll</span>
                     </h3>
@@ -650,7 +650,7 @@
                             <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIAvatars</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Voiceover</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Commercial</span>
@@ -660,10 +660,10 @@
 
             <!-- Картка 6 -->
             <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -673,8 +673,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">AI Podcast Simulation</span>
                         <span class="lang-ua">Імітація AI-подкасту</span>
                     </h3>
@@ -694,7 +694,7 @@
                             <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIAvatars</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">PodcastEditing</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">HeyGen</span>
@@ -704,10 +704,10 @@
 
             <!-- Картка 7 -->
             <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -717,8 +717,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Virtual Host for Luxury Real Estate</span>
                         <span class="lang-ua">Віртуальний ведучий для нерухомості</span>
                     </h3>
@@ -738,7 +738,7 @@
                             <span class="font-normal text-zinc-500">HeyGen, ElevenLabs, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">RealEstate</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VirtualHost</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">ChromaKey</span>
@@ -748,10 +748,10 @@
 
             <!-- Картка 8 -->
             <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
@@ -761,8 +761,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Automated Quiz Generation Pipeline</span>
                         <span class="lang-ua">Автоматизована генерація квізів</span>
                     </h3>
@@ -782,7 +782,7 @@
                             <span class="font-normal text-zinc-500">After Effects, JavaScript (ExtendScript).</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Automation</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Scripting</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">MotionDesign</span>
@@ -792,10 +792,10 @@
 
             <!-- Картка 9 -->
             <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
@@ -805,8 +805,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Water Carafe AI Commercial</span>
                         <span class="lang-ua">AI-реклама графина для води</span>
                     </h3>
@@ -826,7 +826,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, VEO 3, Sora 2, Luma Ray 3, Higsfield, Wan 2.6, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">ProductPromo</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">FluidDynamics</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">AIGeneration</span>
@@ -836,10 +836,10 @@
 
             <!-- Картка 10 -->
             <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -849,8 +849,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Consistent AI Character Animation</span>
                         <span class="lang-ua">Анімація зі збереженням персонажів</span>
                     </h3>
@@ -870,7 +870,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, VEO 3, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">CharacterConsistency</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Animation</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">SoundDesign</span>
@@ -880,10 +880,10 @@
 
             <!-- Картка 11 -->
             <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -893,8 +893,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Architectural 3D Revival</span>
                         <span class="lang-ua">Оживлення 3D-рендерів</span>
                     </h3>
@@ -914,7 +914,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, VEO 3, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Architecture</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">3DRevival</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">B2B</span>
@@ -924,10 +924,10 @@
 
             <!-- Картка 12 -->
             <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-zinc-900/0 group-hover:bg-zinc-900/20 dark:group-hover:bg-black/40 transition-colors cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white/95 dark:bg-black/60 text-zinc-900 dark:text-white backdrop-blur-md px-6 py-3 rounded-full font-semibold text-sm shadow-xl flex items-center gap-2 border border-black/5 dark:border-white/20">
-                        <span class="lang-en">View Details</span><span class="lang-ua">Детальніше</span>
-                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
+                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
+                        <i class="fas fa-play text-[10px]"></i>
+                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
                     </span>
                 </div>
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
@@ -937,8 +937,8 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
-                <div class="p-4 sm:p-5 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
-                    <h3 class="text-base sm:text-lg font-bold leading-snug card-title">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                    <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Story-Driven Real Estate Promo</span>
                         <span class="lang-ua">Сюжетне промо елітної нерухомості</span>
                     </h3>
@@ -958,7 +958,7 @@
                             <span class="font-normal text-zinc-500">NanoBanana, Kling, VEO 3, Premiere Pro.</span>
                         </div>
                     </div>
-                    <div class="card-hashtags flex flex-wrap gap-1.5 sm:gap-2 mt-auto pt-3 md:pt-4">
+                    <div class="card-hashtags flex flex-wrap gap-1 mt-auto pt-2 md:pt-3">
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">Storytelling</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">VFX</span>
                         <span class="px-2 py-1 text-[9px] sm:text-[10px] uppercase tracking-wider rounded bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10">RealEstate</span>
@@ -1046,8 +1046,7 @@
     </footer>
 
     <!-- Desktop Modal Structure -->
-    <!-- Використовуємо 'dark' клас на самому модальному вікні, щоб примусово зробити його темним та контрастним -->
-    <div id="portfolioModal" class="dark fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4">
+    <div id="portfolioModal" class="dark fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4">
         <!-- Close Background -->
         <div class="absolute inset-0 cursor-pointer modal-close-bg"></div>
 
@@ -1144,7 +1143,7 @@
                 const origEnText = enSpan.innerText;
                 const origUaText = uaSpan.innerText;
 
-                icon.className = "fas fa-check text-green-400 text-lg";
+                icon.className = "fas fa-check text-green-400 text-lg copy-icon";
                 enSpan.innerText = "Copied!";
                 uaSpan.innerText = "Скопійовано!";
 
@@ -1322,7 +1321,7 @@
                 });
             });
 
-            // --- Логіка Модального Вікна Портфоліо (Desktop Only) ---
+            // --- Логіка Модального Вікна (Для Карток Портфоліо та Шоурілу) ---
             const modal = document.getElementById('portfolioModal');
             const modalInner = document.getElementById('modalInner');
             const modalIframe = document.getElementById('modalIframe');
@@ -1331,41 +1330,82 @@
             const modalHashtags = document.getElementById('modalHashtags');
             const closeTriggers = document.querySelectorAll('.modal-close-btn, .modal-close-bg');
 
+            // 1. Відкриття карток портфоліо
             document.querySelectorAll('.card-modal-trigger').forEach(trigger => {
-                trigger.addEventListener('click', function() {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const card = this.closest('.portfolio-card');
                     
-                    // Збір даних з картки
                     const ytSrc = card.getAttribute('data-yt-src');
                     const titleHTML = card.querySelector('.card-title').innerHTML;
                     const detailsHTML = card.querySelector('.card-details').innerHTML;
                     const hashtagsHTML = card.querySelector('.card-hashtags').innerHTML;
 
-                    // Заповнення модалки
-                    // Додаємо autoplay=1, якщо його ще немає
                     modalIframe.src = ytSrc + (ytSrc.includes('?') ? '&' : '?') + 'autoplay=1';
                     modalTitle.innerHTML = titleHTML;
                     modalDetails.innerHTML = detailsHTML;
                     modalHashtags.innerHTML = hashtagsHTML;
 
-                    // Зняття md:hidden обмежень всередині модалки, якщо вони є
                     const innerDetails = modalDetails.querySelector('.card-details');
                     if(innerDetails) {
                         innerDetails.classList.remove('md:hidden');
                     }
 
-                    // Анімація відкриття
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    document.body.style.overflow = 'hidden'; // Блокуємо скрол сторінки
-                    
-                    setTimeout(() => {
-                        modal.classList.remove('opacity-0');
-                        modalInner.classList.remove('scale-95');
-                        modalInner.classList.add('scale-100');
-                    }, 10);
+                    openModal();
                 });
             });
+
+            // 2. Відкриття Шоурілу
+            document.querySelectorAll('.showreel-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Дані для модального вікна Шоурілу
+                    modalIframe.src = "https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&rel=0&modestbranding=1";
+                    
+                    modalTitle.innerHTML = `
+                        <span class="lang-en">ANDRII.VISUALS Showreel</span>
+                        <span class="lang-ua">Шоуріл ANDRII.VISUALS</span>
+                    `;
+                    
+                    modalDetails.innerHTML = `
+                        <div class="text-sm md:text-base text-zinc-300 space-y-4">
+                            <p>
+                                <span class="lang-en">A dynamic compilation of my best works, showcasing high-end commercial editing, AI avatars, and fluid motion graphics.</span>
+                                <span class="lang-ua">Динамічна збірка моїх найкращих робіт: преміальний комерційний монтаж, AI-аватари та плавна моушн-графіка.</span>
+                            </p>
+                            <p>
+                                <span class="lang-en">This showreel reflects my core philosophy: every cut, transition, and AI-generated element must serve a single purpose — to captivate the viewer's attention and deliver a powerful visual experience.</span>
+                                <span class="lang-ua">Цей шоуріл відображає мою головну філософію: кожна склейка, перехід та AI-елемент мають служити єдиній меті — захопити увагу глядача та створити потужний візуальний досвід.</span>
+                            </p>
+                        </div>
+                    `;
+                    
+                    modalHashtags.innerHTML = `
+                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">Showreel</span>
+                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">AIGeneration</span>
+                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">PremiumEditing</span>
+                    `;
+
+                    // Примусове оновлення мови всередині модалки після ін'єкції
+                    const currentLang = document.documentElement.getAttribute('lang');
+                    updateLangStyles(currentLang);
+
+                    openModal();
+                });
+            });
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; 
+                
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalInner.classList.remove('scale-95');
+                    modalInner.classList.add('scale-100');
+                }, 10);
+            }
 
             function closePortfolioModal() {
                 modal.classList.add('opacity-0');
@@ -1375,8 +1415,8 @@
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
-                    modalIframe.src = ''; // Зупиняємо відео
-                    document.body.style.overflow = ''; // Відновлюємо скрол
+                    modalIframe.src = ''; 
+                    document.body.style.overflow = ''; 
                 }, 300);
             }
 
