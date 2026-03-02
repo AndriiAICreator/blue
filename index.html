@@ -50,7 +50,7 @@
         ::-webkit-scrollbar-thumb { background-color: rgba(156, 163, 175, 0.3); border-radius: 10px; }
         .dark ::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); }
 
-        /* Стилі для чистого прев'ю YouTube відео (srcdoc) */
+        /* Стилі для YouTube */
         .yt-poster-wrap {
             position: relative;
             width: 100%;
@@ -69,31 +69,8 @@
             opacity: 0.6;
             transform: scale(1.05);
         }
-        .yt-play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 56px;
-            height: 56px;
-            background-color: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .yt-poster-wrap:hover .yt-play-btn {
-            background-color: white;
-            color: black;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
 
-        /* Анімація індикатора скролу */
+        /* Анімації */
         @keyframes scrollLine {
             0% { transform: translateY(-100%); }
             100% { transform: translateY(100%); }
@@ -102,7 +79,6 @@
             animation: scrollLine 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
         }
 
-        /* Анімація появи елементів (Scroll Reveal) */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -113,66 +89,133 @@
             transform: translateY(0);
         }
         
-        /* Затримка для карток в гріді */
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
+
+        /* =========================================
+           SMART HEADER STYLES (Кінематографічний)
+           ========================================= */
+        #main-header {
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Стан 1: На самому верху (Повна прозорість, білий текст поверх відео) */
+        #main-header.on-top {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        /* Примусовий білий колір тексту для всіх елементів шапки, коли вона над відео */
+        #main-header.on-top .nav-link,
+        #main-header.on-top #langToggleBox,
+        #main-header.on-top #themeToggle,
+        #main-header.on-top #mobileMenuBtn {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+        #main-header.on-top .nav-link:hover,
+        #main-header.on-top #themeToggle:hover,
+        #main-header.on-top #mobileMenuBtn:hover {
+            color: white !important;
+        }
+        #main-header.on-top #langToggleBox .active-lang {
+            color: white !important;
+            font-weight: 700;
+        }
+        
+        /* Кнопка контактів в прозорому стані */
+        #main-header.on-top #header-contact-btn {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+        }
+        #main-header.on-top #header-contact-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: white !important;
+        }
+
+        /* Розумне фарбування ЛОГОТИПУ (logo.png).
+           Використовуємо CSS-фільтри, щоб не залежати від початкового кольору картинки.
+        */
+        /* 1. На головному екрані (завжди білий) */
+        #main-header.on-top #main-logo {
+            filter: brightness(0) invert(1) !important;
+        }
+        /* 2. При скролі в Темній темі (білий) */
+        html.dark #main-header:not(.on-top) #main-logo {
+            filter: brightness(0) invert(1);
+        }
+        /* 3. При скролі у Світлій темі (чорний) */
+        html:not(.dark) #main-header:not(.on-top) #main-logo {
+            filter: brightness(0);
+        }
+        
+        /* Стан для текстового логотипа (якщо картинка не завантажиться) */
+        #main-header.on-top #text-logo { color: white !important; }
     </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300 font-sans antialiased relative selection:bg-blue-500/30">
 
-    <!-- Section 1: Header & Navigation (Розумний, прозорий та центрований) -->
-    <header id="main-header" class="fixed top-0 w-full z-50 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-xl border-b border-zinc-200/50 dark:border-white/5 transition-transform duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between relative">
+    <!-- Section 1: Header & Navigation -->
+    <!-- Базові класи налаштовані на "Scrolled" стан (суцільний фон). JS перемкне на "on-top" при завантаженні -->
+    <header id="main-header" class="fixed top-0 w-full z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-zinc-200 dark:border-white/10 shadow-sm transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
             
-            <!-- Logo (Зображення) -->
-            <a href="#" class="shrink-0 z-50 flex items-center">
-                <!-- Клас dark:invert робить лого білим у темній темі (якщо воно чорне на прозорому фоні) -->
-                <img src="logo.png" alt="ANDRII.VISUALS Logo" class="h-5 sm:h-6 w-auto dark:invert transition-all">
+            <!-- Logo Area -->
+            <a href="#" class="shrink-0 z-50 flex items-center group">
+                <!-- Зображення Лого (З fallback скриптом) -->
+                <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-4 sm:h-5 w-auto transition-all duration-300" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
+                
+                <!-- Текстовий Логотип (Спрацює ТІЛЬКИ якщо картинка не знайдена) -->
+                <div id="text-logo" class="hidden items-center text-xl sm:text-2xl font-bold tracking-tight transition-colors text-zinc-900 dark:text-white">
+                    ANDRII<span class="text-blue-500">.VISUALS</span>
+                </div>
             </a>
 
-            <!-- Desktop Navigation Links (Абсолютне центрування для уникнення стрибків) -->
+            <!-- Desktop Navigation Links -->
             <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-sm font-medium tracking-wide">
-                <a href="#about" class="nav-link text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors">
+                <a href="#about" class="nav-link text-zinc-600 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
                     <span class="lang-en">About</span><span class="lang-ua">Про мене</span>
                 </a>
-                <a href="#workflow" class="nav-link text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors">
+                <a href="#workflow" class="nav-link text-zinc-600 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
                     <span class="lang-en">Workflow</span><span class="lang-ua">Процес</span>
                 </a>
-                <a href="#portfolio" class="nav-link text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors">
+                <a href="#portfolio" class="nav-link text-zinc-600 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
                     <span class="lang-en">Portfolio</span><span class="lang-ua">Роботи</span>
                 </a>
             </nav>
 
-            <!-- Controls (Theme, Lang, Mobile Menu Toggle) -->
+            <!-- Controls (Theme, Lang, Contact) -->
             <div class="flex items-center gap-4 sm:gap-6 z-50">
-                <!-- Theme Toggle (Мінімалістичний) -->
-                <button id="themeToggle" class="text-zinc-400 hover:text-black dark:text-zinc-500 dark:hover:text-white transition-colors" aria-label="Toggle Theme">
-                    <i class="fas fa-sun text-[15px] hidden dark:block"></i>
-                    <i class="fas fa-moon text-[15px] block dark:hidden"></i>
+                <!-- Мінімалістичний Theme Toggle -->
+                <button id="themeToggle" class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors" aria-label="Toggle Theme">
+                    <i class="fas fa-sun text-sm sm:text-base hidden dark:block"></i>
+                    <i class="fas fa-moon text-sm sm:text-base block dark:hidden"></i>
                 </button>
 
-                <!-- Language Toggle (Мінімалістичний) -->
-                <div class="flex items-center gap-1.5 cursor-pointer text-[13px] font-semibold tracking-wide" id="langToggleBox">
-                    <span id="langBtnEn" class="transition-colors">EN</span>
+                <!-- Language Toggle -->
+                <div class="flex items-center gap-1.5 cursor-pointer text-[12px] sm:text-[13px] tracking-wide" id="langToggleBox">
+                    <span id="langBtnEn" class="transition-colors text-zinc-500 dark:text-zinc-400">EN</span>
                     <span class="text-zinc-300 dark:text-zinc-700 font-normal cursor-default">/</span>
-                    <span id="langBtnUa" class="transition-colors">UA</span>
+                    <span id="langBtnUa" class="transition-colors text-zinc-500 dark:text-zinc-400">UA</span>
                 </div>
 
-                <!-- Contact Button (Desktop - фіксована ширина, щоб не стрибало меню) -->
-                <a href="#contact" class="hidden md:flex items-center justify-center w-[170px] py-2 text-[13px] font-semibold border border-zinc-300 dark:border-white/20 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
+                <!-- Contact Button -->
+                <a href="#contact" id="header-contact-btn" class="hidden md:flex items-center justify-center px-5 py-2 text-[13px] font-semibold border border-zinc-300 dark:border-white/20 rounded-full text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
                     <span class="lang-en">Let's Talk</span>
                     <span class="lang-ua">Обговорити проєкт</span>
                 </a>
 
                 <!-- Mobile Menu Hamburger -->
-                <button id="mobileMenuBtn" class="md:hidden w-8 h-8 flex items-center justify-center rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
-                    <i class="fas fa-bars"></i>
+                <button id="mobileMenuBtn" class="md:hidden text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">
+                    <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Dropdown -->
-        <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-xl pb-4 pt-2 px-4 flex-col gap-4 text-sm font-medium">
+        <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-white/10 shadow-xl pb-4 pt-2 px-4 flex-col gap-4 text-sm font-medium">
             <a href="#about" class="nav-link-mobile block py-2 text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <span class="lang-en">About Me</span><span class="lang-ua">Про мене</span>
             </a>
@@ -203,7 +246,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/20 z-0"></div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8 reveal active">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end gap-8 reveal active h-full pb-8">
             <div class="max-w-3xl">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
                     <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
@@ -214,37 +257,35 @@
                     <span class="lang-ua">Трансформую ідеї у преміальний кінематографічний візуал. Створюю контент, який захоплює емоцією та безвідмовно утримує увагу з першої секунди.</span>
                 </p>
                 
-                <!-- Buttons Area -->
-                <div class="flex flex-wrap items-center gap-6">
-                    <!-- Main CTA -->
-                    <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg">
-                        <span class="lang-en">View Portfolio</span>
-                        <span class="lang-ua">Дивитись портфоліо</span>
-                    </a>
-                    
-                    <!-- Secondary Link: Showreel -->
-                    <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 text-sm font-medium text-zinc-300 hover:text-white transition-colors">
-                        <div class="w-8 h-8 rounded-full border border-zinc-500/50 flex items-center justify-center group-hover:border-white/80 transition-colors bg-black/20 backdrop-blur-sm">
-                            <i class="fas fa-play text-[10px] ml-0.5"></i>
-                        </div>
-                        <span class="underline underline-offset-4 decoration-zinc-600 group-hover:decoration-white/80 transition-colors">
-                            <span class="lang-en">Watch Full Showreel</span>
-                            <span class="lang-ua">Повний шоуріл</span>
-                        </span>
-                    </a>
-                </div>
+                <!-- Main CTA -->
+                <a href="#portfolio" class="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg">
+                    <span class="lang-en">View Portfolio</span>
+                    <span class="lang-ua">Дивитись портфоліо</span>
+                </a>
             </div>
-
-            <!-- Mute Button -->
-            <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group shrink-0" title="Toggle Sound">
-                <i id="muteIcon" class="fas fa-volume-mute text-base sm:text-lg group-hover:scale-110 transition-transform"></i>
-            </button>
         </div>
 
-        <!-- Active Scroll Indicator -->
+        <!-- Floating Controls (Right Bottom Corner) -->
+        <div class="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 flex flex-col items-end gap-4 z-20 reveal active">
+            <!-- Mute Button -->
+            <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
+                <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
+            </button>
+            
+            <!-- Minimal Showreel Link -->
+            <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer">
+                <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
+                    <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
+                </span>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg">
+                    <i class="fas fa-play text-xs sm:text-sm ml-0.5 group-hover:scale-110 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- Active Scroll Indicator (Bottom Center) -->
         <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
             <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
-            <!-- Лінія з анімацією бігунка -->
             <div class="relative w-[1px] h-10 sm:h-14 bg-white/20 overflow-hidden">
                 <div class="absolute top-0 w-full h-full bg-white scroll-indicator-line"></div>
             </div>
@@ -846,7 +887,7 @@
         </div>
     </section>
 
-    <!-- Section 6: Contact Call to Action (Оновлено: Кінематографічний блок) -->
+    <!-- Section 6: Contact Call to Action -->
     <section id="contact" class="relative py-24 sm:py-32 overflow-hidden scroll-mt-20">
         <!-- Cinematic Blurred Background -->
         <div class="absolute inset-0 z-0 pointer-events-none">
@@ -875,9 +916,13 @@
     <!-- Section 7: Footer -->
     <footer class="bg-zinc-950 py-10 sm:py-12 text-zinc-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 reveal">
-            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">
-                <img src="logo.png" alt="ANDRII.VISUALS" class="h-5 w-auto invert">
-            </h2>
+            <a href="#" class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center">
+                <!-- Футер Лого -->
+                <img src="logo.png" alt="ANDRII.VISUALS" class="h-4 sm:h-5 w-auto" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; document.getElementById('footer-text-logo').style.display='block';">
+                <div id="footer-text-logo" class="hidden">
+                    ANDRII<span class="text-blue-500">.VISUALS</span>
+                </div>
+            </a>
             
             <div class="flex gap-4">
                 <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:-translate-y-1 transition-all" aria-label="LinkedIn">
@@ -915,7 +960,6 @@
         }
 
         function onPlayerReady(event) {
-            // Керування кнопкою звуку
             const muteBtn = document.getElementById('muteToggleBtn');
             const muteIcon = document.getElementById('muteIcon');
 
@@ -931,86 +975,77 @@
                 }
             });
 
-            // Автопауза відео при скролі вниз (для оптимізації та щоб звук не заважав)
+            // Автопауза відео
             window.addEventListener('scroll', () => {
                 const heroHeight = document.getElementById('hero').offsetHeight;
-                
                 if (window.scrollY > heroHeight * 0.6) {
-                    if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-                        player.pauseVideo();
-                    }
+                    if (player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
                 } else {
-                    if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
-                        player.playVideo();
-                    }
+                    if (player.getPlayerState() !== YT.PlayerState.PLAYING) player.playVideo();
                 }
             }, { passive: true });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Встановлення поточного року в футері
+            // Футер рік
             document.getElementById('year').textContent = new Date().getFullYear();
 
             // --- Scroll Reveal Logic ---
             const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealOptions = {
-                threshold: 0.1, 
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealObserver = new IntersectionObserver(function(entries, observer) {
+            const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('active');
                     observer.unobserve(entry.target); 
                 });
             }, revealOptions);
-
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // --- Smart Header (Сховати при скролі вниз, показати вгору) ---
+            // --- Smart Cinematic Header (Прозорість + Ховання) ---
             let lastScrollY = window.scrollY;
             const header = document.getElementById('main-header');
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 150) { // Активуємо ефект тільки після 150px скролу
+            function updateHeaderState() {
+                // 1. Прозорість на початку (додаємо клас .on-top)
+                if (window.scrollY <= 50) {
+                    header.classList.add('on-top');
+                    header.classList.remove('bg-white/95', 'dark:bg-zinc-950/95', 'backdrop-blur-md', 'shadow-sm', 'border-zinc-200', 'dark:border-white/10');
+                } else {
+                    header.classList.remove('on-top');
+                    header.classList.add('bg-white/95', 'dark:bg-zinc-950/95', 'backdrop-blur-md', 'shadow-sm', 'border-zinc-200', 'dark:border-white/10');
+                }
+
+                // 2. Ховання при скролі вниз
+                if (window.scrollY > 200) {
                     if (window.scrollY > lastScrollY) {
-                        // Скрол вниз -> ховаємо
-                        header.style.transform = 'translateY(-100%)';
+                        header.style.transform = 'translateY(-100%)'; // Ховаємо
                     } else {
-                        // Скрол вгору -> показуємо
-                        header.style.transform = 'translateY(0)';
+                        header.style.transform = 'translateY(0)'; // Показуємо
                     }
                 } else {
-                    // На самому верху -> завжди показуємо
-                    header.style.transform = 'translateY(0)';
+                    header.style.transform = 'translateY(0)'; // Завжди показуємо зверху
                 }
                 lastScrollY = window.scrollY;
-            }, { passive: true });
+            }
+
+            window.addEventListener('scroll', updateHeaderState, { passive: true });
+            updateHeaderState(); // Ініціалізація при завантаженні
 
             // --- Логіка перемикання тем (Dark/Light) ---
             const themeToggleBtn = document.getElementById('themeToggle');
             const htmlElement = document.documentElement;
-
             const savedTheme = localStorage.getItem('theme') || 'dark';
-            if (savedTheme === 'light') {
-                htmlElement.classList.remove('dark');
-            } else {
-                htmlElement.classList.add('dark'); 
-            }
+            
+            if (savedTheme === 'light') htmlElement.classList.remove('dark');
+            else htmlElement.classList.add('dark'); 
 
             themeToggleBtn.addEventListener('click', () => {
-                if (htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    htmlElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                }
+                htmlElement.classList.toggle('dark');
+                localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
             });
 
-            // --- Перемикач мов (Мінімалістичний) ---
+            // --- Перемикач мов ---
             const htmlTag = document.documentElement;
             const langToggleBox = document.getElementById('langToggleBox');
             const btnEn = document.getElementById('langBtnEn');
@@ -1021,9 +1056,7 @@
             updateLangStyles(savedLang);
 
             langToggleBox.addEventListener('click', () => {
-                const currentLang = htmlTag.getAttribute('lang');
-                const newLang = currentLang === 'en' ? 'ua' : 'en';
-                
+                const newLang = htmlTag.getAttribute('lang') === 'en' ? 'ua' : 'en';
                 htmlTag.setAttribute('lang', newLang);
                 localStorage.setItem('lang', newLang);
                 updateLangStyles(newLang);
@@ -1031,11 +1064,15 @@
 
             function updateLangStyles(lang) {
                 if(lang === 'en') {
-                    btnEn.className = "text-zinc-900 dark:text-white font-bold transition-colors";
-                    btnUa.className = "text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-colors";
+                    btnEn.classList.add('active-lang', 'text-zinc-900', 'dark:text-white', 'font-bold');
+                    btnEn.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+                    btnUa.classList.remove('active-lang', 'text-zinc-900', 'dark:text-white', 'font-bold');
+                    btnUa.classList.add('text-zinc-500', 'dark:text-zinc-400');
                 } else {
-                    btnUa.className = "text-zinc-900 dark:text-white font-bold transition-colors";
-                    btnEn.className = "text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-colors";
+                    btnUa.classList.add('active-lang', 'text-zinc-900', 'dark:text-white', 'font-bold');
+                    btnUa.classList.remove('text-zinc-500', 'dark:text-zinc-400');
+                    btnEn.classList.remove('active-lang', 'text-zinc-900', 'dark:text-white', 'font-bold');
+                    btnEn.classList.add('text-zinc-500', 'dark:text-zinc-400');
                 }
             }
 
@@ -1056,7 +1093,7 @@
                 });
             });
 
-            // --- Навігація ScrollSpy (підсвічування активного пункту меню) ---
+            // --- Навігація ScrollSpy ---
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
 
@@ -1077,10 +1114,10 @@
                 });
             }
 
-            window.addEventListener('scroll', updateScrollSpy);
+            window.addEventListener('scroll', updateScrollSpy, { passive: true });
             updateScrollSpy();
 
-            // --- Логіка фільтрації портфоліо ---
+            // --- Фільтрація портфоліо ---
             const filterBtns = document.querySelectorAll('.filter-btn');
             const cards = document.querySelectorAll('.portfolio-card');
 
