@@ -60,7 +60,8 @@
 
         /* Кастомний скролбар для модального вікна */
         .modal-scrollbar::-webkit-scrollbar { width: 4px; }
-        .modal-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+        .modal-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(156, 163, 175, 0.3); border-radius: 10px; }
+        .dark .modal-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); }
 
         /* Стилі для YouTube */
         .yt-poster-wrap {
@@ -226,7 +227,7 @@
         </div>
     </header>
 
-    <!-- Section 2: Hero Section (Опущений текст, центрований на мобільному) -->
+    <!-- Section 2: Hero Section -->
     <section id="hero" class="relative h-[100svh] w-full flex items-end pb-16 sm:pb-24 overflow-hidden bg-zinc-950 pt-20">
         <!-- Background YouTube Video -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -240,16 +241,23 @@
 
         <!-- Floating Controls (Справа вгорі) -->
         <div class="absolute top-24 right-4 sm:top-28 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
-            <!-- Mute Button -->
-            <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
-                <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
-            </button>
+            
+            <!-- Mute Button (Оновлено дизайн) -->
+            <div id="muteToggleWrapper" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer">
+                <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
+                    <span class="lang-en" id="muteEnText">Unmute</span><span class="lang-ua" id="muteUaText">Увімкнути звук</span>
+                </span>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg">
+                    <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform text-white"></i>
+                </div>
+            </div>
+
             <!-- Showreel Modal Trigger -->
             <a href="#" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer showreel-trigger">
                 <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
                     <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
                 </span>
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg text-white">
                     <i class="fas fa-play text-xs sm:text-sm ml-0.5 group-hover:scale-110 transition-transform"></i>
                 </div>
             </a>
@@ -274,7 +282,7 @@
             </div>
         </div>
 
-        <!-- Scroll Indicator (Прихований на мобільному для чистоти, видимий на десктопі) -->
+        <!-- Scroll Indicator -->
         <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
             <span class="text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
             <div class="relative w-[1px] h-14 bg-white/20 overflow-hidden">
@@ -419,7 +427,7 @@
             </div>
         </div>
 
-        <!-- Portfolio Grid (Оновлено дизайн Hover-ефекту для відео) -->
+        <!-- Portfolio Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="portfolio-grid">
             
             <!-- Картка 1 -->
@@ -432,7 +440,6 @@
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                     
-                    <!-- Desktop Overlay: Темніє тільки відео, кнопка виїжджає знизу -->
                     <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
                         <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
                             <i class="fas fa-play text-[10px]"></i>
@@ -1046,16 +1053,16 @@
         </div>
     </footer>
 
-    <!-- Desktop Modal Structure (Portfolio Cards) -->
-    <div id="portfolioModal" class="dark fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4">
+    <!-- Desktop Modal Structure (Portfolio Cards) - АДАПТУЄТЬСЯ ДО ТЕМИ -->
+    <div id="portfolioModal" class="fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-white/80 dark:bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4">
         <!-- Close Background -->
         <div class="absolute inset-0 cursor-pointer modal-close-bg"></div>
 
         <!-- Modal Content Container -->
-        <div class="relative z-10 w-full max-w-5xl max-h-[90vh] bg-zinc-950 border border-white/10 rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden transform scale-95 transition-transform duration-300" id="modalInner">
+        <div class="relative z-10 w-full max-w-5xl max-h-[90vh] bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden transform scale-95 transition-transform duration-300" id="modalInner">
 
             <!-- Close Button -->
-            <button class="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 hover:bg-white/20 border border-white/10 text-white backdrop-blur-md transition-all modal-close-btn cursor-pointer">
+            <button class="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-black/40 dark:hover:bg-white/20 border border-zinc-300 dark:border-white/10 text-zinc-900 dark:text-white backdrop-blur-md transition-all modal-close-btn cursor-pointer">
                 <i class="fas fa-times text-sm"></i>
             </button>
 
@@ -1066,27 +1073,27 @@
 
             <!-- Details Column (Right) -->
             <div class="w-full md:w-1/2 lg:w-[55%] p-6 md:p-8 lg:p-10 flex flex-col overflow-y-auto max-h-[50vh] md:max-h-[90vh] modal-scrollbar">
-                <h3 id="modalTitle" class="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-white leading-snug"></h3>
+                <h3 id="modalTitle" class="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-zinc-900 dark:text-white leading-snug"></h3>
                 
                 <!-- Injected text details -->
-                <div id="modalDetails" class="text-sm md:text-base text-zinc-300 flex-1"></div>
+                <div id="modalDetails" class="text-sm md:text-base text-zinc-600 dark:text-zinc-300 flex-1"></div>
                 
                 <!-- Injected hashtags -->
-                <div id="modalHashtags" class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/10"></div>
+                <div id="modalHashtags" class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-zinc-200 dark:border-white/10"></div>
             </div>
         </div>
     </div>
 
     <!-- Showreel Video Modal (Fullscreen, No Text) -->
-    <div id="showreelModal" class="dark fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 transition-opacity duration-300 px-4 sm:px-8">
+    <div id="showreelModal" class="fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-white/90 dark:bg-black/95 backdrop-blur-xl opacity-0 transition-opacity duration-300 px-4 sm:px-8">
         <!-- Close Background -->
         <div class="absolute inset-0 cursor-pointer showreel-close-bg"></div>
 
         <!-- Modal Content Container -->
-        <div class="relative z-10 w-full max-w-6xl aspect-[16/9] bg-black border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex items-center justify-center" id="showreelInner">
+        <div class="relative z-10 w-full max-w-6xl aspect-[16/9] bg-black border border-zinc-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex items-center justify-center" id="showreelInner">
 
             <!-- Close Button -->
-            <button class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-white/20 border border-white/20 text-white backdrop-blur-md transition-all showreel-close-btn cursor-pointer">
+            <button class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/30 dark:bg-black/60 dark:hover:bg-white/20 border border-white/20 text-white backdrop-blur-md transition-all showreel-close-btn cursor-pointer">
                 <i class="fas fa-times text-lg"></i>
             </button>
 
@@ -1113,18 +1120,24 @@
         }
 
         function onPlayerReady(event) {
-            const muteBtn = document.getElementById('muteToggleBtn');
+            const muteWrapper = document.getElementById('muteToggleWrapper');
             const muteIcon = document.getElementById('muteIcon');
+            const muteEnText = document.getElementById('muteEnText');
+            const muteUaText = document.getElementById('muteUaText');
 
-            muteBtn.addEventListener('click', () => {
+            muteWrapper.addEventListener('click', () => {
                 if (player.isMuted()) {
                     player.unMute();
                     muteIcon.classList.remove('fa-volume-mute');
                     muteIcon.classList.add('fa-volume-up');
+                    muteEnText.innerText = "Mute";
+                    muteUaText.innerText = "Вимкнути звук";
                 } else {
                     player.mute();
                     muteIcon.classList.remove('fa-volume-up');
                     muteIcon.classList.add('fa-volume-mute');
+                    muteEnText.innerText = "Unmute";
+                    muteUaText.innerText = "Увімкнути звук";
                 }
             });
 
