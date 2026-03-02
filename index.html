@@ -232,8 +232,8 @@
         </div>
     </header>
 
-    <!-- Section 2: Hero Section (Оновлено вирівнювання) -->
-    <section id="hero" class="relative h-[100svh] w-full flex items-center justify-center overflow-hidden bg-zinc-950">
+    <!-- Section 2: Hero Section (Повернуто вирівнювання вниз та центрований індикатор скролу) -->
+    <section id="hero" class="relative h-[100svh] w-full flex flex-col justify-end pb-8 sm:pb-24 overflow-hidden bg-zinc-950">
         <!-- Background YouTube Video -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70"
@@ -245,9 +245,26 @@
         <!-- Dark Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/20 z-0"></div>
 
+        <!-- Floating Controls (Піднято догори справа) -->
+        <div class="absolute top-24 sm:top-28 right-4 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
+            <!-- Mute Button -->
+            <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
+                <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
+            </button>
+            <!-- Minimal Showreel Link (Opens Modal) -->
+            <a href="#" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer showreel-trigger">
+                <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
+                    <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
+                </span>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg">
+                    <i class="fas fa-play text-xs sm:text-sm ml-0.5 group-hover:scale-110 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+
         <!-- Hero Content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center gap-8 reveal active mt-16 sm:mt-0">
-            <div class="max-w-3xl mx-auto md:mx-0 flex flex-col items-center md:items-start text-center md:text-left">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 reveal active pb-16 sm:pb-0">
+            <div class="max-w-3xl flex flex-col items-center md:items-start text-center md:text-left">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
                     <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                     <span class="lang-ua">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
@@ -265,24 +282,7 @@
             </div>
         </div>
 
-        <!-- Floating Controls -->
-        <div class="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
-            <!-- Mute Button -->
-            <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
-                <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
-            </button>
-            <!-- Minimal Showreel Link (Opens Modal) -->
-            <a href="#" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer showreel-trigger">
-                <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
-                    <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
-                </span>
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 group-hover:border-white/50 group-hover:bg-white/10 flex items-center justify-center transition-all shadow-lg">
-                    <i class="fas fa-play text-xs sm:text-sm ml-0.5 group-hover:scale-110 transition-transform"></i>
-                </div>
-            </a>
-        </div>
-
-        <!-- Scroll Indicator -->
+        <!-- Scroll Indicator (Центровано внизу) -->
         <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
             <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
             <div class="relative w-[1px] h-10 sm:h-14 bg-white/20 overflow-hidden">
@@ -429,13 +429,13 @@
             </div>
         </div>
 
-        <!-- Portfolio Grid (Оновлено до 4 колонок на великих екранах) -->
+        <!-- Portfolio Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="portfolio-grid">
             
             <!-- Картка 1 -->
             <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1">
                 
-                <!-- Desktop Modal Trigger Overlay (Оновлений дизайн із розмиттям фону) -->
+                <!-- Desktop Modal Trigger Overlay -->
                 <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
                     <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
                         <i class="fas fa-play text-[10px]"></i>
@@ -446,7 +446,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/YPo45sz-9ck?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/YPo45sz-9ck/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/YPo45sz-9ck?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/YPo45sz-9ck/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -493,7 +493,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/K9BmoRnk0iY?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/K9BmoRnk0iY/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/K9BmoRnk0iY?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/K9BmoRnk0iY/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -537,7 +537,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/fRyDk_Ez7rA?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/fRyDk_Ez7rA/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/fRyDk_Ez7rA?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/fRyDk_Ez7rA/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -581,7 +581,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/IV5_Deej-ns?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/IV5_Deej-ns/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/IV5_Deej-ns?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/IV5_Deej-ns/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -625,7 +625,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/rYIkJe4vjo0?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/rYIkJe4vjo0/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/rYIkJe4vjo0?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/rYIkJe4vjo0/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -669,7 +669,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/H_6JICZRXWI?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/H_6JICZRXWI/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/H_6JICZRXWI?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/H_6JICZRXWI/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -713,7 +713,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/aOwXYDCj3W4?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/aOwXYDCj3W4/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/aOwXYDCj3W4?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/aOwXYDCj3W4/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -757,7 +757,7 @@
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/3yX_4x66irc?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/3yX_4x66irc/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/3yX_4x66irc?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/3yX_4x66irc/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -801,7 +801,7 @@
                 <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/8zlGfpVU1_E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/8zlGfpVU1_E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/8zlGfpVU1_E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/8zlGfpVU1_E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -845,7 +845,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/p7D-s_yMC30?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/p7D-s_yMC30/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/p7D-s_yMC30?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/p7D-s_yMC30/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -889,7 +889,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/eSdT8O2wU5E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/eSdT8O2wU5E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/eSdT8O2wU5E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/eSdT8O2wU5E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -933,7 +933,7 @@
                 <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1" 
-                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}</style><a href='https://www.youtube.com/embed/6RnonxLixGo?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/6RnonxLixGo/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
+                            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/6RnonxLixGo?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/6RnonxLixGo/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
                 </div>
@@ -1045,7 +1045,7 @@
         </div>
     </footer>
 
-    <!-- Desktop Modal Structure -->
+    <!-- Desktop Modal Structure (Portfolio Cards) -->
     <div id="portfolioModal" class="dark fixed inset-0 z-[100] hidden flex-col items-center justify-center bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4">
         <!-- Close Background -->
         <div class="absolute inset-0 cursor-pointer modal-close-bg"></div>
@@ -1073,6 +1073,24 @@
                 <!-- Injected hashtags -->
                 <div id="modalHashtags" class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/10"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Showreel Video Modal (Fullscreen, No Text) -->
+    <div id="showreelModal" class="dark fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 transition-opacity duration-300 px-4 sm:px-8">
+        <!-- Close Background -->
+        <div class="absolute inset-0 cursor-pointer showreel-close-bg"></div>
+
+        <!-- Modal Content Container -->
+        <div class="relative z-10 w-full max-w-6xl aspect-[16/9] bg-black border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex items-center justify-center" id="showreelInner">
+
+            <!-- Close Button -->
+            <button class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-white/20 border border-white/20 text-white backdrop-blur-md transition-all showreel-close-btn cursor-pointer">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Video -->
+            <iframe id="showreelIframe" class="w-full h-full absolute inset-0" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -1321,16 +1339,15 @@
                 });
             });
 
-            // --- Логіка Модального Вікна (Для Карток Портфоліо та Шоурілу) ---
-            const modal = document.getElementById('portfolioModal');
+            // --- Логіка Модального Вікна (Для Карток Портфоліо) ---
+            const portfolioModal = document.getElementById('portfolioModal');
             const modalInner = document.getElementById('modalInner');
             const modalIframe = document.getElementById('modalIframe');
             const modalTitle = document.getElementById('modalTitle');
             const modalDetails = document.getElementById('modalDetails');
             const modalHashtags = document.getElementById('modalHashtags');
-            const closeTriggers = document.querySelectorAll('.modal-close-btn, .modal-close-bg');
+            const portfolioCloseTriggers = document.querySelectorAll('.modal-close-btn, .modal-close-bg');
 
-            // 1. Відкриття карток портфоліо
             document.querySelectorAll('.card-modal-trigger').forEach(trigger => {
                 trigger.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1351,80 +1368,86 @@
                         innerDetails.classList.remove('md:hidden');
                     }
 
-                    openModal();
+                    openPortfolioModal();
                 });
             });
 
-            // 2. Відкриття Шоурілу
-            document.querySelectorAll('.showreel-trigger').forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Дані для модального вікна Шоурілу
-                    modalIframe.src = "https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&rel=0&modestbranding=1";
-                    
-                    modalTitle.innerHTML = `
-                        <span class="lang-en">ANDRII.VISUALS Showreel</span>
-                        <span class="lang-ua">Шоуріл ANDRII.VISUALS</span>
-                    `;
-                    
-                    modalDetails.innerHTML = `
-                        <div class="text-sm md:text-base text-zinc-300 space-y-4">
-                            <p>
-                                <span class="lang-en">A dynamic compilation of my best works, showcasing high-end commercial editing, AI avatars, and fluid motion graphics.</span>
-                                <span class="lang-ua">Динамічна збірка моїх найкращих робіт: преміальний комерційний монтаж, AI-аватари та плавна моушн-графіка.</span>
-                            </p>
-                            <p>
-                                <span class="lang-en">This showreel reflects my core philosophy: every cut, transition, and AI-generated element must serve a single purpose — to captivate the viewer's attention and deliver a powerful visual experience.</span>
-                                <span class="lang-ua">Цей шоуріл відображає мою головну філософію: кожна склейка, перехід та AI-елемент мають служити єдиній меті — захопити увагу глядача та створити потужний візуальний досвід.</span>
-                            </p>
-                        </div>
-                    `;
-                    
-                    modalHashtags.innerHTML = `
-                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">Showreel</span>
-                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">AIGeneration</span>
-                        <span class="px-2 py-1 text-[9px] uppercase tracking-wider rounded bg-zinc-800 border border-white/10">PremiumEditing</span>
-                    `;
-
-                    // Примусове оновлення мови всередині модалки після ін'єкції
-                    const currentLang = document.documentElement.getAttribute('lang');
-                    updateLangStyles(currentLang);
-
-                    openModal();
-                });
-            });
-
-            function openModal() {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+            function openPortfolioModal() {
+                portfolioModal.classList.remove('hidden');
+                portfolioModal.classList.add('flex');
                 document.body.style.overflow = 'hidden'; 
                 
                 setTimeout(() => {
-                    modal.classList.remove('opacity-0');
+                    portfolioModal.classList.remove('opacity-0');
                     modalInner.classList.remove('scale-95');
                     modalInner.classList.add('scale-100');
                 }, 10);
             }
 
             function closePortfolioModal() {
-                modal.classList.add('opacity-0');
+                portfolioModal.classList.add('opacity-0');
                 modalInner.classList.remove('scale-100');
                 modalInner.classList.add('scale-95');
                 
                 setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
+                    portfolioModal.classList.add('hidden');
+                    portfolioModal.classList.remove('flex');
                     modalIframe.src = ''; 
                     document.body.style.overflow = ''; 
                 }, 300);
             }
 
-            closeTriggers.forEach(btn => btn.addEventListener('click', closePortfolioModal));
+            portfolioCloseTriggers.forEach(btn => btn.addEventListener('click', closePortfolioModal));
 
+            // --- Логіка Модального Вікна (Для Шоурілу) ---
+            const showreelModal = document.getElementById('showreelModal');
+            const showreelInner = document.getElementById('showreelInner');
+            const showreelIframe = document.getElementById('showreelIframe');
+            const showreelCloseTriggers = document.querySelectorAll('.showreel-close-btn, .showreel-close-bg');
+
+            document.querySelectorAll('.showreel-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Відкриваємо відео шоурілу на весь екран
+                    showreelIframe.src = "https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&rel=0&modestbranding=1";
+                    
+                    showreelModal.classList.remove('hidden');
+                    showreelModal.classList.add('flex');
+                    document.body.style.overflow = 'hidden'; 
+                    
+                    setTimeout(() => {
+                        showreelModal.classList.remove('opacity-0');
+                        showreelInner.classList.remove('scale-95');
+                        showreelInner.classList.add('scale-100');
+                    }, 10);
+                });
+            });
+
+            function closeShowreelModal() {
+                showreelModal.classList.add('opacity-0');
+                showreelInner.classList.remove('scale-100');
+                showreelInner.classList.add('scale-95');
+                
+                setTimeout(() => {
+                    showreelModal.classList.add('hidden');
+                    showreelModal.classList.remove('flex');
+                    showreelIframe.src = ''; 
+                    document.body.style.overflow = ''; 
+                }, 300);
+            }
+
+            showreelCloseTriggers.forEach(btn => btn.addEventListener('click', closeShowreelModal));
+
+            // --- Загальний обробник Escape для всіх модалок ---
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                    closePortfolioModal();
+                if (e.key === 'Escape') {
+                    if (!portfolioModal.classList.contains('hidden')) {
+                        closePortfolioModal();
+                    }
+                    if (!showreelModal.classList.contains('hidden')) {
+                        closeShowreelModal();
+                    }
                 }
             });
         });
