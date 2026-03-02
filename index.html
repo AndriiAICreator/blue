@@ -13,7 +13,7 @@
     <!-- Favicon -->
     <link rel="icon" href="mlogo.png" type="image/png">
     
-    <!-- Open Graph (Для красивих посилань в соцмережах) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="ANDRII.VISUALS | Premium AI Creator & Video Editor">
     <meta property="og:description" content="Transforming concepts into high-end cinematic visuals with AI & precise video editing.">
     <meta property="og:type" content="website">
@@ -105,7 +105,7 @@
         .delay-200 { transition-delay: 200ms; }
 
         /* =========================================
-           SMART HEADER STYLES (Кінематографічний)
+           SMART HEADER STYLES
            ========================================= */
         #main-header {
             transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
@@ -144,7 +144,6 @@
             border-color: white !important;
         }
 
-        /* Розумне фарбування ЛОГОТИПУ (logo.png) */
         #main-header.on-top #main-logo {
             filter: brightness(0) invert(1) !important;
         }
@@ -168,13 +167,12 @@
             <a href="#" class="shrink-0 z-50 flex items-center group">
                 <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-10 sm:h-12 md:h-14 w-auto max-w-[250px] sm:max-w-none object-contain transition-all duration-300" onerror="this.classList.add('hidden'); document.getElementById('text-logo').classList.remove('hidden'); document.getElementById('text-logo').classList.add('flex');">
                 
-                <!-- Текстовий Логотип (Fallback) -->
                 <div id="text-logo" class="hidden items-center text-xl sm:text-2xl font-bold tracking-tight transition-colors text-zinc-900 dark:text-white">
                     ANDRII<span class="text-blue-500">.VISUALS</span>
                 </div>
             </a>
 
-            <!-- Desktop Navigation Links -->
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-sm font-medium tracking-wide">
                 <a href="#about" class="nav-link text-zinc-600 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
                     <span class="lang-en">About</span><span class="lang-ua">Про мене</span>
@@ -189,33 +187,29 @@
 
             <!-- Controls -->
             <div class="flex items-center gap-4 sm:gap-6 z-50">
-                <!-- Theme Toggle -->
                 <button id="themeToggle" class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors" aria-label="Toggle Theme">
                     <i class="fas fa-sun text-sm sm:text-base hidden dark:block"></i>
                     <i class="fas fa-moon text-sm sm:text-base block dark:hidden"></i>
                 </button>
 
-                <!-- Language Toggle -->
                 <div class="flex items-center gap-1.5 cursor-pointer text-[12px] sm:text-[13px] tracking-wide" id="langToggleBox">
                     <span id="langBtnEn" class="transition-colors text-zinc-500 dark:text-zinc-400">EN</span>
                     <span class="text-zinc-300 dark:text-zinc-700 font-normal cursor-default">/</span>
                     <span id="langBtnUa" class="transition-colors text-zinc-500 dark:text-zinc-400">UA</span>
                 </div>
 
-                <!-- Contact Button -->
                 <a href="#contact" id="header-contact-btn" class="hidden md:flex items-center justify-center px-6 py-2.5 text-[13px] font-semibold border border-zinc-300 dark:border-white/20 rounded-full text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
                     <span class="lang-en">Let's Talk</span>
                     <span class="lang-ua">Обговорити проєкт</span>
                 </a>
 
-                <!-- Mobile Menu Hamburger -->
                 <button id="mobileMenuBtn" class="md:hidden text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Dropdown -->
+        <!-- Mobile Menu -->
         <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-white/10 shadow-xl pb-4 pt-2 px-4 flex-col gap-4 text-sm font-medium">
             <a href="#about" class="nav-link-mobile block py-2 text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <span class="lang-en">About Me</span><span class="lang-ua">Про мене</span>
@@ -232,8 +226,8 @@
         </div>
     </header>
 
-    <!-- Section 2: Hero Section (Повернуто вирівнювання вниз та центрований індикатор скролу) -->
-    <section id="hero" class="relative h-[100svh] w-full flex flex-col justify-end pb-8 sm:pb-24 overflow-hidden bg-zinc-950">
+    <!-- Section 2: Hero Section (Опущений текст, центрований на мобільному) -->
+    <section id="hero" class="relative h-[100svh] w-full flex items-end pb-16 sm:pb-24 overflow-hidden bg-zinc-950 pt-20">
         <!-- Background YouTube Video -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70"
@@ -242,16 +236,15 @@
             </iframe>
         </div>
         
-        <!-- Dark Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/20 z-0"></div>
 
-        <!-- Floating Controls (Піднято догори справа) -->
-        <div class="absolute top-24 sm:top-28 right-4 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
+        <!-- Floating Controls (Справа вгорі) -->
+        <div class="absolute top-24 right-4 sm:top-28 sm:right-8 flex flex-col items-end gap-3 z-20 reveal active">
             <!-- Mute Button -->
             <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
                 <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
             </button>
-            <!-- Minimal Showreel Link (Opens Modal) -->
+            <!-- Showreel Modal Trigger -->
             <a href="#" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer showreel-trigger">
                 <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
                     <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
@@ -263,18 +256,17 @@
         </div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 reveal active pb-16 sm:pb-0">
-            <div class="max-w-3xl flex flex-col items-center md:items-start text-center md:text-left">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center sm:items-start text-center sm:text-left gap-6 reveal active pb-8 sm:pb-0">
+            <div class="max-w-3xl">
                 <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 text-white">
                     <span class="lang-en">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                     <span class="lang-ua">AI Creator &<br><span class="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">Video Editor</span></span>
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 font-light max-w-xl mx-auto md:mx-0">
+                <p class="text-base sm:text-lg md:text-xl text-zinc-300 mb-8 font-light max-w-xl mx-auto sm:mx-0">
                     <span class="lang-en">Transforming concepts into high-end cinematic visuals. I craft emotion-driven content designed to captivate and maximize viewer retention from the very first second.</span>
                     <span class="lang-ua">Трансформую ідеї у преміальний кінематографічний візуал. Створюю контент, який захоплює емоцією та безвідмовно утримує увагу з першої секунди.</span>
                 </p>
                 
-                <!-- Main CTA -->
                 <a href="#portfolio" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full bg-white text-black hover:bg-zinc-200 transition-colors shadow-lg">
                     <span class="lang-en">View Portfolio</span>
                     <span class="lang-ua">Дивитись портфоліо</span>
@@ -282,10 +274,10 @@
             </div>
         </div>
 
-        <!-- Scroll Indicator (Центровано внизу) -->
-        <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
-            <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
-            <div class="relative w-[1px] h-10 sm:h-14 bg-white/20 overflow-hidden">
+        <!-- Scroll Indicator (Прихований на мобільному для чистоти, видимий на десктопі) -->
+        <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
+            <div class="relative w-[1px] h-14 bg-white/20 overflow-hidden">
                 <div class="absolute top-0 w-full h-full bg-white scroll-indicator-line"></div>
             </div>
         </div>
@@ -309,7 +301,6 @@
                 </p>
             </div>
             
-            <!-- Modern Software Stack -->
             <div class="flex flex-wrap gap-2.5 sm:gap-3 reveal delay-100">
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"><i class="fas fa-video text-purple-600"></i> Premiere Pro</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"><i class="fas fa-layer-group text-purple-500"></i> After Effects</span>
@@ -408,7 +399,6 @@
                 <span class="lang-ua">Вибрані роботи</span>
             </h2>
             
-            <!-- Filters -->
             <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
                 <button class="filter-btn active px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-zinc-300 dark:border-white/20 bg-zinc-900 text-white dark:bg-white dark:text-black transition-colors" data-filter="all">
                     <span class="lang-en">All</span>
@@ -429,29 +419,29 @@
             </div>
         </div>
 
-        <!-- Portfolio Grid -->
+        <!-- Portfolio Grid (Оновлено дизайн Hover-ефекту для відео) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="portfolio-grid">
             
             <!-- Картка 1 -->
-            <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1">
                 
-                <!-- Desktop Modal Trigger Overlay -->
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/YPo45sz-9ck?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/YPo45sz-9ck?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/YPo45sz-9ck/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    
+                    <!-- Desktop Overlay: Темніє тільки відео, кнопка виїжджає знизу -->
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
                 
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Dynamic Real Estate Promo</span>
                         <span class="lang-ua">Динамічне промо нерухомості</span>
@@ -483,21 +473,22 @@
             </article>
 
             <!-- Картка 2 -->
-            <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/K9BmoRnk0iY?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/K9BmoRnk0iY?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/K9BmoRnk0iY/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">"Meow" Bakery AI Concept</span>
                         <span class="lang-ua">Концепт пекарні "Meow"</span>
@@ -527,21 +518,22 @@
             </article>
 
             <!-- Картка 3 -->
-            <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/fRyDk_Ez7rA?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/fRyDk_Ez7rA?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/fRyDk_Ez7rA/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Expert Reels for Marketing Agency</span>
                         <span class="lang-ua">Експертний Reels для маркетингу</span>
@@ -571,21 +563,22 @@
             </article>
 
             <!-- Картка 4 -->
-            <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="editing" data-yt-src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/IV5_Deej-ns?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/IV5_Deej-ns?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/IV5_Deej-ns/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Dynamic Split-Mask Montage</span>
                         <span class="lang-ua">Динамічний монтаж із масками</span>
@@ -615,21 +608,22 @@
             </article>
 
             <!-- Картка 5 -->
-            <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/rYIkJe4vjo0?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/rYIkJe4vjo0?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/rYIkJe4vjo0/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">AI Spokesperson & B-Roll Integration</span>
                         <span class="lang-ua">Віртуальний ведучий та B-Roll</span>
@@ -659,21 +653,22 @@
             </article>
 
             <!-- Картка 6 -->
-            <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/H_6JICZRXWI?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/H_6JICZRXWI?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/H_6JICZRXWI/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">AI Podcast Simulation</span>
                         <span class="lang-ua">Імітація AI-подкасту</span>
@@ -703,21 +698,22 @@
             </article>
 
             <!-- Картка 7 -->
-            <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/aOwXYDCj3W4?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/aOwXYDCj3W4?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/aOwXYDCj3W4/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Virtual Host for Luxury Real Estate</span>
                         <span class="lang-ua">Віртуальний ведучий для нерухомості</span>
@@ -747,21 +743,22 @@
             </article>
 
             <!-- Картка 8 -->
-            <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="avatars" data-yt-src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/3yX_4x66irc?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/3yX_4x66irc?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/3yX_4x66irc/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Automated Quiz Generation Pipeline</span>
                         <span class="lang-ua">Автоматизована генерація квізів</span>
@@ -791,21 +788,22 @@
             </article>
 
             <!-- Картка 9 -->
-            <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[16/9] lg:aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/8zlGfpVU1_E?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/8zlGfpVU1_E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/8zlGfpVU1_E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Water Carafe AI Commercial</span>
                         <span class="lang-ua">AI-реклама графина для води</span>
@@ -835,21 +833,22 @@
             </article>
 
             <!-- Картка 10 -->
-            <article class="portfolio-card relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/p7D-s_yMC30?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/p7D-s_yMC30?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/p7D-s_yMC30/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Consistent AI Character Animation</span>
                         <span class="lang-ua">Анімація зі збереженням персонажів</span>
@@ -879,21 +878,22 @@
             </article>
 
             <!-- Картка 11 -->
-            <article class="portfolio-card relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/eSdT8O2wU5E?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/eSdT8O2wU5E?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/eSdT8O2wU5E/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Architectural 3D Revival</span>
                         <span class="lang-ua">Оживлення 3D-рендерів</span>
@@ -923,21 +923,22 @@
             </article>
 
             <!-- Картка 12 -->
-            <article class="portfolio-card relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1">
-                <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/50 backdrop-blur-0 group-hover:backdrop-blur-[3px] transition-all duration-500 cursor-pointer items-center justify-center card-modal-trigger">
-                    <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-2xl flex items-center gap-2.5">
-                        <i class="fas fa-play text-[10px]"></i>
-                        <span class="lang-en">Watch & Details</span><span class="lang-ua">Дивитись проєкт</span>
-                    </span>
-                </div>
-                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10">
+            <article class="portfolio-card cursor-pointer card-modal-trigger relative group reveal delay-200 flex flex-col bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-zinc-400 dark:hover:border-white/30 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-xl" data-category="generation" data-yt-src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1">
+                
+                <div class="relative w-full aspect-[9/16] bg-zinc-950 z-10 overflow-hidden">
                     <iframe class="w-full h-full absolute top-0 left-0 pointer-events-auto md:pointer-events-none" 
                             src="https://www.youtube.com/embed/6RnonxLixGo?rel=0&modestbranding=1" 
                             srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.85;transition:0.4s}a:hover img{opacity:0.6;transform:scale(1.05)}.btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:0.3s;color:white;box-shadow:0 10px 30px rgba(0,0,0,0.3)}a:hover .btn{background:white;color:black;transform:translate(-50%,-50%) scale(1.1)}svg{width:20px;fill:currentColor;margin-left:4px}@media(min-width:768px){.btn{display:none!important}}</style><a href='https://www.youtube.com/embed/6RnonxLixGo?autoplay=1&rel=0&modestbranding=1&controls=1'><img src='https://img.youtube.com/vi/6RnonxLixGo/maxresdefault.jpg' alt='Video Thumbnail'><div class='btn'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg></div></a>" 
                             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
                     </iframe>
+                    <div class="hidden md:flex absolute inset-0 z-20 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex-col justify-end p-4 pb-6">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl self-center flex items-center gap-2 border border-black/5">
+                            <i class="fas fa-play text-[10px]"></i>
+                            <span class="lang-en">Watch Project</span><span class="lang-ua">Дивитись проєкт</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 pointer-events-auto md:pointer-events-none bg-white dark:bg-transparent">
+                <div class="p-3 sm:p-4 flex flex-col flex-1 relative z-10 bg-white dark:bg-transparent">
                     <h3 class="text-sm sm:text-base font-bold leading-snug card-title">
                         <span class="lang-en">Story-Driven Real Estate Promo</span>
                         <span class="lang-ua">Сюжетне промо елітної нерухомості</span>
@@ -1350,13 +1351,13 @@
 
             document.querySelectorAll('.card-modal-trigger').forEach(trigger => {
                 trigger.addEventListener('click', function(e) {
+                    if (window.innerWidth < 768) return; // Ігноруємо на мобільних пристроях
                     e.preventDefault();
-                    const card = this.closest('.portfolio-card');
                     
-                    const ytSrc = card.getAttribute('data-yt-src');
-                    const titleHTML = card.querySelector('.card-title').innerHTML;
-                    const detailsHTML = card.querySelector('.card-details').innerHTML;
-                    const hashtagsHTML = card.querySelector('.card-hashtags').innerHTML;
+                    const ytSrc = this.getAttribute('data-yt-src');
+                    const titleHTML = this.querySelector('.card-title').innerHTML;
+                    const detailsHTML = this.querySelector('.card-details').innerHTML;
+                    const hashtagsHTML = this.querySelector('.card-hashtags').innerHTML;
 
                     modalIframe.src = ytSrc + (ytSrc.includes('?') ? '&' : '?') + 'autoplay=1';
                     modalTitle.innerHTML = titleHTML;
