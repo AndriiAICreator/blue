@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>ANDRII.VISUALS | Premium Video Editor & AI Creator</title>
-    <meta name="description" content="Portfolio of Andrii, a Senior AI Creator and Video Editor specializing in commercial video production, AI avatars, dynamic editing, and full AI generation.">
-    <meta name="keywords" content="AI Creator, Video Editor, AI Avatars, Commercial Video Production, Dynamic Editing, VFX, HeyGen, AI Generation, Motion Graphics">
+    <title>ANDRII.VISUALS | Premium AI Creator & Video Editor</title>
+    <meta name="description" content="Portfolio of Andrii, a Premium AI Creator and Senior Video Editor specializing in commercial video production, AI avatars, dynamic editing, and cutting-edge AI generation.">
+    <meta name="keywords" content="AI Creator, Video Editor, AI Avatars, Commercial Video Production, Dynamic Editing, VFX, HeyGen, AI Generation, Motion Graphics, AI Video Editor Ukraine">
     <meta name="author" content="ANDRII.VISUALS">
+    
+    <!-- Open Graph (Для красивих посилань в соцмережах) -->
+    <meta property="og:title" content="ANDRII.VISUALS | Premium AI Creator & Video Editor">
+    <meta property="og:description" content="Transforming concepts into high-end cinematic visuals with AI & precise video editing.">
+    <meta property="og:type" content="website">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,21 +104,20 @@
             transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Стан 1: На самому верху (Повна прозорість, білий текст поверх відео) */
+        /* Стан 1: На самому верху (Повна прозорість) */
         #main-header.on-top {
             background-color: transparent !important;
             border-color: transparent !important;
             box-shadow: none !important;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
         
-        /* Примусовий білий колір тексту для всіх елементів шапки, коли вона над відео */
         #main-header.on-top .nav-link,
         #main-header.on-top #langToggleBox,
         #main-header.on-top #themeToggle,
         #main-header.on-top #mobileMenuBtn {
-            color: rgba(255, 255, 255, 0.75) !important;
+            color: rgba(255, 255, 255, 0.8) !important;
         }
         #main-header.on-top .nav-link:hover,
         #main-header.on-top #themeToggle:hover,
@@ -125,9 +129,8 @@
             font-weight: 700;
         }
         
-        /* Кнопка контактів в прозорому стані */
         #main-header.on-top #header-contact-btn {
-            border-color: rgba(255, 255, 255, 0.3) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
             color: white !important;
         }
         #main-header.on-top #header-contact-btn:hover {
@@ -135,9 +138,7 @@
             border-color: white !important;
         }
 
-        /* Розумне фарбування ЛОГОТИПУ (logo.png).
-           Використовуємо CSS-фільтри, щоб не залежати від початкового кольору картинки.
-        */
+        /* Розумне фарбування ЛОГОТИПУ (logo.png) */
         #main-header.on-top #main-logo {
             filter: brightness(0) invert(1) !important;
         }
@@ -148,7 +149,6 @@
             filter: brightness(0);
         }
         
-        /* Стан для текстового логотипа (якщо картинка не завантажиться) */
         #main-header.on-top #text-logo { color: white !important; }
     </style>
 </head>
@@ -156,12 +156,12 @@
 
     <!-- Section 1: Header & Navigation -->
     <header id="main-header" class="fixed top-0 w-full z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-zinc-200 dark:border-white/10 shadow-sm transition-transform duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between relative">
             
-            <!-- Logo Area (Збільшений розмір) -->
+            <!-- Logo Area (ЩЕ БІЛЬШИЙ РОЗМІР) -->
             <a href="#" class="shrink-0 z-50 flex items-center group">
-                <!-- Зображення Лого -->
-                <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-7 sm:h-9 md:h-10 w-auto max-w-[180px] sm:max-w-[220px] object-contain transition-all duration-300" onerror="this.classList.add('hidden'); document.getElementById('text-logo').classList.remove('hidden'); document.getElementById('text-logo').classList.add('flex');">
+                <!-- Зображення Лого. h-10/12/14 дає велику висоту. max-w-none знімає обмеження по ширині -->
+                <img src="logo.png" alt="ANDRII.VISUALS Logo" id="main-logo" class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-[280px] sm:max-w-none object-contain transition-all duration-300" onerror="this.classList.add('hidden'); document.getElementById('text-logo').classList.remove('hidden'); document.getElementById('text-logo').classList.add('flex');">
                 
                 <!-- Текстовий Логотип (Fallback) -->
                 <div id="text-logo" class="hidden items-center text-xl sm:text-2xl font-bold tracking-tight transition-colors text-zinc-900 dark:text-white">
@@ -182,9 +182,9 @@
                 </a>
             </nav>
 
-            <!-- Controls (Theme, Lang, Contact) -->
+            <!-- Controls -->
             <div class="flex items-center gap-4 sm:gap-6 z-50">
-                <!-- Мінімалістичний Theme Toggle -->
+                <!-- Theme Toggle -->
                 <button id="themeToggle" class="text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors" aria-label="Toggle Theme">
                     <i class="fas fa-sun text-sm sm:text-base hidden dark:block"></i>
                     <i class="fas fa-moon text-sm sm:text-base block dark:hidden"></i>
@@ -198,7 +198,7 @@
                 </div>
 
                 <!-- Contact Button -->
-                <a href="https://t.me/Andrii_aicreator" target="_blank" rel="noopener noreferrer" id="header-contact-btn" class="hidden md:flex items-center justify-center px-5 py-2 text-[13px] font-semibold border border-zinc-300 dark:border-white/20 rounded-full text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
+                <a href="#contact" id="header-contact-btn" class="hidden md:flex items-center justify-center px-6 py-2.5 text-[13px] font-semibold border border-zinc-300 dark:border-white/20 rounded-full text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors">
                     <span class="lang-en">Let's Talk</span>
                     <span class="lang-ua">Обговорити проєкт</span>
                 </a>
@@ -221,16 +221,15 @@
             <a href="#portfolio" class="nav-link-mobile block py-2 text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <span class="lang-en">Portfolio</span><span class="lang-ua">Мої роботи</span>
             </a>
-            <a href="https://t.me/Andrii_aicreator" target="_blank" rel="noopener noreferrer" class="nav-link-mobile block py-2 text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <a href="#contact" class="nav-link-mobile block py-2 text-zinc-700 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-blue-400">
                 <span class="lang-en">Let's Talk</span><span class="lang-ua">Обговорити проєкт</span>
             </a>
         </div>
     </header>
 
-    <!-- Section 2: Hero Section (Always Dark for Cinematic Effect) -->
+    <!-- Section 2: Hero Section -->
     <section id="hero" class="relative h-[100svh] w-full flex items-end pb-16 sm:pb-24 overflow-hidden bg-zinc-950 pt-20">
-        
-        <!-- Background YouTube Video (Showreel) -->
+        <!-- Background YouTube Video -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <iframe id="hero-youtube" class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70"
                     src="https://www.youtube.com/embed/LqUWmvRhwq4?autoplay=1&mute=1&loop=1&playlist=LqUWmvRhwq4&controls=0&showinfo=0&rel=0&modestbranding=1&enablejsapi=1&iv_load_policy=3"
@@ -261,14 +260,11 @@
             </div>
         </div>
 
-        <!-- Floating Controls (Right Bottom Corner) -->
+        <!-- Floating Controls -->
         <div class="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 flex flex-col items-end gap-4 z-20 reveal active">
-            <!-- Mute Button -->
             <button id="muteToggleBtn" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 hover:bg-white/20 flex items-center justify-center transition-all shadow-lg text-white cursor-pointer group" title="Toggle Sound">
                 <i id="muteIcon" class="fas fa-volume-mute text-sm sm:text-base group-hover:scale-110 transition-transform"></i>
             </button>
-            
-            <!-- Minimal Showreel Link -->
             <a href="https://youtu.be/LqUWmvRhwq4" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer">
                 <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 hidden sm:block">
                     <span class="lang-en">Full Showreel</span><span class="lang-ua">Повний шоуріл</span>
@@ -279,7 +275,7 @@
             </a>
         </div>
 
-        <!-- Active Scroll Indicator (Bottom Center) -->
+        <!-- Scroll Indicator -->
         <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity z-10 pointer-events-none reveal active">
             <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white font-medium">Scroll</span>
             <div class="relative w-[1px] h-10 sm:h-14 bg-white/20 overflow-hidden">
@@ -288,7 +284,7 @@
         </div>
     </section>
 
-    <!-- Section 3: About & Minimalist Skills Cloud -->
+    <!-- Section 3: About & Skills -->
     <section id="about" class="py-16 sm:py-24 bg-zinc-50 dark:bg-zinc-900/40 border-b border-zinc-200 dark:border-white/5 transition-colors duration-300 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mb-10 reveal">
@@ -306,34 +302,25 @@
                 </p>
             </div>
             
-            <!-- Modern Software Stack (Grouped logically) -->
+            <!-- Modern Software Stack -->
             <div class="flex flex-wrap gap-2.5 sm:gap-3 reveal delay-100">
-                <!-- Video & Editing -->
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"><i class="fas fa-video text-purple-600"></i> Premiere Pro</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-purple-500/50 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"><i class="fas fa-layer-group text-purple-500"></i> After Effects</span>
-                
-                <!-- Image & Design -->
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-400/50 hover:text-blue-500 transition-colors"><i class="fas fa-pen-nib text-blue-400"></i> Photoshop</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-teal-500/50 hover:text-teal-500 transition-colors"><i class="fas fa-ship text-teal-500"></i> Midjourney</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-pink-500/50 hover:text-pink-500 transition-colors"><i class="fas fa-paint-brush text-pink-500"></i> Krea</span>
-
-                <!-- AI Generation (Video) -->
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-sky-400/50 hover:text-sky-500 transition-colors"><i class="fas fa-cloud text-sky-400"></i> Sora</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-red-500/50 hover:text-red-500 transition-colors"><i class="fas fa-film text-red-500"></i> Runway</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-green-500/50 hover:text-green-500 transition-colors"><i class="fas fa-brain text-green-500"></i> Kling</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-indigo-500/50 hover:text-indigo-500 transition-colors"><i class="fas fa-cube text-indigo-500"></i> Luma</span>
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-yellow-400/50 hover:text-yellow-500 transition-colors"><i class="fas fa-magic text-yellow-400"></i> NanoBanana</span>
-
-                <!-- AI Avatars & Audio -->
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-blue-500/50 hover:text-blue-500 transition-colors"><i class="fas fa-robot text-blue-500"></i> HeyGen / 11Labs</span>
-
-                <!-- Automation / Coding -->
                 <span class="px-4 py-2 text-sm rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center gap-2 hover:border-yellow-500/50 hover:text-yellow-600 transition-colors"><i class="fas fa-code text-yellow-500"></i> JS Automation</span>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Workflow (Timeline Design) -->
+    <!-- Section 4: Workflow -->
     <section id="workflow" class="py-20 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
         <div class="mb-16 reveal">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4">
@@ -346,10 +333,8 @@
             </p>
         </div>
 
-        <!-- Vertical Timeline Line -->
         <div class="relative border-l-2 border-zinc-200 dark:border-white/10 ml-3 sm:ml-6 pl-8 sm:pl-12 py-2 space-y-12">
-            
-            <!-- Step 1 -->
+            <!-- Steps -->
             <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -361,8 +346,6 @@
                     <span class="lang-ua">Аналізую вашу задачу, цільову аудиторію та очікуваний результат. Ми узгоджуємо візуальну концепцію, яка найкраще передасть потрібну атмосферу та безвідмовно спрацює на вашого глядача.</span>
                 </p>
             </div>
-
-            <!-- Step 2 -->
             <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -374,8 +357,6 @@
                     <span class="lang-ua">Розробка оптимального плану дій. Я оцінюю матеріали, підбираю технології (AI/Монтаж) та формую прозорий кошторис із чіткими дедлайнами до початку роботи.</span>
                 </p>
             </div>
-
-            <!-- Step 3 -->
             <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -387,8 +368,6 @@
                     <span class="lang-ua">Перетворення розрізнених матеріалів на цілісну історію. Головний фокус — на ідеальній динаміці, бездоганному стилі та максимальному утриманні уваги глядача (retention).</span>
                 </p>
             </div>
-
-            <!-- Step 4 -->
             <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -400,8 +379,6 @@
                     <span class="lang-ua">Доведення проєкту до ідеалу. Ми проводимо структурні ітерації правок (зазвичай 1-2 раунди), щоб відшліфувати звук, колір та загальну динаміку до кінематографічного рівня.</span>
                 </p>
             </div>
-
-            <!-- Step 5 -->
             <div class="relative group reveal">
                 <div class="absolute -left-[41px] sm:-left-[57px] top-1 w-4 h-4 rounded-full bg-zinc-200 dark:bg-zinc-800 border-2 border-white dark:border-zinc-950 group-hover:bg-blue-500 group-hover:border-blue-200 group-hover:scale-125 transition-all duration-300 shadow-[0_0_0_4px_rgba(255,255,255,1)] dark:shadow-[0_0_0_4px_rgba(9,9,11,1)]"></div>
                 <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -416,7 +393,7 @@
         </div>
     </section>
 
-    <!-- Section 5: Selected Works (Portfolio) -->
+    <!-- Section 5: Selected Works -->
     <section id="portfolio" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-zinc-200 dark:border-white/5 scroll-mt-20">
         <div class="text-center mb-10 sm:mb-12 reveal">
             <h2 class="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
@@ -883,7 +860,7 @@
         </div>
     </section>
 
-    <!-- Section 6: Contact Call to Action -->
+    <!-- Section 6: Contact Call to Action (Оновлено) -->
     <section id="contact" class="relative py-24 sm:py-32 overflow-hidden scroll-mt-20">
         <!-- Cinematic Blurred Background -->
         <div class="absolute inset-0 z-0 pointer-events-none">
@@ -892,32 +869,32 @@
         </div>
 
         <!-- Content -->
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
-                <span class="lang-en">Ready to elevate your visual content?</span>
-                <span class="lang-ua">Готові вивести візуальний контент на новий рівень?</span>
+                <span class="lang-en">Let's create visuals they can't scroll past.</span>
+                <span class="lang-ua">Створимо візуал, який неможливо проскролити.</span>
             </h2>
             <p class="text-lg sm:text-xl text-zinc-300 mb-10 max-w-2xl mx-auto font-light">
-                <span class="lang-en">Let's discuss how AI and expert editing can solve your business challenges.</span>
-                <span class="lang-ua">Обговоримо, як AI та експертний монтаж можуть вирішити завдання вашого бізнесу.</span>
+                <span class="lang-en">Tell me about your project, and I'll craft a visual concept that perfectly captures your brand's vibe.</span>
+                <span class="lang-ua">Розкажіть про свою задачу, і я запропоную концепт, який ідеально передасть атмосферу вашого проєкту.</span>
             </p>
             
-            <!-- Telegram Main Button -->
-            <a href="https://t.me/Andrii_aicreator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 text-base sm:text-lg font-bold rounded-full bg-blue-600 text-white hover:bg-blue-500 hover:-translate-y-1 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] border border-blue-500/50">
-                <i class="fab fa-telegram mr-3 text-xl"></i>
-                <span class="lang-en">Message on Telegram</span>
-                <span class="lang-ua">Написати в Telegram</span>
-            </a>
+            <!-- Buttons Group -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <!-- Telegram Main Button -->
+                <a href="https://t.me/Andrii_aicreator" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 text-base font-bold rounded-full bg-white text-zinc-950 hover:bg-zinc-200 hover:-translate-y-1 transition-all shadow-xl">
+                    <i class="fab fa-telegram mr-3 text-xl text-zinc-900"></i>
+                    <span class="lang-en">Message on Telegram</span>
+                    <span class="lang-ua">Написати в Telegram</span>
+                </a>
 
-            <!-- Email Copy Feature -->
-            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <span class="text-zinc-400 text-sm font-light">
-                    <span class="lang-en">or copy my email:</span>
-                    <span class="lang-ua">або скопіюйте email:</span>
-                </span>
-                <button onclick="copyEmail()" class="group flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all cursor-pointer" title="Copy to clipboard">
-                    <span class="text-zinc-200 text-sm font-medium tracking-wide">andrii.aicreator@gmail.com</span>
-                    <i class="far fa-copy text-zinc-400 group-hover:text-white transition-colors copy-icon"></i>
+                <!-- Email Ghost Button -->
+                <button onclick="copyEmail(this)" class="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 text-base font-bold rounded-full bg-transparent border border-white/30 text-white hover:bg-white/10 hover:border-white/50 hover:-translate-y-1 transition-all cursor-pointer" title="Copy to clipboard">
+                    <i class="far fa-copy text-lg copy-icon group-hover:text-white transition-colors"></i>
+                    <span class="email-text tracking-wide">
+                        <span class="lang-en">andrii.aicreator@gmail.com</span>
+                        <span class="lang-ua">andrii.aicreator@gmail.com</span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -927,9 +904,9 @@
     <footer class="bg-zinc-950 py-10 sm:py-12 text-zinc-400 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8 reveal">
             
-            <!-- Футер Лого Area -->
+            <!-- Футер Лого Area (ЩЕ БІЛЬШИЙ РОЗМІР) -->
             <a href="#" class="shrink-0 flex items-center group">
-                <img src="logo.png" alt="ANDRII.VISUALS" class="h-8 sm:h-10 md:h-12 w-auto object-contain transition-all duration-300" style="filter: brightness(0) invert(1);" onerror="this.classList.add('hidden'); document.getElementById('footer-text-logo').classList.remove('hidden'); document.getElementById('footer-text-logo').classList.add('flex');">
+                <img src="logo.png" alt="ANDRII.VISUALS" class="h-10 sm:h-12 md:h-14 w-auto max-w-[280px] sm:max-w-none object-contain transition-all duration-300" style="filter: brightness(0) invert(1);" onerror="this.classList.add('hidden'); document.getElementById('footer-text-logo').classList.remove('hidden'); document.getElementById('footer-text-logo').classList.add('flex');">
                 <div id="footer-text-logo" class="hidden items-center text-xl sm:text-2xl font-bold tracking-tight text-white">
                     ANDRII<span class="text-blue-500">.VISUALS</span>
                 </div>
@@ -949,21 +926,21 @@
                 <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:-translate-y-1 transition-all" aria-label="Instagram">
                     <i class="fab fa-instagram text-lg"></i>
                 </a>
-                <!-- WhatsApp (Поки порожнє посилання) -->
+                <!-- WhatsApp -->
                 <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white hover:-translate-y-1 transition-all" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp text-lg"></i>
                 </a>
             </div>
             
-            <!-- Копірайт та Email -->
-            <div class="flex flex-col items-center md:items-end gap-2">
-                <button onclick="copyEmail()" class="group flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm cursor-pointer" title="Copy email">
-                    <i class="far fa-envelope"></i>
-                    <span>andrii.aicreator@gmail.com</span>
-                    <i class="far fa-copy text-[11px] ml-1 opacity-0 group-hover:opacity-100 transition-opacity copy-icon"></i>
-                </button>
-                <p class="text-xs sm:text-sm text-center md:text-right mt-2 md:mt-0">
+            <!-- Копірайт та Примітка (Оновлено) -->
+            <div class="flex flex-col items-center md:items-end gap-1.5">
+                <p class="text-xs sm:text-sm text-center md:text-right mt-2 md:mt-0 text-zinc-400">
                     &copy; <span id="year"></span> ANDRII.VISUALS. <span class="lang-en">All rights reserved.</span><span class="lang-ua">Всі права захищено.</span>
+                </p>
+                <!-- Disclaimer -->
+                <p class="text-[10px] sm:text-[11px] text-zinc-500 text-center md:text-right leading-tight max-w-[300px] md:max-w-none">
+                    <span class="lang-en">All projects belong to their respective owners and are shown for portfolio purposes only.</span>
+                    <span class="lang-ua">Усі проєкти належать їхнім правовласникам і демонструються виключно в якості портфоліо.</span>
                 </p>
             </div>
 
@@ -1014,8 +991,8 @@
             }, { passive: true });
         }
 
-        // --- Глобальна функція копіювання Email ---
-        window.copyEmail = function() {
+        // --- Розумна функція копіювання Email з анімацією кнопки ---
+        window.copyEmail = function(btn) {
             const email = "andrii.aicreator@gmail.com";
             const textArea = document.createElement("textarea");
             textArea.value = email;
@@ -1025,20 +1002,33 @@
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
+            
             try {
                 document.execCommand('copy');
-                // Візуальний зворотний зв'язок (галочка)
-                const copyIcons = document.querySelectorAll('.copy-icon');
-                copyIcons.forEach(icon => {
-                    icon.classList.remove('fa-copy', 'far');
-                    icon.classList.add('fa-check', 'fas', 'text-green-400');
-                });
+                
+                // Знаходимо іконку та спан з текстом всередині натиснутої кнопки
+                const icon = btn.querySelector('.copy-icon');
+                const textSpan = btn.querySelector('.email-text');
+                const enSpan = textSpan.querySelector('.lang-en');
+                const uaSpan = textSpan.querySelector('.lang-ua');
+                
+                // Зберігаємо старі значення
+                const origIconClass = icon.className;
+                const origEnText = enSpan.innerText;
+                const origUaText = uaSpan.innerText;
+
+                // Змінюємо на успішний стан
+                icon.className = "fas fa-check text-green-400 text-lg";
+                enSpan.innerText = "Copied!";
+                uaSpan.innerText = "Скопійовано!";
+
+                // Повертаємо назад через 2 секунди
                 setTimeout(() => {
-                    copyIcons.forEach(icon => {
-                        icon.classList.remove('fa-check', 'fas', 'text-green-400');
-                        icon.classList.add('fa-copy', 'far');
-                    });
+                    icon.className = origIconClass;
+                    enSpan.innerText = origEnText;
+                    uaSpan.innerText = origUaText;
                 }, 2000);
+                
             } catch (err) {
                 console.error('Copy failed', err);
             }
